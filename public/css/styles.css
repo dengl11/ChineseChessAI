@@ -1,0 +1,12 @@
+body {
+	background: #f4f4f4;
+     width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.body_content{
+  width: 94%;
+  margin: auto;
+  padding: 1em 0em;
+}

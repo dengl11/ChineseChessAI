@@ -4,7 +4,6 @@
 */
 var isPublic = typeof window != "undefined";
 
-console.log("system!", isPublic);
 (function(global) {
   var ngVer = '@2.0.0-rc.2';
   // map tells the System loader where to look for things
@@ -13,13 +12,18 @@ console.log("system!", isPublic);
     '@angular':                   (isPublic)? '@angular' : 'node_modules/@angular',
     '@angular/router':            (isPublic)? '@angular/router' : 'node_modules/@angular/router',
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs',
-    'primeng':                     (isPublic)? 'primeng': 'node_modules/primeng'
+     'ng-semantic':                 (isPublic)? 'ng-semantic' :'node_modules/ng-semantic'
   };
+
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    'primeng':                    { defaultExtension: 'js' }
+    'ng-semantic': {
+            main: './ng-semantic.js',
+            defaultExtension: 'js'
+        }
+
   };
   var ngPackageNames = [
     'common',

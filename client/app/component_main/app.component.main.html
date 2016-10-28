@@ -1,10 +1,18 @@
-<div class="content">
-	<h1>CS 221 Project: Chinese Chesss AI</h1>
+<div class="header">
+	<sm-menu title="Angular2" class="inverted teal" logo="https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/Stanford_University_seal_2003.svg/150px-Stanford_University_seal_2003.svg.png">
+		<a sm-item icon="sidebar big"></a>
+		<h1 sm-item>Stanford CS 221 Project <span class="separator">|</span> <span class="title">Chinese Chess AI</span></h1>
+		<sm-menu class="menu right secondary">
+			<a sm-item href="#/elements/menu" image="resource/img/dengli.png">Li Deng</a>
+		</sm-menu>
+	</sm-menu>
+</div>
+
+<div class="body_content">
 
 	<div class="left">
-		<h2 [style.color]= "'black'"> {{board.blackPieces.length}} pieces</h2>
-		<h2 [style.color]= "'red'">  {{board.redPieces.length}} pieces</h2>
-		<button (click)="board.initGame()">Refresh</button>
+		<sm-button class="medium teal" icon="refresh" (click)="board.initGame()">Restart</sm-button>
+		<hr/>
 	</div>
 
 
@@ -12,14 +20,11 @@
 
 
 	<div class="right">
-		<div *ngIf="board.selectedPiece">
-			<img src="resource/img/Pieces/{{board.selectedPiece.team}}/{{board.selectedPiece.name[0]}}.png" alt="" />
-			<div *ngFor="let move of board.possibleMoves">
-				<p>{{move}}</p>
-			</div>
-
-
-		</div>
+		<h2>Game State</h2>
+		<hr/>
+		<h3 [style.color]="'black'"> Agent 1: {{board.blackPieces.length}} pieces</h3>
+		<h3 [style.color]="'red'"> Agent 0: {{board.redPieces.length}} pieces</h3>
+		<hr/>
 
 		<table>
 			<tr>
@@ -36,6 +41,7 @@
 		</table>
 
 	</div>
+
 
 
 </div>

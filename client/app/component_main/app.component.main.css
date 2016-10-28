@@ -13,18 +13,34 @@
 
 .left{
   float: left;
-
 }
 
 .right{
- 
- 
   float: right;
  
 }
 
+.header{
+  height: 10%;
+}
+
+.header h1{
+  margin-left: 18%;
+  color: white;
+}
+.title{
+  margin-left: 1em;
+}
+.separator{
+  color: #f8f6ea;
+  margin-left: 1em;
+}
 
 .board{
   width:70%;
   display: inline-block;
+}
+
+.body_content{
+  padding-top:3%; 
 }

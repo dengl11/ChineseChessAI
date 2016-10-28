@@ -96,11 +96,6 @@ export class Rule {
     }
 
 
-    static addFinalMoveForPaoInOneDirection(moves, currRow, currCol, nextRow, nextCol, boardStates, team) {
-        moves.push([2 * i - currRow, currCol]);
-        if (boardStates[k].team != team) moves.push(boardStates[k].position);
-    }
-
 
     static findFirstOpponentOnRow(row, startCol, states, team, incFn){
             while (startCol >= this.minCol && startCol <= this.maxCol){
