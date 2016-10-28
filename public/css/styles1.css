@@ -1,0 +1,81 @@
+body{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2em;
+}
+
+.body_content{
+  width: 72%;
+  margin: auto;
+  padding: 1em 0em;
+}
+
+body, input[text], button {
+  color: #888;
+  font-family: Cambria, Georgia;
+}
+
+button:focus, input:focus {outline:0;}
+button:hover{
+  box-shadow: 4px 2px 2px 1px rgb(195, 207, 196);
+  background: none;
+}
+
+
+.gm-style img {
+    max-width: 200px;
+    margin: auto;
+}
+
+/*Loader css*/
+.loader {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid rgb(161, 207, 167);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.leftBorderPanel{
+  background-color: #EDF4E8;
+  border-left: 4px solid rgb(86, 88, 88);
+  padding: 0.1em 1em;
+  color:blakc;
+}
+
+.left_border_purple{
+  border-left: 4px solid rgb(85, 64, 154);
+}
+.schedule_chart{
+  height: 260px;
+}
+
+
+.em{
+  color: black;
+}
+
+
+
+
+
+.textbutton{
+  float: right;
+  width: 6%;
+  background: none;
+  border: none;
+}
+
+.textbutton:hover{
+  box-shadow: none;
+  cursor: default;
+}

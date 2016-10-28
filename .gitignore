@@ -1,0 +1,9 @@
+node_modules/*
+**/*.gif
+**/fonts/*
+client/**/*.js
+**/jquery*.js
+*.DS_Store
+*.js.map
+typings/*
+*.gz

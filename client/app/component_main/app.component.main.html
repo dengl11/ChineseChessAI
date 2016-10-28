@@ -1,0 +1,41 @@
+<div class="content">
+	<h1>CS 221 Project: Chinese Chesss AI</h1>
+
+	<div class="left">
+		<h2 [style.color]= "'black'"> {{board.blackPieces.length}} pieces</h2>
+		<h2 [style.color]= "'red'">  {{board.redPieces.length}} pieces</h2>
+		<button (click)="board.initGame()">Refresh</button>
+	</div>
+
+
+	<board #board class="board"></board>
+
+
+	<div class="right">
+		<div *ngIf="board.selectedPiece">
+			<img src="resource/img/Pieces/{{board.selectedPiece.team}}/{{board.selectedPiece.name[0]}}.png" alt="" />
+			<div *ngFor="let move of board.possibleMoves">
+				<p>{{move}}</p>
+			</div>
+
+
+		</div>
+
+		<table>
+			<tr>
+				<td>Position</td>
+				<td>Team</td>
+				<td>Name</td>
+			</tr>
+
+			<tr *ngFor="let state of board.boardState | mapToIterable">
+				<td>{{state.key}}</td>
+				<td>{{state.val.team}}</td>
+				<td>{{state.val.name}}</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+</div>

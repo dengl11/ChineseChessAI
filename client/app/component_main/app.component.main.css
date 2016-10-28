@@ -1,0 +1,30 @@
+#t{
+  font-size: 150px;
+}
+
+
+
+.left, .right{
+ width:15%;
+  float: top;
+   height: 100%;
+   display: inline-block;
+}
+
+.left{
+  float: left;
+
+}
+
+.right{
+ 
+ 
+  float: right;
+ 
+}
+
+
+.board{
+  width:70%;
+  display: inline-block;
+}

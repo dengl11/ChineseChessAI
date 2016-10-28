@@ -1,0 +1,57 @@
+.board{
+    background-image: url("resource/img/board.png");
+    margin: auto;
+    height: 700px;
+    width: 700px;
+    display: block;
+    box-shadow: 15px 10px 20px  #888888;
+}
+
+button{
+    outline: 0;
+    border:0;
+    width: 67px;
+    height: 67px;
+    cursor:pointer;
+    border-radius: 33.5px;
+    background-color: Transparent;
+    position: absolute;
+}
+
+button:hover, image:hover{
+    box-shadow:none;
+    outline: 0;
+}
+
+button:focus {outline:0;}
+
+
+.RefreshButton{
+    background-color: yellow;
+    display: block;
+    height: 50px;
+}
+.dummyPiece{
+    box-shadow:none;
+}
+.dummyPiece:hover{
+    box-shadow:none;
+}
+
+.selected, .selected:hover{
+box-shadow: 15px 10px 5px  #888888;
+}
+
+.grid{
+    position:relative;
+    left:84px;
+    top:42px;
+    height: 620px;
+    width: 540px;
+}
+
+.possibleMove{
+    background-color: lightgreen ;
+    opacity: 0.5;
+}
+

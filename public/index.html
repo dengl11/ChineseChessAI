@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Arup UBC</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+  <!-- 1. Load libraries -->
+  <script src="js/vendor/shim.min.js"></script>
+  <script src="js/vendor/zone.js"></script>
+  <script src="js/vendor/Reflect.js"></script>
+  <script src="js/vendor/system.js"></script>
+  <script src="js/Chart.bundle.js"></script>
+  <!--<script src="js/vendor/jquery.min.js"></script>-->
+  <!--<script src="js/vendor/jquery-ui.js"></script>-->
+  <!-- 2. Configure SystemJS -->
+  <script src="js/systemjs.config.js"></script>
+  <script>
+  var googleLoaded = false;
+  System.import('app').catch(function(err){ console.error(err); });
+  </script>
+
+  <script>document.write('<base href="' + document.location + '" />');</script>
+</head>
+<!-- 3. Display the application -->
+
+<body>
+  <app>
+    <div style="margin: 10em;">
+      <div class="loader"></div>
+    </div>
+  </app>
+</body>
+</html>
