@@ -18,6 +18,6 @@ npm start
 
 
 
-## Legal Moves Representation
+## Display of Legal Moves
 ![alt tag](https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/board-with-moves.png)
 --------------
