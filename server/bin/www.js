@@ -8,7 +8,7 @@ var app = require('../server').app;
 var debug = require('debug')('server:server');
 var http = require('http');
 
-var julia = require('node-julia');
+// var julia = require('node-julia');
 var assert = require('assert');
 
 
@@ -26,7 +26,7 @@ var url = 'mongodb://localhost/arup_ubc'
 
 
 /****************** Load Julia *********************/
-julia.exec('include', juliaPath + 'return2node.jl');
+//julia.exec('include', juliaPath + 'return2node.jl');
 
 
 var port = normalizePort(process.env.PORT || '3000');

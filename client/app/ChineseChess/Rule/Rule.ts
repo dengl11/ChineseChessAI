@@ -190,8 +190,8 @@ export class Rule {
     // Xiang
     static possibleMovesForXiang(currRow, currCol, boardStates) {
         var moves = [];
-        if (!(((currRow + 1) + "-" + (currCol + 1)) in boardStates)) moves.push([currRow + 2, currCol + 2]);
-        if (!(((currRow + 1) + "-" + (currCol - 1)) in boardStates)) moves.push([currRow + 2, currCol - 2]);
+        if (!(((currRow + 1) + "-" + (currCol + 1)) in boardStates) && currRow<= 3) moves.push([currRow + 2, currCol + 2]);
+        if (!(((currRow + 1) + "-" + (currCol - 1)) in boardStates) && currRow<= 3) moves.push([currRow + 2, currCol - 2]);
         if (!(((currRow - 1) + "-" + (currCol + 1)) in boardStates)) moves.push([currRow - 2, currCol + 2]);
         if (!(((currRow - 1) + "-" + (currCol - 1)) in boardStates)) moves.push([currRow - 2, currCol - 2]);
         return moves;
