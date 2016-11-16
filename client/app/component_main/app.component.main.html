@@ -13,6 +13,8 @@
 	<div class="left">
 		<sm-button class="medium teal" icon="refresh" (click)="board.initGame()">Restart</sm-button>
 		<hr/>
+		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle"></sm-checkbox>
+		<h1 *ngIf="board.gameEndState">You {{board.gameEndState}}</h1>
 	</div>
 
 
@@ -21,6 +23,8 @@
 
 	<div class="right">
 		<h2>Game State</h2>
+		<sm-button *ngIf="board.playingTeam == 1" class="circular brown" icon="male big"></sm-button>
+		<img *ngIf="board.selectedPiece"  src="resource/img/Pieces/{{board.selectedPiece.team}}/{{board.selectedPiece.name[0]}}.png" alt="">
 		<hr/>
 		<h3 [style.color]="'black'"> Agent 1: {{board.blackPieces.length}} pieces</h3>
 		<h3 [style.color]="'red'"> Agent 0: {{board.redPieces.length}} pieces</h3>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app',
@@ -14,7 +15,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
+  humanMode: FormControl = new FormControl();
+
 
 
 }

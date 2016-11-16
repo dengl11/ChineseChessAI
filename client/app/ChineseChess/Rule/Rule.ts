@@ -6,11 +6,13 @@ export class Rule {
     static minCol = 1;
     static maxCol = 9;
 
+
+
     // get key for boardStates for a position
     static pos2key(currRow, currCol) {
         return currRow + "-" + currCol;
     }
-    // get [row, col]] for key in boardStates 
+    // get [row, col]] for key in boardStates
     static key2pos(k) {
         return k.split("-").map(x => parseInt(x));
     }
@@ -19,8 +21,6 @@ export class Rule {
     // return moves within board range and escape current position
     static filterBoundedMoves(currRow, currCol, moves, boardStates, team) {
         // filter out invalied move
-        console.log(currRow)
-        console.log(currCol)
         return moves.filter(m => (
             (m[0] != currRow || m[1] != currCol) &&
             m[0] >= this.minRow &&
@@ -212,7 +212,7 @@ export class Rule {
 
     // all legal moves for a piece in a board state
     // return [(row, col)]
-    static possibleMoves = function (piece: Piece, boardStates) {
+    static possibleMoves = function (piece: Piece, boardStates:{}) {
         var name = piece.name[0];
         var currRow = piece.position[0];
         var currCol = piece.position[1];
@@ -241,7 +241,16 @@ export class Rule {
                 break
         }
         return this.filterBoundedMoves(currRow, currCol, moves, boardStates, piece.team);
+    }
 
+    // return a list of all possible moves
+    static allPossibleMoves = function(pieces:Piece[], boardStates:{}){
+      var moves = {};
+      for (var i in pieces){
+          var piece = pieces[i];
+          moves[piece.name] = this.possibleMoves(piece, boardStates);
+      }
+      return moves;
     }
 
 

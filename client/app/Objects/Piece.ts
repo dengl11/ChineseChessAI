@@ -9,7 +9,7 @@ export class Piece  {
         this.name = name;
         this.position = position;
     }
-    
+
 
     move(newPos){
         this.position = newPos;
