@@ -7,18 +7,44 @@
 		</sm-menu>
 	</sm-menu>
 </div>
+<div class="body_content" (keyup.Enter)="board.initGame()">
 
-<div class="body_content">
+	<board #board class="board"></board>
 
-	<div class="left">
+	<div class="left" >
 		<sm-button class="medium teal" icon="refresh" (click)="board.initGame()">Restart</sm-button>
 		<hr/>
 		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle"></sm-checkbox>
+		<hr/>
+
+		<sm-select placeholder="Opponent Agent" (change)="selectOpponent($event.target.value)" >
+			<option>Level 1 - Greedy </option>
+			<option>Level 2 - Evaluation</option>
+			<option>Level 3 - MCTS</option>
+			<option>Level 4 - Temporal</option>
+		</sm-select>
+
+
+
 		<h1 *ngIf="board.gameEndState">You {{board.gameEndState}}</h1>
+
+		<h3 [style.color]="'black'"> Agent 1: {{board.blackPieces.length}} pieces</h3>
+		<hr>
+		<table >
+			<tr>Black: {{board.blackAgent.pastMoves.length}} Moves</tr>
+			<tr *ngFor="let move of board.blackAgent.pastMoves">
+				<td>{{move}}</td>
+			</tr>
+		</table>
+
+
+
+
 	</div>
 
 
-	<board #board class="board"></board>
+
+
 
 
 	<div class="right">
@@ -26,25 +52,25 @@
 		<sm-button *ngIf="board.playingTeam == 1" class="circular brown" icon="male big"></sm-button>
 		<img *ngIf="board.selectedPiece"  src="resource/img/Pieces/{{board.selectedPiece.team}}/{{board.selectedPiece.name[0]}}.png" alt="">
 		<hr/>
-		<h3 [style.color]="'black'"> Agent 1: {{board.blackPieces.length}} pieces</h3>
+
 		<h3 [style.color]="'red'"> Agent 0: {{board.redPieces.length}} pieces</h3>
 		<hr/>
 
-		<table>
-			<tr>
-				<td>Position</td>
-				<td>Team</td>
-				<td>Name</td>
-			</tr>
 
-			<tr *ngFor="let state of board.boardState | mapToIterable">
-				<td>{{state.key}}</td>
-				<td>{{state.val.team}}</td>
-				<td>{{state.val.name}}</td>
-			</tr>
-		</table>
+		<!-- <tr *ngFor="let state of board.boardState | mapToIterable">
+		<td>{{state.key}}</td>
+		<td>{{state.val.team}}</td>
+		<td>{{state.val.name}}</td>
+	</tr> -->
 
-	</div>
+	<table style="color:red">
+		<tr>Red: {{board.redAgent.pastMoves.length}} Moves</tr>
+		<tr *ngFor="let move of board.redAgent.pastMoves">
+			<td>{{move}}</td>
+		</tr>
+	</table>
+
+</div>
 
 
 

@@ -56,6 +56,7 @@ export class BoardComponent implements OnInit {
     // init agents
     this.redAgent = new HumanAgent(this.redTeam);
     this.blackAgent = new GreedyAgent(this.blackTeam);
+    this.playingTeam = 1;
     if(this.humanMode){
       this.redAgent.updateState(this.redPieces, this.blackPieces);
     }
@@ -127,6 +128,7 @@ export class BoardComponent implements OnInit {
     this.refreshAllPiecesOnBoard();
     // switch turn to computer
     if (this.humanMode){
+      if(this.playingTeam == 1) this.redAgent.addMove(p1.name);
       this.switchTurn();
     }
   }
@@ -163,6 +165,7 @@ export class BoardComponent implements OnInit {
 
   // switch game turn
   switchTurn(){
+    // update playing team
     this.playingTeam = (this.playingTeam == 1? 0:1);
     var agent = (this.playingTeam == 1? this.redAgent : this.blackAgent);
     if (!agent.updateState(this.redPieces, this.blackPieces)) {

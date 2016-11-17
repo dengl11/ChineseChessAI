@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
 
   humanMode: FormControl = new FormControl();
 
+  selectOpponent(v){
+    console.log(v);
+  }
+
 
 
 }

@@ -248,7 +248,8 @@ export class Rule {
       var moves = {};
       for (var i in pieces){
           var piece = pieces[i];
-          moves[piece.name] = this.possibleMoves(piece, boardStates);
+          var moves4Piece = this.possibleMoves(piece, boardStates);
+          if(moves4Piece.length > 0) moves[piece.name] = moves4Piece;
       }
       return moves;
     }

@@ -2,12 +2,8 @@ import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
 
 export class Agent{
-  // return a legal move given board state
-  // state: {
-  //        myPieces: {name: (row, col)}
-  //        oppoPieces: {name: (row, col)}
-  // }
   legalMoves:{}; // name->[positions]
+  pastMoves=[];
   myPieces:Piece[];
   oppoPieces:Piece[];
   team:number;
@@ -17,9 +13,14 @@ export class Agent{
     this.team = team;
   }
 
+  addMove(pieceName){
+    this.pastMoves.push(pieceName);
+  }
+
   // [fromPos, toPos]
   nextMove(){
-    var pieceName = Object.keys(this.legalMoves)[0];
+    var pieceNames = Object.keys(this.legalMoves);
+    var pieceName = pieceNames[Math.floor(Math.random() * pieceNames.length)];
     var toPos = this.legalMoves[pieceName][0];
     var fromPos:number[] = this.myPieces.filter(x=>x.name == pieceName)[0].position;
 
@@ -30,6 +31,7 @@ export class Agent{
     }
     // console.log("after move:", [fromPos, toPos]);
     if (this.team != 1) this.revertGameDirection();
+    this.addMove(pieceName);
     return [fromPos, toPos];
   };
 

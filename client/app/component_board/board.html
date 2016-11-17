@@ -1,9 +1,11 @@
-<div class="board">
+<div class="board" >
 	<div class="grid">
 		<button class="dummyPiece" *ngFor="let piece of dummyPieces" (click)="clickDummyPiece(piece)" [style.left]="(piece.position[1]-1.5)*pieceSize+'px'"
 		[style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'"
 		[class.possibleMove]='isPossibleMove(piece.position)'
+
 		>{{piece.position}}
+
 	</button>
 
 
