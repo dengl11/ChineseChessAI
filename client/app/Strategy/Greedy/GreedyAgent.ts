@@ -4,6 +4,8 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
 
+
+
   // private method of computing next move
   comptuteNextMove(){
     var pieceNames = Object.keys(this.legalMoves);
@@ -16,7 +18,7 @@ export class GreedyAgent extends Agent {
       var moves = this.legalMoves[name];
       for (var j in moves){
         var move = moves[j];
-        var value = this.getValueOfMove(move);
+        var value = this.getValueOfMove(name, move);
         if(value >= maxVal){
           fromPos = this.myPiecesDic[name];
           toPos = move;
@@ -29,12 +31,13 @@ export class GreedyAgent extends Agent {
   }
 
 
-  getValueOfMove(toPos){
+  getValueOfMove(pieceName, toPos){
     var posStr = toPos[0]+'-'+toPos[1];
     var piece = this.boardState[posStr];
-    if (!piece) return 0; // empty place
+    var posVal =  Evaluation.posValue(pieceName, toPos);
+    if (!piece) return posVal; // empty place
     if (piece[1]) alert("Bug");
-    return Evaluation.pieceValue(piece[0]);
+    return Evaluation.pieceValue(piece[0]) + posVal;
   }
 
 }

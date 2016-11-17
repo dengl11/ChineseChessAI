@@ -40,6 +40,8 @@ export class Evaluation{
       [0, 2, 4,   6,  6,  6, 4, 2, 0],
       [4, 0, 8,   6, 10,  6, 8, 0, 4],
       [0, 0, 0,   2,  4,  2, 0, 0, 0],
+      [-2, 0, 4,  2,  6,  2, 4, 0, -2],
+      [0, 0, 0,   2,  8,  2, 0, 0, 0],
       [0, 0, -2,  4, 10,  4,-2, 0, 0],
       [2, 2,  0, -10,-8,-10, 0, 2, 2],
       [2, 2,  0,  -4,-14, -4, 0, 2, 2],
@@ -65,7 +67,9 @@ export class Evaluation{
   }
   // return value of position: [row, col]
   static posValue(name, pos){
-    return this.posValue[name[0]][pos[0]][pos[1]];
+    var matrix = this.posValues[name[0]];
+    if(!matrix) return 0;
+    return matrix[pos[0]-1][pos[1]-1];
   }
 
 }
