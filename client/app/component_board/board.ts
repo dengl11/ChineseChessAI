@@ -117,7 +117,7 @@ export class BoardComponent implements OnInit {
   }
 
 
-  // move p1 -> p1
+  // move p1 -> p2
   movePiece(p1, p2: Piece) {
     if (p1.team == p2.team) return;
     p1.move(p2.position);

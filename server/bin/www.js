@@ -8,36 +8,17 @@ var app = require('../server').app;
 var debug = require('debug')('server:server');
 var http = require('http');
 
-// var julia = require('node-julia');
 var assert = require('assert');
-
-
-// path of julia engine
-var juliaPath = __dirname + '/../Julia/';
-console.log(juliaPath)
-
-/****************** Connect MongoDB with Server (node) *********************/
-var url = 'mongodb://localhost/arup_ubc'
-
-// var psra_buildings =   Building.find({"A1_analyzed":1})
-// var n_psra = psra_buildings.count()
-
-/************* FOR LOOP THROUGH PSRA BUILDINGS ********/
-
-
-/****************** Load Julia *********************/
-//julia.exec('include', juliaPath + 'return2node.jl');
-
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-
-app.get('/compute/', function (request, response) {
-  console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
-   var a = julia.exec("add");
-   console.log(a);
-   response.end();
-});
+//
+// app.get('/compute/', function (request, response) {
+//   console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
+//    var a = julia.exec("add");
+//    console.log(a);
+//    response.end();
+// });
 
 
 

@@ -5,7 +5,9 @@ export class Agent{
   legalMoves:{}; // name->[positions]
   pastMoves=[];
   myPieces:Piece[];
+  myPiecesDic:{}; // {name -> pos}
   oppoPieces:Piece[];
+  boardState: {}; // {posStr->[name, isMyPiece]}
   team:number;
 
 
@@ -19,11 +21,10 @@ export class Agent{
 
   // [fromPos, toPos]
   nextMove(){
-    var pieceNames = Object.keys(this.legalMoves);
-    var pieceName = pieceNames[Math.floor(Math.random() * pieceNames.length)];
-    var toPos = this.legalMoves[pieceName][0];
-    var fromPos:number[] = this.myPieces.filter(x=>x.name == pieceName)[0].position;
-
+    var computeResult = this.comptuteNextMove();
+    var pieceName = computeResult[0];
+    var fromPos = computeResult[1];
+    var toPos = computeResult[2];
     // console.log("init move:", [fromPos, toPos]);
     if(this.team != 1) {
       toPos = this.revertPosition(toPos);
@@ -34,6 +35,16 @@ export class Agent{
     this.addMove(pieceName);
     return [fromPos, toPos];
   };
+
+  // private method of computing next move
+  comptuteNextMove(){
+    console.log("parent comptuteNextMove")
+    var pieceNames = Object.keys(this.legalMoves);
+    var pieceName = pieceNames[Math.floor(Math.random() * pieceNames.length)];
+    var toPos = this.legalMoves[pieceName][0];
+    var fromPos:number[] = this.myPieces.filter(x=>x.name == pieceName)[0].position;
+    return [pieceName, fromPos, toPos];
+  }
 
   isLose(){
     return this.myPieces.filter(x=>x.name=='k').length == 0;
@@ -66,10 +77,15 @@ export class Agent{
     }
   }
   // pos: [row, col]
-  addPieces2State(pieces, boardState){
+  addPieces2State(pieces, boardState, isMyPiece){
     for (var i in pieces){
       var pos = pieces[i].position;
-      boardState[pos[0]+'-'+pos[1]] = pieces[i];
+      var posStr = pos[0]+'-'+pos[1];
+      boardState[posStr] = pieces[i];
+      this.boardState[posStr] = [pieces[i].name, isMyPiece]
+      if(isMyPiece){
+        this.myPiecesDic[pieces[i].name] = pos;
+      }
     }
   }
 
@@ -82,8 +98,10 @@ export class Agent{
 
   getBoardState(){
     var new_state = {};
-    this.addPieces2State(this.myPieces, new_state);
-    this.addPieces2State(this.oppoPieces, new_state);
+    this.boardState = {};
+    this.myPiecesDic = {};
+    this.addPieces2State(this.myPieces, new_state, true);
+    this.addPieces2State(this.oppoPieces, new_state, false);
     return new_state;
   }
 
