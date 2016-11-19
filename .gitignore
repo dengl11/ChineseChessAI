@@ -2,6 +2,7 @@ node_modules/*
 **/*.gif
 **/fonts/*
 client/**/*.js
+server/**/*.js
 **/jquery*.js
 *.DS_Store
 *.js.map
