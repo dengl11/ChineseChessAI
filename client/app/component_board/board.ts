@@ -166,10 +166,11 @@ export class BoardComponent implements OnInit {
   // switch game turn
   switchTurn(){
     // update playing team
-    this.playingTeam = (this.playingTeam == 1? 0:1);
+    this.playingTeam = (this.playingTeam == 1? -1:1);
     var agent = (this.playingTeam == 1? this.redAgent : this.blackAgent);
-    if (!agent.updateState(this.redPieces, this.blackPieces)) {
-      this.gameEndState = this.playingTeam == 1? 'Lose':'Win';
+    var endState = agent.updateState(this.redPieces, this.blackPieces);
+    if (endState!=0) {
+      this.gameEndState = endState*this.playingTeam == -1? 'Lose':'Win';
       return;
     }
     // if human's turn, return

@@ -17,6 +17,22 @@ export class Rule {
         return k.split("-").map(x => parseInt(x));
     }
 
+    static hasPieceOnRows(col, minRow, maxRow, boardStates){
+      for (var i = minRow; i++; i<=maxRow){
+        if (boardStates[this.pos2key(i, col)]) return true;
+      }
+      return false;
+    }
+
+    static numPieceOnRows(col, minRow, maxRow, boardStates){
+      var r = 0;
+      for (var i = minRow; i++; i<=maxRow){
+        if (boardStates[this.pos2key(i, col)]) r+=1;
+      }
+      return r;
+    }
+
+
 
     // return moves within board range and escape current position
     static filterBoundedMoves(currRow, currCol, moves, boardStates, team) {
@@ -30,6 +46,7 @@ export class Rule {
             !((m[0] + "-" + m[1]) in boardStates && boardStates[m[0] + "-" + m[1]].team == team)
         ))
     }
+
 
     static movesOnSameLine(currRow, currCol, boardStates, team) {
         var moves = [];
@@ -240,19 +257,43 @@ export class Rule {
                 moves = this.possibleMovesForZu(currRow, currCol, boardStates);
                 break
         }
-        return this.filterBoundedMoves(currRow, currCol, moves, boardStates, piece.team);
+        moves =  this.filterBoundedMoves(currRow, currCol, moves, boardStates, piece.team);
+        return moves;
     }
 
     // return a list of all possible moves
     static allPossibleMoves = function(pieces:Piece[], boardStates:{}){
       var moves = {};
+      var myTeam = pieces[0].team;
+      // var myKingPos = pieces.filter(x=>x.name[0]=='k')[0].position;
+      // var oppoKingPos = Object.keys(boardStates).map(x=>boardStates[x]).filter(x=>(x.name[0] == 'k' && x.team!=myTeam))[0].position;
+      // var isfacingKings = (oppoKingPos[1] == myKingPos[1] && this.numPieceOnRows(oppoKingPos[1]+1, myKingPos[0]-1, oppoKingPos[0], boardStates) == 1);
       for (var i in pieces){
           var piece = pieces[i];
           var moves4Piece = this.possibleMoves(piece, boardStates);
+          // console.log("moves4Piece", piece.name, moves4Piece)
           if(moves4Piece.length > 0) moves[piece.name] = moves4Piece;
       }
       return moves;
     }
 
+
+    // @param: return
+    // 0: not end
+    // 1: Win
+    // -1: Lase
+    // {posStr->[name, isMyPiece]}
+    static gameEndState(myPieces:Piece[], oppoPieces:Piece[], boardState){
+      var myKing = myPieces.filter(x=>x.name=='k')[0];
+      var oppoKing = oppoPieces.filter(x=>x.name=='k')[0];
+      if (!myKing) return -1;
+      if (!oppoKing) return 1;
+      var myKingCol = myKing.position[1];
+      // not on the same col
+      if (myKingCol != oppoKing.position[1]) return 0;
+      if (this.hasPieceOnRows(myKing, myKing.position[0]+1, oppoKing.position[1]-1, boardState))
+        return 0;
+      return 1;
+    }
 
 }

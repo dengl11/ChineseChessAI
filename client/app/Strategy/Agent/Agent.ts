@@ -46,22 +46,27 @@ export class Agent{
     return [pieceName, fromPos, toPos];
   }
 
-  isLose(){
-    return this.myPieces.filter(x=>x.name=='k').length == 0;
-  }
+
 
   // update agent state
+  // return end state:
+  // 0: not end
+  // 1: Win
+  // -1: Lase
   updateState(redPieces, blackPieces){
     // console.log("updateState:", this.team)
     this.myPieces = (this.team == 1 ? redPieces : blackPieces);
-    if( this.isLose()) return false;
-    // console.log("myPieces:", this.myPieces)
     this.oppoPieces = (this.team == 1 ? blackPieces : redPieces);
+
+    // console.log("myPieces:", this.myPieces)
+
     // console.log("oppo:", this.oppoPieces)
     if (this.team != 1) this.revertGameDirection();
     var boardState = this.getBoardState();
+    var endState = Rule.gameEndState(this.myPieces, this.oppoPieces, this.boardState)
+    if(endState!=0) return endState;
     this.computeLegalMoves(boardState);
-    return true;
+    return endState;
   }
 
   // pos: [row, col]

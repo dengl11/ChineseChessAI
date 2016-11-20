@@ -14,13 +14,13 @@ app.use('/client', express.static(join(__dirname, '../client')));
 
 if (app.get("env") === "development") {
     app.use(express.static(join(__dirname, '../node_modules')));
-    app.use(function(err, req: express.Request, res: express.Response, next: express.NextFunction) {
-        res.status(err.status || 500);
-        res.json({
-            error: err,
-            message: err.message
-        });
-    });
+    // app.use(function(err, req: express.Request, res: express.Response, next: express.NextFunction) {
+    //     res.status(err.status || 500);
+    //     res.json({
+    //         error: err,
+    //         message: err.message
+    //     });
+    // });
 }
 app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
     res.status(err.status || 500);
