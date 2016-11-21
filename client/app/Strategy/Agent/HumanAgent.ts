@@ -7,12 +7,4 @@ export class HumanAgent extends Agent {
 
 
 
-  nextMove(){
-    return [];
-  }
-
-
-
-
-
 }

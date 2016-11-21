@@ -1,120 +1,76 @@
 import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
-
-export class Agent{
-  legalMoves:{}; // name->[positions]
-  pastMoves=[];
-  myPieces:Piece[];
-  myPiecesDic:{}; // {name -> pos}
-  oppoPieces:Piece[];
-  boardState: {}; // {posStr->[name, isMyPiece]}
-  team:number;
+import { InitGame } from '../../ChineseChess/InitGame/init';
 
 
-  constructor(team: number) {
-    this.team = team;
-  }
+export class Agent {
+    team: number;
+    legalMoves: {}; // name->[positions]
+    pastMoves = [];
+    myPieces: Piece[];
+    oppoPieces: Piece[];
+    // myPiecesDic: {}; // {name -> pos}
+    boardState: {}; // {posStr->[name, isMyPiece]}
 
-  addMove(pieceName){
-    this.pastMoves.push(pieceName);
-  }
 
-  // [fromPos, toPos]
-  nextMove(){
-    var computeResult = this.comptuteNextMove();
-    var pieceName = computeResult[0];
-    var fromPos = computeResult[1];
-    var toPos = computeResult[2];
-    // console.log("init move:", [fromPos, toPos]);
-    if(this.team != 1) {
-      toPos = this.revertPosition(toPos);
-      fromPos = this.revertPosition(fromPos);
+    constructor(team: number) {
+        this.team = team;
+        this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
     }
-    // console.log("after move:", [fromPos, toPos]);
-    if (this.team != 1) this.revertGameDirection();
-    this.addMove(pieceName);
-    return [fromPos, toPos];
-  };
-
-  // private method of computing next move
-  comptuteNextMove(){
-    console.log("parent comptuteNextMove")
-    var pieceNames = Object.keys(this.legalMoves);
-    var pieceName = pieceNames[Math.floor(Math.random() * pieceNames.length)];
-    var toPos = this.legalMoves[pieceName][0];
-    var fromPos:number[] = this.myPieces.filter(x=>x.name == pieceName)[0].position;
-    return [pieceName, fromPos, toPos];
-  }
-
-
-
-  // update agent state
-  // return end state:
-  // 0: not end
-  // 1: Win
-  // -1: Lase
-  updateState(redPieces, blackPieces){
-    // console.log("updateState:", this.team)
-    this.myPieces = (this.team == 1 ? redPieces : blackPieces);
-    this.oppoPieces = (this.team == 1 ? blackPieces : redPieces);
-
-    // console.log("myPieces:", this.myPieces)
-
-    // console.log("oppo:", this.oppoPieces)
-    if (this.team != 1) this.revertGameDirection();
-    var boardState = this.getBoardState();
-    var endState = Rule.gameEndState(this.myPieces, this.oppoPieces, this.boardState)
-    if(endState!=0) return endState;
-    this.computeLegalMoves(boardState);
-    return endState;
-  }
-
-  // pos: [row, col]
-  revertPosition(pos){
-    return [11-pos[0], 10-pos[1]];
-  }
-
-  // pos: [row, col]
-  revertPosition4Pieces(pieces){
-    for (var i in pieces){
-      var pos = pieces[i].position;
-      pieces[i].position = this.revertPosition(pos);
+    setOppoPieces(pieces) {
+        this.oppoPieces = pieces;
+        this.updateState();
     }
-  }
-  // pos: [row, col]
-  addPieces2State(pieces, boardState, isMyPiece){
-    for (var i in pieces){
-      var pos = pieces[i].position;
-      var posStr = pos[0]+'-'+pos[1];
-      boardState[posStr] = pieces[i];
-      this.boardState[posStr] = [pieces[i].name, isMyPiece]
-      if(isMyPiece){
-        this.myPiecesDic[pieces[i].name] = pos;
-      }
+    updateState() {
+        this.updateBoardState();
+        var endState = Rule.getGameEndState(this);
+        if (endState != 0) return endState;
+        this.computeLegalMoves();
+        return endState;
     }
-  }
 
-  // reverse game direction for black part
-  // to keep the consisttance of Agent
-  revertGameDirection(){
-    this.revertPosition4Pieces(this.myPieces);
-    this.revertPosition4Pieces(this.oppoPieces);
-  }
+    computeLegalMoves() {
+        this.legalMoves = Rule.allPossibleMoves(this.myPieces, this.boardState, this.team);
+    }
 
-  getBoardState(){
-    var new_state = {};
-    this.boardState = {};
-    this.myPiecesDic = {};
-    this.addPieces2State(this.myPieces, new_state, true);
-    this.addPieces2State(this.oppoPieces, new_state, false);
-    return new_state;
-  }
+    // update board state by pieces
+    updateBoardState() {
+        var state = {};
+        for (var i in this.myPieces) state[this.myPieces[i].position.toString()] = [this.myPieces[i].name, true];
+        for (var i in this.oppoPieces) state[this.oppoPieces[i].position.toString()] = [this.oppoPieces[i].name, false];
+        this.boardState = state;
+    }
 
+    movePieceTo(piece: Piece, pos, isCapture) {
+        piece.moveTo(pos);
+        this.addMove(piece.name);
+        // having oppo piece in target pos
+        if (isCapture) this.captureOppoPiece(pos);
+    }
 
+    captureOppoPiece(pos) {
+        for (var i = 0; i < this.oppoPieces.length; i++) {
+            if (this.oppoPieces[i].position + '' == pos + '') {
+                this.oppoPieces.splice(i, 1); // remove piece from pieces
+                return;
+            }
+        }
+    }
 
+    addMove(pieceName) {
+        this.pastMoves.push(pieceName);
+    }
 
-  computeLegalMoves(boardState){
-    this.legalMoves = Rule.allPossibleMoves(this.myPieces, boardState);
-  }
-
+    // agent take action
+    nextMove() {
+        var computeResult = this.comptuteNextMove();
+        var piece = computeResult[0];
+        var toPos = computeResult[1];
+        var isCapture = this.oppoPieces.filter(x => x.position + '' == toPos + '').length > 0;
+        this.movePieceTo(piece, toPos, isCapture)
+    };
+    // private method of computing next move
+    // return: [piece, toPos]
+    comptuteNextMove() {
+    }
 }

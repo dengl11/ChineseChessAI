@@ -7,35 +7,26 @@ export class Rule {
     static maxCol = 9;
 
 
-
-    // get key for boardStates for a position
-    static pos2key(currRow, currCol) {
-        return currRow + "-" + currCol;
-    }
-    // get [row, col]] for key in boardStates
-    static key2pos(k) {
-        return k.split("-").map(x => parseInt(x));
+    static hasPieceOnRows(col, minRow, maxRow, boardStates: {}) {
+        for (var i = minRow; i <= maxRow; i++) {
+            if (boardStates[[i, col].toString()]) return true;
+        }
+        return false;
     }
 
-    static hasPieceOnRows(col, minRow, maxRow, boardStates){
-      for (var i = minRow; i++; i<=maxRow){
-        if (boardStates[this.pos2key(i, col)]) return true;
-      }
-      return false;
-    }
-
-    static numPieceOnRows(col, minRow, maxRow, boardStates){
-      var r = 0;
-      for (var i = minRow; i++; i<=maxRow){
-        if (boardStates[this.pos2key(i, col)]) r+=1;
-      }
-      return r;
+    static numPieceOnRows(col, minRow, maxRow, boardStates) {
+        var r = 0;
+        for (var i = minRow; i <= maxRow; i++) {
+            if (boardStates[[i, col].toString()]) r += 1;
+        }
+        return r;
     }
 
 
 
-    // return moves within board range and escape current position
-    static filterBoundedMoves(currRow, currCol, moves, boardStates, team) {
+    // return moves within board range and escape positions occupied by own team
+    // boardStates: {posStr->[name, isMyPiece]}
+    static filterBoundedMoves(currRow, currCol, moves, boardStates) {
         // filter out invalied move
         return moves.filter(m => (
             (m[0] != currRow || m[1] != currCol) &&
@@ -43,41 +34,41 @@ export class Rule {
             m[0] <= this.maxRow &&
             m[1] <= this.maxCol &&
             m[1] >= this.minCol &&
-            !((m[0] + "-" + m[1]) in boardStates && boardStates[m[0] + "-" + m[1]].team == team)
+            !(m.toString() in boardStates && boardStates[m.toString()][1])
         ))
     }
 
 
-    static movesOnSameLine(currRow, currCol, boardStates, team) {
+    static movesOnSameLine(currRow, currCol, boardStates) {
         var moves = [];
         for (var i = currRow + 1; i <= this.maxRow; i++) {
-            var k = this.pos2key(i, currCol);
+            var k = [i, currCol].toString();
             if (k in boardStates) {
-                if (boardStates[k].team != team) moves.push(boardStates[k].position);
+                if (!boardStates[k][1]) moves.push([i, currCol]);
                 break;
             }
             moves.push([i, currCol]);
         }
         for (var j = currRow - 1; j >= this.minRow; j--) {
-            var k = this.pos2key(j, currCol);
+            var k = [j, currCol].toString();
             if (k in boardStates) {
-                if (boardStates[k].team != team) moves.push(boardStates[k].position);
+                if (!boardStates[k][1]) moves.push([j, currCol]);
                 break;
             }
             moves.push([j, currCol]);
         }
         for (var i = currCol + 1; i <= this.maxCol; i++) {
-            var k = this.pos2key(currRow, i);
+            var k = [currRow, i].toString();
             if (k in boardStates) {
-                if (boardStates[k].team != team) moves.push(boardStates[k].position);
+                if (!boardStates[k][1]) moves.push([currRow, i]);
                 break;
             }
             moves.push([currRow, i]);
         }
         for (var j = currCol - 1; j >= this.minCol; j--) {
-            var k = this.pos2key(currRow, j);
+            var k = [currRow, j].toString();
             if (k in boardStates) {
-                if (boardStates[k].team != team) moves.push(boardStates[k].position);
+                if (!boardStates[k][1]) moves.push([currRow, j]);
                 break;
             }
             moves.push([currRow, j]);
@@ -86,26 +77,26 @@ export class Rule {
     }
 
     // Ju
-    static possibleMovesForJu(currRow, currCol, boardStates, team) {
-        return this.movesOnSameLine(currRow, currCol, boardStates, team);
+    static possibleMovesForJu(currRow, currCol, boardStates) {
+        return this.movesOnSameLine(currRow, currCol, boardStates);
     }
 
     // Ma
     static possibleMovesForMa(currRow, currCol, boardStates) {
         var moves = [];
-        if (!(this.pos2key(currRow + 1, currCol) in boardStates)) {
+        if (!([currRow + 1, currCol].toString() in boardStates)) {
             moves.push([currRow + 2, currCol + 1]);
             moves.push([currRow + 2, currCol - 1]);
         }
-        if (!(this.pos2key(currRow - 1, currCol) in boardStates)) {
+        if (!([currRow - 1, currCol].toString() in boardStates)) {
             moves.push([currRow - 2, currCol + 1]);
             moves.push([currRow - 2, currCol - 1]);
         }
-        if (!(this.pos2key(currRow, currCol + 1) in boardStates)) {
+        if (!([currRow, currCol + 1].toString() in boardStates)) {
             moves.push([currRow + 1, currCol + 2]);
             moves.push([currRow - 1, currCol + 2]);
         }
-        if (!(this.pos2key(currRow, currCol - 1) in boardStates)) {
+        if (!([currRow, currCol - 1].toString() in boardStates)) {
             moves.push([currRow + 1, currCol - 2]);
             moves.push([currRow - 1, currCol - 2]);
         }
@@ -114,65 +105,65 @@ export class Rule {
 
 
 
-    static findFirstOpponentOnRow(row, startCol, states, team, incFn){
-            while (startCol >= this.minCol && startCol <= this.maxCol){
-                var k = this.pos2key(row, startCol);
-                if(k in states){
-                    if(states[k].team == team) return ;
-                    else return [row, startCol];
-                }
-                startCol = incFn(startCol);
+    static findFirstOpponentOnRow(row, startCol, states, team, incFn) {
+        while (startCol >= this.minCol && startCol <= this.maxCol) {
+            var k = [row, startCol].toString();
+            if (k in states) {
+                if (states[k][1]) return;
+                else return [row, startCol];
             }
+            startCol = incFn(startCol);
+        }
     }
-    static findFirstOpponentOnCol(col, startRow, states, team, incFn){
-            while (startRow >= this.minRow && startRow <= this.maxRow){
-                var k = this.pos2key(startRow, col);
-                if(k in states){
-                    if(states[k].team == team) return;
-                    else return [startRow, col];
-                }
-                startRow = incFn(startRow);
+    static findFirstOpponentOnCol(col, startRow, states, team, incFn) {
+        while (startRow >= this.minRow && startRow <= this.maxRow) {
+            var k = [startRow, col].toString();
+            if (k in states) {
+                if (states[k][1]) return;
+                else return [startRow, col];
             }
+            startRow = incFn(startRow);
+        }
     }
 
 
     // Pao
     static possibleMovesForPao(currRow, currCol, boardStates, team) {
-        var inc = (x=>x+1);
-        var dec = (x=>x-1);
-        var moves =[];
+        var inc = (x => x + 1);
+        var dec = (x => x - 1);
+        var moves = [];
         for (var i = currRow + 1; i <= this.maxRow; i++) {
-            var k = this.pos2key(i, currCol);
+            var k = [i, currCol].toString();
             if (k in boardStates) {
-                var next = this.findFirstOpponentOnCol(currCol, i+1, boardStates, team, inc);
-                if(next) moves.push(next);
+                var next = this.findFirstOpponentOnCol(currCol, i + 1, boardStates, team, inc);
+                if (next) moves.push(next);
                 break;
             }
             moves.push([i, currCol]);
         }
         for (var j = currRow - 1; j >= this.minRow; j--) {
-            var k = this.pos2key(j, currCol);
+            var k = [j, currCol].toString();
             if (k in boardStates) {
-                 var next = this.findFirstOpponentOnCol(currCol, j-1, boardStates, team, dec);
-                if(next) moves.push(next);
+                var next = this.findFirstOpponentOnCol(currCol, j - 1, boardStates, team, dec);
+                if (next) moves.push(next);
                 break;
             }
             moves.push([j, currCol]);
         }
         for (var i = currCol + 1; i <= this.maxCol; i++) {
-            var k = this.pos2key(currRow, i);
+            var k = [currRow, i].toString();
             if (k in boardStates) {
-                var next = this.findFirstOpponentOnRow(currRow, i+1, boardStates, team, inc);
-                if(next) moves.push(next);
+                var next = this.findFirstOpponentOnRow(currRow, i + 1, boardStates, team, inc);
+                if (next) moves.push(next);
                 break;
             }
             moves.push([currRow, i]);
         }
         for (var j = currCol - 1; j >= this.minCol; j--) {
-            var k = this.pos2key(currRow, j);
+            var k = [currRow, j].toString();
             if (k in boardStates) {
-                var next = this.findFirstOpponentOnRow(currRow, j-1, boardStates, team, dec);
-                if(next) moves.push(next);
+                var next = this.findFirstOpponentOnRow(currRow, j - 1, boardStates, team, dec);
+                if (next) moves.push(next);
                 break;
             }
             moves.push([currRow, j]);
@@ -183,7 +174,7 @@ export class Rule {
     // Shi
     static possibleMovesForShi(currRow, currCol, boardStates) {
         var moves = [];
-        if (2 == currRow) { // in the center
+        if (2 == currRow || currRow == 9) { // in the center
             moves = [
                 [currRow - 1, currCol + 1],
                 [currRow - 1, currCol - 1],
@@ -191,7 +182,7 @@ export class Rule {
                 [currRow + 1, currCol - 1]
             ];
         } else {
-            moves = [[2, 5]];
+            moves = [[currRow, 5]];
         }
         return moves;
     }
@@ -199,25 +190,32 @@ export class Rule {
     // King
     static possibleMovesForKing(currRow, currCol, boardStates) {
         var moves = [];
-        for (var i = 4; i <= 6; i++)  moves.push([currRow, i]);
-        for (var j = 1; j <= 3; j++) moves.push([j, currCol]);
+        for (var col = 4; col <= 6; col++)  moves.push([currRow, col]);
+        if (currRow < 5) {
+            for (var row = 1; row <= 3; row++) moves.push([row, currCol]);
+        }
+        else {
+            for (var row = 8; row <= 10; row++) moves.push([row, currCol]);
+        }
         return moves.filter(x => ((x[0] - currRow) * (x[0] - currRow) + (x[1] - currCol) * (x[1] - currCol)) < 2);
     }
 
     // Xiang
-    static possibleMovesForXiang(currRow, currCol, boardStates) {
+    static possibleMovesForXiang(currRow, currCol, boardStates, isLowerTeam) {
         var moves = [];
-        if (!(((currRow + 1) + "-" + (currCol + 1)) in boardStates) && currRow<= 3) moves.push([currRow + 2, currCol + 2]);
-        if (!(((currRow + 1) + "-" + (currCol - 1)) in boardStates) && currRow<= 3) moves.push([currRow + 2, currCol - 2]);
-        if (!(((currRow - 1) + "-" + (currCol + 1)) in boardStates)) moves.push([currRow - 2, currCol + 2]);
-        if (!(((currRow - 1) + "-" + (currCol - 1)) in boardStates)) moves.push([currRow - 2, currCol - 2]);
+        var canMoveDowward = (isLowerTeam || currRow > 6);
+        var canMoveUpward = (currRow <= 3 || !isLowerTeam);
+        if (!([currRow + 1, currCol + 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol + 2]);
+        if (!([currRow + 1, currCol - 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol - 2]);
+        if (!([currRow - 1, currCol + 1].toString() in boardStates && canMoveDowward)) moves.push([currRow - 2, currCol + 2]);
+        if (!([currRow - 1, currCol - 1].toString() in boardStates && canMoveDowward)) moves.push([currRow - 2, currCol - 2]);
         return moves;
     }
 
     // Zu
-    static possibleMovesForZu(currRow, currCol, boardStates) {
-        var beyond = currRow > 5; //beyond the river
-        var moves = [[currRow + 1, currCol]];
+    static possibleMovesForZu(currRow, currCol, boardStates, isLowerTeam) {
+        var beyond = isLowerTeam ? (currRow > 5) : (currRow <= 5); //beyond the river
+        var moves = isLowerTeam ? [[currRow + 1, currCol]] : [[currRow - 1, currCol]];
         if (beyond) {
             moves.push([currRow, currCol - 1]);
             moves.push([currRow, currCol + 1]);
@@ -228,12 +226,14 @@ export class Rule {
 
 
     // all legal moves for a piece in a board state
+    // boardStates: {posStr->[name, isMyPiece]}
     // return [(row, col)]
-    static possibleMoves = function (piece: Piece, boardStates:{}) {
+    static possibleMoves = function(piece: Piece, boardStates: {}, isLowerTeam) {
         var name = piece.name[0];
         var currRow = piece.position[0];
         var currCol = piece.position[1];
         var moves = [];
+
         switch (name) {
             case 'j':
                 moves = this.possibleMovesForJu(currRow, currCol, boardStates);
@@ -242,7 +242,7 @@ export class Rule {
                 moves = this.possibleMovesForMa(currRow, currCol, boardStates);
                 break
             case 'x':
-                moves = this.possibleMovesForXiang(currRow, currCol, boardStates);
+                moves = this.possibleMovesForXiang(currRow, currCol, boardStates, isLowerTeam);
                 break
             case 's':
                 moves = this.possibleMovesForShi(currRow, currCol, boardStates);
@@ -254,27 +254,27 @@ export class Rule {
                 moves = this.possibleMovesForPao(currRow, currCol, boardStates);
                 break
             case 'z':
-                moves = this.possibleMovesForZu(currRow, currCol, boardStates);
+                moves = this.possibleMovesForZu(currRow, currCol, boardStates, isLowerTeam);
                 break
         }
-        moves =  this.filterBoundedMoves(currRow, currCol, moves, boardStates, piece.team);
+        // console.log(piece.name, moves);
+        moves = this.filterBoundedMoves(currRow, currCol, moves, boardStates);
         return moves;
     }
 
     // return a list of all possible moves
-    static allPossibleMoves = function(pieces:Piece[], boardStates:{}){
-      var moves = {};
-      var myTeam = pieces[0].team;
-      // var myKingPos = pieces.filter(x=>x.name[0]=='k')[0].position;
-      // var oppoKingPos = Object.keys(boardStates).map(x=>boardStates[x]).filter(x=>(x.name[0] == 'k' && x.team!=myTeam))[0].position;
-      // var isfacingKings = (oppoKingPos[1] == myKingPos[1] && this.numPieceOnRows(oppoKingPos[1]+1, myKingPos[0]-1, oppoKingPos[0], boardStates) == 1);
-      for (var i in pieces){
-          var piece = pieces[i];
-          var moves4Piece = this.possibleMoves(piece, boardStates);
-          // console.log("moves4Piece", piece.name, moves4Piece)
-          if(moves4Piece.length > 0) moves[piece.name] = moves4Piece;
-      }
-      return moves;
+    // boardStates: {posStr->[name, isMyPiece]}
+    static allPossibleMoves = function(pieces: Piece[], boardStates: {}, team) {
+        var moves = {};
+        // team is in the lower part of the river
+        var isLowerTeam = (team == 1);
+        for (var i in pieces) {
+            var piece = pieces[i];
+            var moves4Piece = this.possibleMoves(piece, boardStates, isLowerTeam);
+            // console.log("moves4Piece", piece.name, moves4Piece)
+            moves[piece.name] = moves4Piece;
+        }
+        return moves;
     }
 
 
@@ -283,17 +283,26 @@ export class Rule {
     // 1: Win
     // -1: Lase
     // {posStr->[name, isMyPiece]}
-    static gameEndState(myPieces:Piece[], oppoPieces:Piece[], boardState){
-      var myKing = myPieces.filter(x=>x.name=='k')[0];
-      var oppoKing = oppoPieces.filter(x=>x.name=='k')[0];
-      if (!myKing) return -1;
-      if (!oppoKing) return 1;
-      var myKingCol = myKing.position[1];
-      // not on the same col
-      if (myKingCol != oppoKing.position[1]) return 0;
-      if (this.hasPieceOnRows(myKing, myKing.position[0]+1, oppoKing.position[1]-1, boardState))
-        return 0;
-      return 1;
+    static getGameEndState = function(agent) {
+        var myPieces: Piece[] = agent.myPieces;
+        var oppoPieces: Piece[] = agent.oppoPieces;
+        var boardState = agent.boardState;
+        var myKing = myPieces.filter(x => x.name == 'k')[0];
+        var oppoKing = oppoPieces.filter(x => x.name == 'k')[0];
+        if (!myKing) return -1;
+        if (!oppoKing) return 1;
+        var myKingCol = myKing.position[1];
+        // not on the same col
+        if (myKingCol != oppoKing.position[1]) return 0;
+        if (agent.team == 1) {
+            var minRow = myKing.position[0] + 1;
+            var maxRow = oppoKing.position[0] - 1;
+        } else {
+            var minRow = oppoKing.position[0] + 1;
+            var maxRow = myKing.position[0] - 1;
+        }
+        if (this.hasPieceOnRows(myKingCol, minRow, maxRow, boardState)) return 0;
+        return 1;
     }
 
 }

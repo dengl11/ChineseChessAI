@@ -1,20 +1,23 @@
-<div class="board" >
+<div class="board">
 	<div class="grid">
-		<button class="dummyPiece" *ngFor="let piece of dummyPieces" (click)="clickDummyPiece(piece)" [style.left]="(piece.position[1]-1.5)*pieceSize+'px'"
-		[style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'"
-		[class.possibleMove]='isPossibleMove(piece.position)'
 
-		>{{piece.position}}
-
-	</button>
-
-
-	<button *ngFor="let piece of pieces" [class.selected]='selectedPiece && selectedPiece.position==piece.position' (click)="clickPiece(piece)"
-	[style.left]="(piece.position[1]-1.5)*pieceSize+'px'" [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
-	<img src="resource/img/Pieces/{{piece.team}}/{{piece.name[0]}}.png" alt="">
-
-</button>
+		<!-- Dummy Pieces -->
+		<div *ngIf="humanMode && selectedPiece && playingTeam ==1">
+			<button *ngFor="let piece of dummyPieces" (click)="clickDummyPiece(piece)" class="dummyPiece" [class.possibleMove]='isPossibleMove(piece.position)' [style.left]="(piece.position[1]-1.5)*pieceSize+'px'" [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
+			{{piece.position}}
+		</button>
+		</div>
+		<!-- Red Pieces -->
+		<button *ngFor="let piece of redAgent.myPieces" [class.selected]='selectedPiece && selectedPiece.position==piece.position' (click)="clickRedPiece(piece)" [style.left]="(piece.position[1]-1.5)*pieceSize+'px'" [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
+			<img src="resource/img/Pieces/1/{{piece.name[0]}}.png" alt="">
+		</button>
 
 
-</div>
+		<!-- Black Pieces -->
+		<button *ngFor="let piece of blackAgent.myPieces" [style.left]="(piece.position[1]-1.5)*pieceSize+'px'" (click)="clickBlackPiece(piece)" [class.possibleMove]='isPossibleMove(piece.position)' [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
+			<img src="resource/img/Pieces/-1/{{piece.name[0]}}.png" alt="">
+		</button>
+
+
+	</div>
 </div>
