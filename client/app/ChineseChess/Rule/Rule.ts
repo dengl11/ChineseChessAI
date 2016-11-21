@@ -172,7 +172,7 @@ export class Rule {
     }
 
     // Shi
-    static possibleMovesForShi(currRow, currCol, boardStates) {
+    static possibleMovesForShi(currRow, currCol, boardStates, isLowerTeam) {
         var moves = [];
         if (2 == currRow || currRow == 9) { // in the center
             moves = [
@@ -182,7 +182,7 @@ export class Rule {
                 [currRow + 1, currCol - 1]
             ];
         } else {
-            moves = [[currRow, 5]];
+            moves = isLowerTeam ? [[2, 5]] : [[9, 5]];
         }
         return moves;
     }
@@ -245,7 +245,7 @@ export class Rule {
                 moves = this.possibleMovesForXiang(currRow, currCol, boardStates, isLowerTeam);
                 break
             case 's':
-                moves = this.possibleMovesForShi(currRow, currCol, boardStates);
+                moves = this.possibleMovesForShi(currRow, currCol, boardStates, isLowerTeam);
                 break
             case 'k':
                 moves = this.possibleMovesForKing(currRow, currCol, boardStates);
@@ -264,12 +264,12 @@ export class Rule {
 
     // return a list of all possible moves
     // boardStates: {posStr->[name, isMyPiece]}
-    static allPossibleMoves = function(pieces: Piece[], boardStates: {}, team) {
+    static allPossibleMoves = function(myPieces: Piece[], boardStates: {}, team) {
         var moves = {};
         // team is in the lower part of the river
         var isLowerTeam = (team == 1);
-        for (var i in pieces) {
-            var piece = pieces[i];
+        for (var i in myPieces) {
+            var piece = myPieces[i];
             var moves4Piece = this.possibleMoves(piece, boardStates, isLowerTeam);
             // console.log("moves4Piece", piece.name, moves4Piece)
             moves[piece.name] = moves4Piece;
@@ -287,6 +287,11 @@ export class Rule {
         var myPieces: Piece[] = agent.myPieces;
         var oppoPieces: Piece[] = agent.oppoPieces;
         var boardState = agent.boardState;
+        return this.getGameEndStateByState(myPieces, oppoPieces, boardState, agent.team)
+
+    }
+
+    static getGameEndStateByState = function(myPieces: Piece[], oppoPieces: Piece[], boardState, team) {
         var myKing = myPieces.filter(x => x.name == 'k')[0];
         var oppoKing = oppoPieces.filter(x => x.name == 'k')[0];
         if (!myKing) return -1;
@@ -294,7 +299,7 @@ export class Rule {
         var myKingCol = myKing.position[1];
         // not on the same col
         if (myKingCol != oppoKing.position[1]) return 0;
-        if (agent.team == 1) {
+        if (team == 1) {
             var minRow = myKing.position[0] + 1;
             var maxRow = oppoKing.position[0] - 1;
         } else {

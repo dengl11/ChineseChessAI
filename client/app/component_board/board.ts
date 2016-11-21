@@ -4,11 +4,11 @@ import { DummyPiece } from '../Objects/DummyPiece';
 import { Draggable } from '../directive/draggable';
 
 import { Rule } from '../ChineseChess/Rule/Rule';
+import { State } from '../Strategy/State/State';
 import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent';
+import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn';
 import { HumanAgent } from '../Strategy/Agent/HumanAgent';
-
-
-
+import { Agent } from '../Strategy/Agent/Agent';
 
 @Component({
     selector: 'board',
@@ -22,10 +22,11 @@ export class BoardComponent implements OnInit {
     redTeam = 1;
     blackTeam = -1;
     boardState = {}; // {postion => piece}  || NOT including dummy pieces
-    redAgent: HumanAgent;
-    blackAgent: GreedyAgent;
+    redAgent: Agent;
+    blackAgent: Agent;
     playingTeam: number; // which team's turn to play
     humanMode = true;
+    state: State;
     gameEndState;
 
 
@@ -37,22 +38,11 @@ export class BoardComponent implements OnInit {
     selectedPiece: Piece;
     dummyPieces: DummyPiece[] = [];
 
-    ngOnInit() {
-        this.initDummyButtons();
-        this.initGame();
+    isPossibleMove(pos) {
+        if (!this.selectedPiece) return false;
+        var moves = this.redAgent.legalMoves[this.selectedPiece.name];
+        return moves.filter(x => x + '' == pos + '').length > 0;
     }
-
-    initGame() {
-        this.gameEndState = undefined;
-        this.selectedPiece = undefined;
-        // init agents
-        this.redAgent = new HumanAgent(this.redTeam);
-        this.blackAgent = new GreedyAgent(this.blackTeam);
-        this.redAgent.setOppoPieces(this.blackAgent.myPieces);
-        this.blackAgent.setOppoPieces(this.redAgent.myPieces);
-        this.playingTeam = 1;
-    }
-
     // Add dummy pieces to board
     initDummyButtons() {
         this.dummyPieces = [];
@@ -63,10 +53,33 @@ export class BoardComponent implements OnInit {
         }
     }
 
-    isPossibleMove(pos) {
-        if (!this.selectedPiece) return false;
-        var moves = this.redAgent.legalMoves[this.selectedPiece.name];
-        return moves.filter(x => x + '' == pos + '').length > 0;
+    chooseAgent(desc) {
+        if (desc.includes('Eval')) { this.initGame(3); return; }
+        this.initGame(1);
+    }
+
+    /***************** LIFE_CYCLE *******************/
+    ngOnInit() {
+        this.initDummyButtons();
+        this.initGame();
+    }
+
+    initGame(blackAgentType = 3) {
+        this.gameEndState = undefined;
+        this.selectedPiece = undefined;
+        // init agents
+        this.redAgent = new HumanAgent(this.redTeam);
+        switch (blackAgentType) {
+            case 1: { this.blackAgent = new GreedyAgent(this.blackTeam); break; }
+            case 3: { this.blackAgent = new EvalFnAgent(this.blackTeam); break; }
+            default: break;
+        }
+        console.log("INIT: ", this.blackAgent);
+
+        this.redAgent.setOppoAgent(this.blackAgent);
+        this.blackAgent.setOppoAgent(this.redAgent);
+        this.state = new State(this.redAgent, this.blackAgent);
+        this.playingTeam = 1;
     }
 
     clickDummyPiece(piece: Piece) {
@@ -80,7 +93,7 @@ export class BoardComponent implements OnInit {
         this.selectedPiece = piece;
     }
 
-    clickBlackPiece(piece) {
+    clickBlackPiece(piece: Piece) {
         if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
         this.redAgent.movePieceTo(this.selectedPiece, piece.position, true);
         this.switchTurn();
@@ -90,20 +103,16 @@ export class BoardComponent implements OnInit {
         // update playing team
         this.playingTeam = (this.playingTeam == 1 ? -1 : 1);
         var agent = (this.playingTeam == 1 ? this.redAgent : this.blackAgent);
-        var endState = agent.updateState();
+        agent.updateState();
         this.selectedPiece = undefined;
+        var endState = this.state.getEndState(this.playingTeam);
         if (endState != 0) {
             this.gameEndState = endState * this.playingTeam == -1 ? 'Lose' : 'Win';
             return;
         }
         // if human's turn, return
-
-        if (this.humanMode && this.playingTeam == 1) {
-            return;
-        }
+        if (this.humanMode && this.playingTeam == 1) return;
         agent.nextMove();
         this.switchTurn();
     }
-
-
 }

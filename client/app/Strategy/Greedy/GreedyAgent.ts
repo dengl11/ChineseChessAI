@@ -19,8 +19,8 @@ export class GreedyAgent extends Agent {
             for (var j in moves) {
                 var move = moves[j];
                 var value = this.getValueOfMove(name, move);
-                if (value >= maxVal) {
-                    fromPos = this.myPieces[i].position;
+                fromPos = this.myPieces[i].position;
+                if (value > maxVal) {
                     toPos = move;
                     piece = this.myPieces[i];
                     maxVal = value;

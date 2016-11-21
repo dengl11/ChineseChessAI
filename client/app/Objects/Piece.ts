@@ -1,16 +1,21 @@
-export class Piece  {
+export class Piece {
 
-    name:string;
+    name: string;
     position: [number, number]; // (row, column)
 
-    constructor(name , position){
+    constructor(name, position) {
         this.name = name;
         this.position = position;
     }
 
 
-    moveTo(newPos){
+    moveTo(newPos) {
         this.position = newPos;
+    }
+
+    // return a copy of a piece
+    copy() {
+        return new Piece(this.name, this.position);
     }
 
 

@@ -9,26 +9,31 @@ export class Agent {
     pastMoves = [];
     myPieces: Piece[];
     oppoPieces: Piece[];
+    oppoAgent: Agent;
     // myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
 
 
-    constructor(team: number) {
+    constructor(team: number, myPieces = undefined) {
         this.team = team;
-        this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
+        if (myPieces == undefined)
+            this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
+        else {
+            this.myPieces = myPieces;
+        }
     }
-    setOppoPieces(pieces) {
-        this.oppoPieces = pieces;
+    setOppoAgent(oppoAgent) {
+        this.oppoAgent = oppoAgent;
+        this.oppoPieces = oppoAgent.myPieces;
         this.updateState();
     }
+    // return | 1:win | -1:lose | 0:continue
     updateState() {
         this.updateBoardState();
-        var endState = Rule.getGameEndState(this);
-        if (endState != 0) return endState;
         this.computeLegalMoves();
-        return endState;
     }
 
+    // compute legals moves for my pieces after state updated
     computeLegalMoves() {
         this.legalMoves = Rule.allPossibleMoves(this.myPieces, this.boardState, this.team);
     }
@@ -41,13 +46,16 @@ export class Agent {
         this.boardState = state;
     }
 
-    movePieceTo(piece: Piece, pos, isCapture) {
+    movePieceTo(piece: Piece, pos, isCapture = undefined) {
         piece.moveTo(pos);
         this.addMove(piece.name);
+        if (isCapture == undefined) isCapture = this.oppoPieces.filter(x => x.position + '' == pos + '').length > 0;
         // having oppo piece in target pos
         if (isCapture) this.captureOppoPiece(pos);
     }
 
+    // capture piece of opponent
+    // pos: position of piece to be captured
     captureOppoPiece(pos) {
         for (var i = 0; i < this.oppoPieces.length; i++) {
             if (this.oppoPieces[i].position + '' == pos + '') {
@@ -57,6 +65,7 @@ export class Agent {
         }
     }
 
+    // add move to pastMoves
     addMove(pieceName) {
         this.pastMoves.push(pieceName);
     }
@@ -66,11 +75,27 @@ export class Agent {
         var computeResult = this.comptuteNextMove();
         var piece = computeResult[0];
         var toPos = computeResult[1];
-        var isCapture = this.oppoPieces.filter(x => x.position + '' == toPos + '').length > 0;
-        this.movePieceTo(piece, toPos, isCapture)
+        this.movePieceTo(piece, toPos)
     };
-    // private method of computing next move
+
+    // TO BE IMPLEMENTED BY CHILD CLASS
     // return: [piece, toPos]
-    comptuteNextMove() {
+    comptuteNextMove() { alert("YOU SHOULD NOT CALL THIS!") }
+
+    // return a copy of an agent
+    copy() {
+
+        var copy_mypieces = [];
+        for (var i in this.myPieces) {
+            copy_mypieces.push(this.myPieces[i].copy());
+        }
+        return new Agent(this.team, copy_mypieces);
     }
+
+    getPieceByName(name) {
+        return this.myPieces.filter(x => x.name == name)[0];
+    }
+
+
+
 }
