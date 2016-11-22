@@ -12,7 +12,7 @@ export class EvalFnAgent extends Agent {
         if (this.team == 1) var curr_state = new State(this, this.oppoAgent);
         else var curr_state = new State(this.oppoAgent, this);
         // console.log("curr_state:", curr_state)
-        var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, this.team, -Infinity, Infinity);
+        var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, this.team);
         // console.log("evalResult", evalResult)
         var movePiece = this.getPieceByName(evalResult[1][0]);
         // console.log("movePiece", movePiece)
@@ -20,37 +20,30 @@ export class EvalFnAgent extends Agent {
     }
 
     // return [score, [movePieceName, toPos]
-    recurseEvaluation(state: State, depth, team: number, alpha, beta) {
-        var isMax = team == state.redAgent.team;
+    recurseEvaluation(state: State, depth, team) {
+        // console.log(state, depth, team)
         var endState = state.getEndState(state.redAgent.team);
         if (endState != 0) return [endState * Infinity, null];
         if (depth == 0) return [this.getValueOfState(state), null];
         var playingAgent = team == 1 ? state.redAgent : state.blackAgent;
         var next_evals = []; // list of [score, [movePieceName, toPos]]
         for (var movePieceName in playingAgent.legalMoves) {
+            // if (depth == 2) {
+            //     console.log(movePieceName)
+            //     console.log("======================", depth, "======================");
+            // }
             var toPosList = playingAgent.legalMoves[movePieceName];
             for (var i in toPosList) {
                 var nextState = state.next_state(movePieceName, toPosList[i], team);
-                // eval: [score, [movePieceName, toPos]]
-                var eval_result = [this.recurseEvaluation(nextState, depth - 1, -team, alpha, beta)[0], [movePieceName, toPosList[i]]];
-                next_evals.push(eval_result);
-
-                if (isMax) {// max node -> increase lower bound
-                    alpha = Math.max(alpha, eval_result[0]);
-                    // if lower bound of this max node is higher than upper bound of its descendant min nodes, then return
-                    if (beta <= alpha) return eval_result; // beta cutoff
-                } else { // min node -> decrease upper bound
-                    beta = Math.min(beta, eval_result[0]);
-                    // if upper bound of this min node is lower than upper bound of its descendant max nodes, then return
-                    if (beta <= alpha) return eval_result; // alpha cutoff
-                }
-
+                // if (depth == 2) console.log("--->", toPosList[i])
+                var x = [this.recurseEvaluation(nextState, depth - 1, -team)[0], [movePieceName, toPosList[i]]];
+                // console.log(toPosList[i], x[0]);
+                next_evals.push(x);
             }
         }
         // console.log("next_evals", next_evals)
         var scores = next_evals.map(x => x[0]);
-        var index = scores.indexOf(Math.max.apply(null, scores));
-        if (isMax) var index = scores.indexOf(Math.max.apply(null, scores));
+        if (team == state.redAgent.team) var index = scores.indexOf(Math.max.apply(null, scores));
         else var index = scores.indexOf(Math.min.apply(null, scores));
         // if (depth == 2) console.log("======================", next_evals[index], "======================");
         return next_evals[index];
@@ -73,13 +66,5 @@ export class EvalFnAgent extends Agent {
     getValOfPiece(piece, team) {
         return Evaluation.posValue(piece.name, piece.position, team) + Evaluation.pieceValue(piece.name);
     }
-    copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new EvalFnAgent(this.team, copy_mypieces);
-    }
-
 
 }

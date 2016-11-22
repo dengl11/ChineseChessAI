@@ -2,7 +2,7 @@
 	<div class="grid">
 
 		<!-- Dummy Pieces -->
-		<div *ngIf="humanMode && selectedPiece && playingTeam ==1">
+		<div *ngIf="humanMode && selectedPiece && state.playingTeam ==1">
 			<button *ngFor="let piece of dummyPieces" (click)="clickDummyPiece(piece)" class="dummyPiece" [class.possibleMove]='isPossibleMove(piece.position)' [style.left]="(piece.position[1]-1.5)*pieceSize+'px'" [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
 			{{piece.position}}
 		</button>

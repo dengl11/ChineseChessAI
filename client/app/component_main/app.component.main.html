@@ -15,14 +15,17 @@
 	<div class="left">
 		<sm-button class="medium teal" icon="refresh" (click)="board.initGame()">Restart</sm-button>
 		<hr/>
+		<sm-button [disabled]="!board.lastState" class="medium teal" icon="undo" (click)="board.go2PreviousState()">Undo</sm-button>
+		<hr/>
 		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle"></sm-checkbox>
 		<hr/>
 
 		<sm-select placeholder="Opponent Agent" (change)="board.chooseAgent($event.target.value)">
 			<option>Level 1 - Greedy </option>
-			<option>Level 2 - Evaluation</option>
-			<option>Level 3 - MCTS</option>
-			<option>Level 4 - Temporal</option>
+			<option>Level 2 - EvalFn(Shallow)</option>
+			<option>Level 3 - EvalFn(Deep)</option>
+			<option>Level 4 - MCTS</option>
+			<option>Level 5 - Temporal</option>
 		</sm-select>
 
 

@@ -4,7 +4,6 @@ import { Rule } from '../../ChineseChess/Rule/Rule'
 export class State {
     redAgent: Agent;
     blackAgent: Agent;
-    playingTeam = 1;
 
     constructor(redAgent: Agent, blacAgent: Agent) {
         this.redAgent = redAgent;
@@ -29,7 +28,6 @@ export class State {
     next_state(movePieceName, toPos, team) {
         // make a copy a state
         var nextState = this.copy();
-        nextState.switchTurn();
         var agent = team == 1 ? nextState.redAgent : nextState.blackAgent;
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
         agent.updateState();
@@ -37,9 +35,6 @@ export class State {
         return nextState;
     }
 
-    switchTurn() {
-        this.playingTeam = -this.playingTeam;
-    }
     // return a evaluation score for this state
     getEvaludation(team) {
 

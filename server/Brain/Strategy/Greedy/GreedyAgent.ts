@@ -11,7 +11,6 @@ export class GreedyAgent extends Agent {
         // var pieceNames = Object.keys(this.legalMoves);
         var piece;
         var maxVal = 0;
-        var maxVal = -Infinity;
         var fromPos = [];
         var toPos = [];
         for (var i in this.myPieces) {
@@ -39,16 +38,5 @@ export class GreedyAgent extends Agent {
         if (piece[1]) alert("Bug");
         return Evaluation.pieceValue(piece[0]) + posVal;
     }
-
-
-    // return a copy of an agent
-    copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new GreedyAgent(this.team, copy_mypieces);
-    }
-
 
 }

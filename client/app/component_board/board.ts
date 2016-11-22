@@ -24,10 +24,10 @@ export class BoardComponent implements OnInit {
     boardState = {}; // {postion => piece}  || NOT including dummy pieces
     redAgent: Agent;
     blackAgent: Agent;
-    playingTeam: number; // which team's turn to play
     humanMode = true;
     state: State;
-    gameEndState;
+
+
 
 
 
@@ -36,12 +36,15 @@ export class BoardComponent implements OnInit {
     // keep track of all pieces, just for UI purpose (including dummy pieces)
     pieceSize: number = 67;
     selectedPiece: Piece;
+    gameEndState;
     dummyPieces: DummyPiece[] = [];
+    subscription: any;
+    lastState: State;
 
     isPossibleMove(pos) {
         if (!this.selectedPiece) return false;
         var moves = this.redAgent.legalMoves[this.selectedPiece.name];
-        return moves.filter(x => x + '' == pos + '').length > 0;
+        return moves.map(x => x + '').indexOf(pos + '') >= 0;
     }
     // Add dummy pieces to board
     initDummyButtons() {
@@ -67,6 +70,7 @@ export class BoardComponent implements OnInit {
     initGame(blackAgentType = 3) {
         this.gameEndState = undefined;
         this.selectedPiece = undefined;
+        this.lastState = null;
         // init agents
         this.redAgent = new HumanAgent(this.redTeam);
         switch (blackAgentType) {
@@ -74,18 +78,15 @@ export class BoardComponent implements OnInit {
             case 3: { this.blackAgent = new EvalFnAgent(this.blackTeam); break; }
             default: break;
         }
-        console.log("INIT: ", this.blackAgent);
 
         this.redAgent.setOppoAgent(this.blackAgent);
         this.blackAgent.setOppoAgent(this.redAgent);
         this.state = new State(this.redAgent, this.blackAgent);
-        this.playingTeam = 1;
     }
 
     clickDummyPiece(piece: Piece) {
         if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
-        this.redAgent.movePieceTo(this.selectedPiece, piece.position, false);
-        this.switchTurn();
+        this.humanMove(piece);
     }
 
     clickRedPiece(piece: Piece) {
@@ -95,24 +96,42 @@ export class BoardComponent implements OnInit {
 
     clickBlackPiece(piece: Piece) {
         if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
+        this.humanMove(piece);
+    }
+
+    humanMove(piece: Piece) {
+        // before human makes move, make a copy of current state
+        this.copyCurrentState();
         this.redAgent.movePieceTo(this.selectedPiece, piece.position, true);
         this.switchTurn();
     }
     // switch game turn
     switchTurn() {
         // update playing team
-        this.playingTeam = (this.playingTeam == 1 ? -1 : 1);
-        var agent = (this.playingTeam == 1 ? this.redAgent : this.blackAgent);
+        this.state.switchTurn();
+        var agent = (this.state.playingTeam == 1 ? this.redAgent : this.blackAgent);
         agent.updateState();
         this.selectedPiece = undefined;
-        var endState = this.state.getEndState(this.playingTeam);
+        var endState = this.state.getEndState(this.state.playingTeam);
         if (endState != 0) {
-            this.gameEndState = endState * this.playingTeam == -1 ? 'Lose' : 'Win';
+            this.gameEndState = endState * this.state.playingTeam == -1 ? 'Lose' : 'Win';
             return;
         }
         // if human's turn, return
-        if (this.humanMode && this.playingTeam == 1) return;
+        if (this.humanMode && this.state.playingTeam == 1) return;
         agent.nextMove();
         this.switchTurn();
+    }
+    // reverse game state to previous state
+    go2PreviousState() {
+        this.state = this.lastState;
+        this.lastState = null;
+        this.redAgent = this.state.redAgent;
+        this.blackAgent = this.state.blackAgent;
+        this.gameEndState = null;
+    }
+
+    copyCurrentState() {
+        this.lastState = this.state.copy();
     }
 }

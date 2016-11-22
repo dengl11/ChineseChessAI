@@ -74,6 +74,7 @@ export class Agent {
 
     // agent take action
     nextMove() {
+        console.log("start")
         var computeResult = this.comptuteNextMove();
         var piece = computeResult[0];
         var toPos = computeResult[1];
@@ -84,15 +85,18 @@ export class Agent {
     // return: [piece, toPos]
     comptuteNextMove() { alert("YOU SHOULD NOT CALL THIS!") }
 
-    getPieceByName(name) {
-        return this.myPieces.filter(x => x.name == name)[0];
-    }
-
+    // return a copy of an agent
     copy() {
+
         var copy_mypieces = [];
         for (var i in this.myPieces) {
             copy_mypieces.push(this.myPieces[i].copy());
         }
         return new Agent(this.team, copy_mypieces);
     }
+
+    getPieceByName(name) {
+        return this.myPieces.filter(x => x.name == name)[0];
+    }
+
 }

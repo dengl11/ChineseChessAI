@@ -203,7 +203,7 @@ export class Rule {
     // Xiang
     static possibleMovesForXiang(currRow, currCol, boardStates, isLowerTeam) {
         var moves = [];
-        var canMoveDowward = (isLowerTeam || currRow >= 8);
+        var canMoveDowward = (isLowerTeam || currRow > 6);
         var canMoveUpward = (currRow <= 3 || !isLowerTeam);
         if (!([currRow + 1, currCol + 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol + 2]);
         if (!([currRow + 1, currCol - 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol - 2]);
