@@ -14,13 +14,14 @@ export class Agent {
     // moved: EventEmitter<number> = new EventEmitter();
 
 
-    constructor(team: number, myPieces = undefined) {
+    constructor(team: number, myPieces = undefined, pastMoves = []) {
         this.team = team;
         if (myPieces == undefined)
             this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
         else {
             this.myPieces = myPieces;
         }
+        this.pastMoves = pastMoves;
     }
     setOppoAgent(oppoAgent) {
         this.oppoAgent = oppoAgent;
@@ -67,6 +68,7 @@ export class Agent {
 
     // add move to pastMoves
     addMove(pieceName) {
+        console.log(this.pastMoves)
         this.pastMoves.push(pieceName);
     }
 
@@ -91,6 +93,10 @@ export class Agent {
         for (var i in this.myPieces) {
             copy_mypieces.push(this.myPieces[i].copy());
         }
-        return new Agent(this.team, copy_mypieces);
+        return new Agent(this.team, copy_mypieces, this.copyMoves());
+    }
+
+    copyMoves() {
+        return this.pastMoves.slice();
     }
 }

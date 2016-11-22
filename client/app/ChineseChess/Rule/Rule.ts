@@ -205,10 +205,10 @@ export class Rule {
         var moves = [];
         var canMoveDowward = (isLowerTeam || currRow >= 8);
         var canMoveUpward = (currRow <= 3 || !isLowerTeam);
-        if (!([currRow + 1, currCol + 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol + 2]);
-        if (!([currRow + 1, currCol - 1].toString() in boardStates) && canMoveUpward) moves.push([currRow + 2, currCol - 2]);
-        if (!([currRow - 1, currCol + 1].toString() in boardStates && canMoveDowward)) moves.push([currRow - 2, currCol + 2]);
-        if (!([currRow - 1, currCol - 1].toString() in boardStates && canMoveDowward)) moves.push([currRow - 2, currCol - 2]);
+        if (canMoveUpward && !([currRow + 1, currCol + 1].toString() in boardStates)) moves.push([currRow + 2, currCol + 2]);
+        if (canMoveUpward && !([currRow + 1, currCol - 1].toString() in boardStates)) moves.push([currRow + 2, currCol - 2]);
+        if (canMoveDowward && !([currRow - 1, currCol + 1].toString() in boardStates)) moves.push([currRow - 2, currCol + 2]);
+        if (canMoveDowward && !([currRow - 1, currCol - 1].toString() in boardStates)) moves.push([currRow - 2, currCol - 2]);
         return moves;
     }
 

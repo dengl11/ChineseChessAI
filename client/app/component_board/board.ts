@@ -112,7 +112,7 @@ export class BoardComponent implements OnInit {
         var agent = (this.state.playingTeam == 1 ? this.redAgent : this.blackAgent);
         agent.updateState();
         this.selectedPiece = undefined;
-        var endState = this.state.getEndState(this.state.playingTeam);
+        var endState = this.state.getEndState();
         if (endState != 0) {
             this.gameEndState = endState * this.state.playingTeam == -1 ? 'Lose' : 'Win';
             return;
