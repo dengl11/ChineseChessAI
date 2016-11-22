@@ -38,11 +38,11 @@ export class EvalFnAgent extends Agent {
                 if (isMax) {// max node -> increase lower bound
                     alpha = Math.max(alpha, eval_result[0]);
                     // if lower bound of this max node is higher than upper bound of its descendant min nodes, then return
-                    if (beta <= alpha) return eval_result; // beta cutoff
+                    if (beta < alpha) return eval_result; // beta cutoff
                 } else { // min node -> decrease upper bound
                     beta = Math.min(beta, eval_result[0]);
                     // if upper bound of this min node is lower than upper bound of its descendant max nodes, then return
-                    if (beta <= alpha) return eval_result; // alpha cutoff
+                    if (beta < alpha) return eval_result; // alpha cutoff
                 }
 
             }
