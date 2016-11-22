@@ -1,8 +1,6 @@
 import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
 import { InitGame } from '../../ChineseChess/InitGame/init';
-// import {Observable} from 'rxjs/Observable';
-// import {EventEmitter} from '@angular/core';
 
 export class Agent {
     team: number;
