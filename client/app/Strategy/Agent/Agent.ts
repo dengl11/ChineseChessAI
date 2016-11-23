@@ -68,7 +68,6 @@ export class Agent {
 
     // add move to pastMoves
     addMove(pieceName) {
-        console.log(this.pastMoves)
         this.pastMoves.push(pieceName);
     }
 

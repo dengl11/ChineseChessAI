@@ -13,21 +13,33 @@
 	<board #board class="board"></board>
 
 	<div class="left">
-		<sm-button class="medium teal" icon="refresh" (click)="board.initGame()">Restart</sm-button>
+		<sm-button class="fluid medium negative" icon="refresh" (click)="board.initGame()">Restart</sm-button>
 		<hr/>
-		<sm-button [disabled]="!board.lastState" class="medium teal" icon="undo" (click)="board.go2PreviousState()">Undo</sm-button>
+		<sm-button [disabled]="!board.lastState" class="fluid medium teal control" icon="undo" (click)="board.go2PreviousState()">Undo </sm-button>
 		<hr/>
-		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle"></sm-checkbox>
+		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle" (change)="board.changeMode()"></sm-checkbox>
 		<hr/>
-
-		<sm-select placeholder="Opponent Agent" (change)="board.chooseAgent($event.target.value)">
-			<option>Level 1 - Greedy </option>
-			<option>Level 2 - EvalFn(Shallow)</option>
-			<option>Level 3 - EvalFn(Deep)</option>
-			<option>Level 4 - MCTS</option>
-			<option>Level 5 - Temporal</option>
-		</sm-select>
-
+		<div>
+			<h3>Black Agent</h3>
+			<sm-select placeholder="Opponent Agent" (change)="board.chooseAgent($event.target.value)">
+				<option>Level 1 - Greedy </option>
+				<option>Level 2 - EvalFn(Shallow)</option>
+				<option>Level 3 - EvalFn(Deep)</option>
+				<option>Level 4 - MCTS</option>
+				<option>Level 5 - Temporal</option>
+			</sm-select>
+		</div>
+		<hr>
+		<div *ngIf="!board.humanMode">
+			<h3 style="color:red">Red Agent</h3>
+			<sm-select placeholder="Opponent Agent">
+				<option>Level 1 - Greedy </option>
+				<option>Level 2 - EvalFn(Shallow)</option>
+				<option>Level 3 - EvalFn(Deep)</option>
+				<option>Level 4 - MCTS</option>
+				<option>Level 5 - Temporal</option>
+			</sm-select>
+		</div>
 
 
 		<h1 *ngIf="board.gameEndState">You {{board.gameEndState}}</h1>

@@ -41,6 +41,9 @@ export class BoardComponent implements OnInit {
     subscription: any;
     lastState: State;
 
+    changeMode() {
+        this.humanMode = !this.humanMode;
+    }
     isPossibleMove(pos) {
         if (!this.selectedPiece) return false;
         var moves = this.redAgent.legalMoves[this.selectedPiece.name];
