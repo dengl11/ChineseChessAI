@@ -13,21 +13,30 @@
 	<board #board class="board"></board>
 
 	<div class="left">
-		<div *ngIf="board.state.playingTeam == 1 || board.gameEndState">
-			<sm-button class="fluid medium negative" icon="refresh" (click)="board.initGame()">Restart</sm-button>
+		<div *ngIf="board.humanMode">
+			<sm-button [disabled]="!(board.state.playingTeam==1 || board.gameEndState) " class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
 			<hr/>
-			<sm-button [disabled]="!board.lastState" class="fluid medium teal control" icon="undo" (click)="board.go2PreviousState()">Undo </sm-button>
+			<sm-button [disabled]="!board.lastState " class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
 			<hr/>
-			<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle" (change)="board.changeMode()"></sm-checkbox>
-		</div>
-		<div *ngIf="board.state.playingTeam != 1 && !board.gameEndState">
-			<div class="ui active centered inline loader"></div>
 		</div>
 
-		<hr/>
+		<div *ngIf="!board.humanMode">
+			<sm-button *ngIf="board.inSimulation" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
+			<sm-button *ngIf="!board.inSimulation" [disabled]="board.inSimulation" class="fluid medium negative " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
+			<hr/>
+			<sm-button [disabled]="board.inSimulation" class="fluid medium teal control " icon="twitter " (click)="board.simulate() ">Simulate </sm-button>
+			<hr/>
+		</div>
+
+
+		<sm-checkbox label="Human - Computer " [control]="humanMode " type="toggle " (change)="board.changeMode() "></sm-checkbox>
+
+
 		<div>
+
+
 			<h3>Black Agent</h3>
-			<sm-select placeholder="Opponent Agent" (change)="board.chooseAgent($event.target.value)">
+			<sm-select placeholder="Opponent Agent " (change)="board.chooseBlackAgent($event.target.value) ">
 				<option>Level 1 - Greedy </option>
 				<option>Level 2 - EvalFn(Shallow)</option>
 				<option>Level 3 - EvalFn(Deep)</option>
@@ -36,9 +45,9 @@
 			</sm-select>
 		</div>
 		<hr>
-		<div *ngIf="!board.humanMode">
-			<h3 style="color:red">Red Agent</h3>
-			<sm-select placeholder="Opponent Agent">
+		<div *ngIf="!board.humanMode ">
+			<h3 style="color:red ">Red Agent</h3>
+			<sm-select placeholder="Opponent Agent " (change)="board.chooseRedAgent($event.target.value) ">
 				<option>Level 1 - Greedy </option>
 				<option>Level 2 - EvalFn(Shallow)</option>
 				<option>Level 3 - EvalFn(Deep)</option>
@@ -48,13 +57,13 @@
 		</div>
 
 
-		<h1 *ngIf="board.gameEndState">You {{board.gameEndState}}</h1>
+		<h1 *ngIf="board.gameEndState ">You {{board.gameEndState}}</h1>
 
-		<h3 [style.color]="'black'"> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
+		<h3 [style.color]=" 'black' "> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
 		<hr>
 		<table>
 			<tr>Black: {{board.state.blackAgent.pastMoves.length}} Moves</tr>
-			<tr *ngFor="let move of board.state.blackAgent.pastMoves">
+			<tr *ngFor="let move of board.state.blackAgent.pastMoves ">
 				<td>{{move}}</td>
 			</tr>
 		</table>
@@ -69,18 +78,22 @@
 
 
 
-	<div class="right">
+	<div class="right ">
 		<h2>Game State</h2>
-		<sm-button *ngIf="board.playingTeam == 1" class="circular brown" icon="male big"></sm-button>
-		<img *ngIf="board.selectedPiece" src="resource/img/Pieces/1/{{board.selectedPiece.name[0]}}.png" alt="">
+		<div *ngIf="board.humanMode && board.state.playingTeam !=1 && !board.gameEndState ">
+			<hr/>
+			<div class="ui active centered inline loader "></div>
+		</div>
+		<sm-button *ngIf="board.playingTeam==1 " class="circular brown " icon="male big "></sm-button>
+		<img *ngIf="board.selectedPiece " src="resource/img/Pieces/1/{{board.selectedPiece.name[0]}}.png " alt=" ">
 		<hr/>
 
-		<h3 [style.color]="'red'"> Agent 0: {{board.state.redAgent.myPieces.length}} pieces</h3>
+		<h3 [style.color]=" 'red' "> Agent 0: {{board.state.redAgent.myPieces.length}} pieces</h3>
 		<hr/>
 
-		<table style="color:red">
+		<table style="color:red ">
 			<tr>Red: {{board.state.redAgent.pastMoves.length}} Moves</tr>
-			<tr *ngFor="let move of board.state.redAgent.pastMoves">
+			<tr *ngFor="let move of board.state.redAgent.pastMoves ">
 				<td>{{move}}</td>
 			</tr>
 		</table>

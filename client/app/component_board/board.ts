@@ -27,6 +27,8 @@ export class BoardComponent implements OnInit {
     humanMode = true;
     state: State;
     server: ComputeService;
+    redAgentType = 0;
+    blackAgentType = 2;
 
 
 
@@ -40,9 +42,12 @@ export class BoardComponent implements OnInit {
     dummyPieces: DummyPiece[] = [];
     subscription: any;
     lastState: State;
+    inSimulation = false;
+
 
     changeMode() {
         this.humanMode = !this.humanMode;
+        this.initGame();
     }
     isPossibleMove(pos) {
         if (!this.selectedPiece) return false;
@@ -59,37 +64,58 @@ export class BoardComponent implements OnInit {
         }
     }
 
-    chooseAgent(desc) {
-        if (desc.includes('Eval')) { this.initGame(3); return; }
-        this.initGame(1);
+    chooseRedAgent(desc) {
+        if (desc.includes('1')) { this.redAgentType = 1; }
+        if (desc.includes('2')) { this.redAgentType = 2; }
+    }
+    chooseBlackAgent(desc) {
+        if (desc.includes('1')) { this.blackAgentType = 1; }
+        if (desc.includes('2')) { this.blackAgentType = 2; }
     }
 
     /***************** LIFE_CYCLE *******************/
     ngOnInit() {
         this.initDummyButtons();
         this.initGame();
-        console.log(this.state.blackAgent.pastMoves.length);
 
     }
     constructor(server: ComputeService) {
         this.server = server;
     }
 
-    initGame(blackAgentType = 3) {
+    initGame() {
         this.gameEndState = undefined;
         this.selectedPiece = undefined;
         this.lastState = null;
         // init agents
-        var redAgent = new HumanAgent(this.redTeam);
+        var redAgent;
+        switch (this.redAgentType) {
+            case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
+            case 2: { redAgent = new EvalFnAgent(this.redTeam); break; }
+            default: redAgent = new HumanAgent(this.redTeam); break;
+        }
         var blackAgent;
-        switch (blackAgentType) {
-            case 3: { blackAgent = new EvalFnAgent(this.blackTeam); break; }
+        switch (this.blackAgentType) {
+            case 2: { blackAgent = new EvalFnAgent(this.blackTeam); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
 
         this.state = new State(redAgent, blackAgent);
     }
 
+
+    simulate() {
+        this.initGame();
+        this.continue_simulate();
+    }
+    continue_simulate() {
+        this.inSimulation = true;
+        this.switchTurn();
+    }
+
+    stop_simulate() {
+        this.inSimulation = false;
+    }
     clickDummyPiece(piece: Piece) {
         if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
         this.humanMove(piece);
@@ -113,6 +139,8 @@ export class BoardComponent implements OnInit {
     }
     // switch game turn
     switchTurn() {
+        // stop simulation
+        if (!this.humanMode && !this.inSimulation) return;
         // update playing team
         this.state.switchTurn();
         var agent = (this.state.playingTeam == 1 ? this.state.redAgent : this.state.blackAgent);
@@ -120,6 +148,7 @@ export class BoardComponent implements OnInit {
         this.selectedPiece = undefined;
         var endState = this.state.getEndState();
         if (endState != 0) {
+            this.inSimulation = false;
             this.gameEndState = endState * this.state.playingTeam == -1 ? 'Lose' : 'Win';
             return;
         }
