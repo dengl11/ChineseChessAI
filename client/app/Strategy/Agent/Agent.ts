@@ -4,6 +4,7 @@ import { InitGame } from '../../ChineseChess/InitGame/init';
 
 export class Agent {
     team: number;
+    strategy: number = 0;
     legalMoves: {}; // name->[positions]
     pastMoves = [];
     myPieces: Piece[];
@@ -12,6 +13,9 @@ export class Agent {
     // myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
     // moved: EventEmitter<number> = new EventEmitter();
+    //
+
+
 
 
     constructor(team: number, myPieces = undefined, pastMoves = []) {

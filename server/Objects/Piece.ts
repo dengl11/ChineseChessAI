@@ -8,6 +8,10 @@ export class Piece {
         this.position = position;
     }
 
+    static copyFromDict(dict) {
+        return new Piece(dict.name, dict.position);
+    }
+
 
     moveTo(newPos) {
         this.position = newPos;
@@ -17,8 +21,5 @@ export class Piece {
     copy() {
         return new Piece(this.name, this.position);
     }
-
-
-
 
 }

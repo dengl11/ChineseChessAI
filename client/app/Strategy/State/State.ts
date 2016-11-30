@@ -6,10 +6,14 @@ export class State {
     blackAgent: Agent;
     playingTeam: number;
 
-    constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1) {
+    constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1, setOppoo = true) {
         this.redAgent = redAgent;
         this.blackAgent = blacAgent;
         this.playingTeam = playingTeam;
+        if (setOppoo) {
+            this.blackAgent.setOppoAgent(this.redAgent);
+            this.redAgent.setOppoAgent(this.blackAgent);
+        }
     }
 
     // return | 1:win | -1:lose | 0:continue for playing team
@@ -19,10 +23,8 @@ export class State {
         return endState;
     }
     // return a copy of state
-    copy() {
-        var newState = new State(this.redAgent.copy(), this.blackAgent.copy(), this.playingTeam);
-        newState.redAgent.setOppoAgent(newState.blackAgent);
-        newState.blackAgent.setOppoAgent(newState.redAgent);
+    copy(setOppoo = true) {
+        var newState = new State(this.redAgent.copy(), this.blackAgent.copy(), this.playingTeam, setOppoo);
         return newState;
     }
 

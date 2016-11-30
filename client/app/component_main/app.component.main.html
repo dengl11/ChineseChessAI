@@ -13,11 +13,17 @@
 	<board #board class="board"></board>
 
 	<div class="left">
-		<sm-button class="fluid medium negative" icon="refresh" (click)="board.initGame()">Restart</sm-button>
-		<hr/>
-		<sm-button [disabled]="!board.lastState" class="fluid medium teal control" icon="undo" (click)="board.go2PreviousState()">Undo </sm-button>
-		<hr/>
-		<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle" (change)="board.changeMode()"></sm-checkbox>
+		<div *ngIf="board.state.playingTeam == 1 || board.gameEndState">
+			<sm-button class="fluid medium negative" icon="refresh" (click)="board.initGame()">Restart</sm-button>
+			<hr/>
+			<sm-button [disabled]="!board.lastState" class="fluid medium teal control" icon="undo" (click)="board.go2PreviousState()">Undo </sm-button>
+			<hr/>
+			<sm-checkbox label="Human - Computer" [control]="humanMode" type="toggle" (change)="board.changeMode()"></sm-checkbox>
+		</div>
+		<div *ngIf="board.state.playingTeam != 1 && !board.gameEndState">
+			<div class="ui active centered inline loader"></div>
+		</div>
+
 		<hr/>
 		<div>
 			<h3>Black Agent</h3>
@@ -44,11 +50,11 @@
 
 		<h1 *ngIf="board.gameEndState">You {{board.gameEndState}}</h1>
 
-		<h3 [style.color]="'black'"> Agent 1: {{board.blackAgent.myPieces.length}} pieces</h3>
+		<h3 [style.color]="'black'"> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
 		<hr>
 		<table>
-			<tr>Black: {{board.blackAgent.pastMoves.length}} Moves</tr>
-			<tr *ngFor="let move of board.blackAgent.pastMoves">
+			<tr>Black: {{board.state.blackAgent.pastMoves.length}} Moves</tr>
+			<tr *ngFor="let move of board.state.blackAgent.pastMoves">
 				<td>{{move}}</td>
 			</tr>
 		</table>
@@ -69,12 +75,12 @@
 		<img *ngIf="board.selectedPiece" src="resource/img/Pieces/1/{{board.selectedPiece.name[0]}}.png" alt="">
 		<hr/>
 
-		<h3 [style.color]="'red'"> Agent 0: {{board.redAgent.myPieces.length}} pieces</h3>
+		<h3 [style.color]="'red'"> Agent 0: {{board.state.redAgent.myPieces.length}} pieces</h3>
 		<hr/>
 
 		<table style="color:red">
-			<tr>Red: {{board.redAgent.pastMoves.length}} Moves</tr>
-			<tr *ngFor="let move of board.redAgent.pastMoves">
+			<tr>Red: {{board.state.redAgent.pastMoves.length}} Moves</tr>
+			<tr *ngFor="let move of board.state.redAgent.pastMoves">
 				<td>{{move}}</td>
 			</tr>
 		</table>

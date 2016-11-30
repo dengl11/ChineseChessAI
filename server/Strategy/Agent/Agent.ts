@@ -1,8 +1,8 @@
 import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
 import { InitGame } from '../../ChineseChess/InitGame/init';
-// import {Observable} from 'rxjs/Observable';
-// import {EventEmitter} from '@angular/core';
+import { GreedyAgent } from '../Greedy/GreedyAgent'
+import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 
 export class Agent {
     team: number;
@@ -11,18 +11,20 @@ export class Agent {
     myPieces: Piece[];
     oppoPieces: Piece[];
     oppoAgent: Agent;
+    strategy;
     // myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
     // moved: EventEmitter<number> = new EventEmitter();
 
 
-    constructor(team: number, myPieces = undefined) {
+    constructor(team: number, myPieces = undefined, pastMoves = []) {
         this.team = team;
         if (myPieces == undefined)
             this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
         else {
             this.myPieces = myPieces;
         }
+        this.pastMoves = pastMoves;
     }
     setOppoAgent(oppoAgent) {
         this.oppoAgent = oppoAgent;
@@ -72,31 +74,34 @@ export class Agent {
         this.pastMoves.push(pieceName);
     }
 
-    // agent take action
-    nextMove() {
-        console.log("start")
-        var computeResult = this.comptuteNextMove();
-        var piece = computeResult[0];
-        var toPos = computeResult[1];
-        this.movePieceTo(piece, toPos);
-    };
-
     // TO BE IMPLEMENTED BY CHILD CLASS
-    // return: [piece, toPos]
-    comptuteNextMove() { alert("YOU SHOULD NOT CALL THIS!") }
-
-    // return a copy of an agent
-    copy() {
-
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new Agent(this.team, copy_mypieces);
+    // return [piece:Piece, toPos];
+    comptuteNextMove() {
+        console.log("comptuteNextMove CALLED ")
+        return null;
     }
 
     getPieceByName(name) {
         return this.myPieces.filter(x => x.name == name)[0];
     }
 
+    copy() {
+        var copy_mypieces = [];
+        for (var i in this.myPieces) {
+            copy_mypieces.push(this.myPieces[i].copy());
+        }
+        return new Agent(this.team, copy_mypieces, this.copyMoves());
+    }
+
+    copyMoves() {
+        return this.pastMoves.slice();
+    }
+
+    static piecesFromDict(dict_list) {
+        return dict_list.map(x => Piece.copyFromDict(x));
+    }
+
+    static copyFromDict(dict) {
+        return new Agent(dict.team, this.piecesFromDict(dict.myPieces));
+    }
 }

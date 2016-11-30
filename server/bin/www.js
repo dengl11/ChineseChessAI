@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+"use strict";
+var State_1 = require('../Strategy/State/State');
 var app = require('../server').app;
 var debug = require('debug')('server:server');
 var http = require('http');
@@ -15,11 +17,11 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
-//
-// app.get('/compute/', function (request, response) {
-//   console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
-//    var a = julia.exec("add");
-//    console.log(a);
-//    response.end();
-// });
+app.put('/compute/', function (request, response) {
+    // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
+    var state = request.body;
+    state = State_1.State.copyFromDict(state);
+    var next = state.nextMove();
+    response.end(JSON.stringify(next));
+});
 //# sourceMappingURL=www.js.map

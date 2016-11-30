@@ -4,7 +4,7 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
 
-
+    strategy = 1;
 
     // private method of computing next move
     comptuteNextMove() {
@@ -49,6 +49,4 @@ export class GreedyAgent extends Agent {
         }
         return new GreedyAgent(this.team, copy_mypieces, this.copyMoves());
     }
-
-
 }

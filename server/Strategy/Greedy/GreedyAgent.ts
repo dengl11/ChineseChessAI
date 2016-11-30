@@ -4,13 +4,14 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
 
-
+    strategy = 1;
 
     // private method of computing next move
     comptuteNextMove() {
         // var pieceNames = Object.keys(this.legalMoves);
         var piece;
         var maxVal = 0;
+        var maxVal = -Infinity;
         var fromPos = [];
         var toPos = [];
         for (var i in this.myPieces) {
@@ -37,6 +38,20 @@ export class GreedyAgent extends Agent {
         if (!piece) return posVal; // empty place
         if (piece[1]) alert("Bug");
         return Evaluation.pieceValue(piece[0]) + posVal;
+    }
+
+
+    // return a copy of an agent
+    copy() {
+        var copy_mypieces = [];
+        for (var i in this.myPieces) {
+            copy_mypieces.push(this.myPieces[i].copy());
+        }
+        return new GreedyAgent(this.team, copy_mypieces, this.copyMoves());
+    }
+
+    static copyFromDict(dict) {
+        return new GreedyAgent(dict.team, this.piecesFromDict(dict.myPieces));
     }
 
 }

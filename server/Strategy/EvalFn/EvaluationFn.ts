@@ -11,7 +11,7 @@ export class EvalFnAgent extends Agent {
     // return [piece, toPos];
     comptuteNextMove() {
         if (this.team == 1) var curr_state = new State(this, this.oppoAgent);
-        else var curr_state = new State(this.oppoAgent, this, this.team);
+        else curr_state = new State(this.oppoAgent, this, this.team);
         // console.log("curr_state:", curr_state)
         var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, -Infinity, Infinity);
         // console.log("evalResult", evalResult)
@@ -87,6 +87,10 @@ export class EvalFnAgent extends Agent {
             copy_mypieces.push(this.myPieces[i].copy());
         }
         return new EvalFnAgent(this.team, copy_mypieces, this.copyMoves());
+    }
+
+    static copyFromDict(dict) {
+        return new EvalFnAgent(dict.team, this.piecesFromDict(dict.myPieces));
     }
 
 

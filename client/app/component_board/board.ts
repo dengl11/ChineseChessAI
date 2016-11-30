@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComputeService } from '../service/service.compute';
 import { Piece } from '../Objects/Piece';
 import { DummyPiece } from '../Objects/DummyPiece';
 import { Draggable } from '../directive/draggable';
@@ -14,6 +15,7 @@ import { Agent } from '../Strategy/Agent/Agent';
     selector: 'board',
     templateUrl: '../client/app/component_board/board.html',
     styleUrls: ['../client/app/component_board/board.css'],
+    providers: [ComputeService]
 })
 
 export class BoardComponent implements OnInit {
@@ -22,11 +24,9 @@ export class BoardComponent implements OnInit {
     redTeam = 1;
     blackTeam = -1;
     boardState = {}; // {postion => piece}  || NOT including dummy pieces
-    redAgent: Agent;
-    blackAgent: Agent;
     humanMode = true;
     state: State;
-
+    server: ComputeService;
 
 
 
@@ -46,7 +46,7 @@ export class BoardComponent implements OnInit {
     }
     isPossibleMove(pos) {
         if (!this.selectedPiece) return false;
-        var moves = this.redAgent.legalMoves[this.selectedPiece.name];
+        var moves = this.state.redAgent.legalMoves[this.selectedPiece.name];
         return moves.map(x => x + '').indexOf(pos + '') >= 0;
     }
     // Add dummy pieces to board
@@ -68,6 +68,11 @@ export class BoardComponent implements OnInit {
     ngOnInit() {
         this.initDummyButtons();
         this.initGame();
+        console.log(this.state.blackAgent.pastMoves.length);
+
+    }
+    constructor(server: ComputeService) {
+        this.server = server;
     }
 
     initGame(blackAgentType = 3) {
@@ -75,16 +80,14 @@ export class BoardComponent implements OnInit {
         this.selectedPiece = undefined;
         this.lastState = null;
         // init agents
-        this.redAgent = new HumanAgent(this.redTeam);
+        var redAgent = new HumanAgent(this.redTeam);
+        var blackAgent;
         switch (blackAgentType) {
-            case 1: { this.blackAgent = new GreedyAgent(this.blackTeam); break; }
-            case 3: { this.blackAgent = new EvalFnAgent(this.blackTeam); break; }
-            default: break;
+            case 3: { blackAgent = new EvalFnAgent(this.blackTeam); break; }
+            default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
 
-        this.redAgent.setOppoAgent(this.blackAgent);
-        this.blackAgent.setOppoAgent(this.redAgent);
-        this.state = new State(this.redAgent, this.blackAgent);
+        this.state = new State(redAgent, blackAgent);
     }
 
     clickDummyPiece(piece: Piece) {
@@ -105,14 +108,14 @@ export class BoardComponent implements OnInit {
     humanMove(piece: Piece) {
         // before human makes move, make a copy of current state
         this.copyCurrentState();
-        this.redAgent.movePieceTo(this.selectedPiece, piece.position, true);
+        this.state.redAgent.movePieceTo(this.selectedPiece, piece.position, true);
         this.switchTurn();
     }
     // switch game turn
     switchTurn() {
         // update playing team
         this.state.switchTurn();
-        var agent = (this.state.playingTeam == 1 ? this.redAgent : this.blackAgent);
+        var agent = (this.state.playingTeam == 1 ? this.state.redAgent : this.state.blackAgent);
         agent.updateState();
         this.selectedPiece = undefined;
         var endState = this.state.getEndState();
@@ -122,15 +125,20 @@ export class BoardComponent implements OnInit {
         }
         // if human's turn, return
         if (this.humanMode && this.state.playingTeam == 1) return;
-        agent.nextMove();
-        this.switchTurn();
+        // agent.nextMove();
+        // this.switchTurn();
+        this.server.launchCompute(this.state.copy(false)).then(
+            move => {
+                var piece = agent.getPieceByName(move[0].name);
+                agent.movePieceTo(piece, move[1]);
+                this.switchTurn();
+            }
+        );
     }
     // reverse game state to previous state
     go2PreviousState() {
         this.state = this.lastState;
         this.lastState = null;
-        this.redAgent = this.state.redAgent;
-        this.blackAgent = this.state.blackAgent;
         this.gameEndState = null;
     }
 
