@@ -92,7 +92,7 @@ export class EvalFnAgent extends Agent {
         for (var i in this.myPieces) {
             copy_mypieces.push(this.myPieces[i].copy());
         }
-        return new EvalFnAgent(this.team, copy_mypieces, this.copyMoves(), this.DEPTH);
+        return new EvalFnAgent(this.team, copy_mypieces, this.DEPTH);
     }
 
     static copyFromDict(dict) {
