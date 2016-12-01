@@ -22,10 +22,10 @@
 		</div>
 
 		<div *ngIf="!board.humanMode">
-			<sm-button *ngIf="board.inSimulation" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
-			<sm-button *ngIf="!board.inSimulation" [disabled]="board.inSimulation" class="fluid medium negative " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
+			<sm-button [disabled]="board.simulation_state < 1" [disabled]="board.simulation_state == 1" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
 			<div class="margin"></div>
-			<sm-button [disabled]="board.inSimulation" class="fluid medium teal control " icon="twitter " (click)="board.simulate() ">Simulate </sm-button>
+			<sm-button *ngIf="board.simulation_state >= 0" [disabled]="board.simulation_state == 1" class="fluid medium teal control " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
+			<sm-button *ngIf="board.simulation_state < 0" class="fluid medium teal control " icon="twitter " (click)="board.simulate() ">Simulate </sm-button>
 			<div class="margin"></div>
 			<hr/>
 		</div>
@@ -60,6 +60,8 @@
 
 
 		<h1 *ngIf="board.gameEndState ">You {{board.gameEndState}}</h1>
+		<div class="margin"></div>
+		<div *ngIf="board.state.playingTeam==1 && !board.gameEndState && !board.humanMode &&  board.simulation_state==1" class="ui active centered inline loader "></div>
 
 		<h3 [style.color]=" 'black' "> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
 		<hr>
@@ -82,10 +84,7 @@
 
 	<div class="right ">
 		<h2>Game State</h2>
-		<div *ngIf="board.humanMode && board.state.playingTeam !=1 && !board.gameEndState ">
-			<hr/>
-			<div class="ui active centered inline loader "></div>
-		</div>
+		<div *ngIf="board.state.playingTeam!=1 && !board.gameEndState &&(board.humanMode || board.simulation_state==1)" class="ui active centered inline loader "></div>
 		<sm-button *ngIf="board.playingTeam==1 " class="circular brown " icon="male big "></sm-button>
 		<hr/>
 

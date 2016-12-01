@@ -18,14 +18,15 @@ export class Agent {
 
 
 
-    constructor(team: number, myPieces = undefined, pastMoves = []) {
+    constructor(team: number, myPieces = null, pastMoves = [], strategy = 0) {
         this.team = team;
-        if (myPieces == undefined)
+        if (myPieces == null)
             this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
         else {
             this.myPieces = myPieces;
         }
         this.pastMoves = pastMoves;
+        this.strategy = strategy;
     }
     setOppoAgent(oppoAgent) {
         this.oppoAgent = oppoAgent;

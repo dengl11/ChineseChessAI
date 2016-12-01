@@ -32,6 +32,9 @@ app.put('/compute/', function(request, response) {
     // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
     var state = request.body;
     state = State.copyFromDict(state);
+    var start = new Date().getTime();
     let next = state.nextMove();
+    var now = new Date().getTime();
+    console.log("Agent { ", state.get_playing_agent().strategy, "} Compute Move Using: ", (now - start), " ms");
     response.end(JSON.stringify(next));
 });

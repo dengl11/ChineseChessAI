@@ -1,6 +1,7 @@
 import { Agent } from '../Agent/Agent'
 import { GreedyAgent } from '../Greedy/GreedyAgent'
 import { EvalFnAgent } from '../EvalFn/EvaluationFn'
+import { TDLeaner } from '../TDLearner/TDLearner'
 import { Rule } from '../../ChineseChess/Rule/Rule'
 
 export class State {
@@ -8,17 +9,22 @@ export class State {
     blackAgent: Agent;
     playingTeam: number;
 
-    constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1) {
+    constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1, updateDict = false) {
         this.redAgent = redAgent;
         this.blackAgent = blacAgent;
         this.playingTeam = playingTeam;
-        this.blackAgent.setOppoAgent(this.redAgent);
-        this.redAgent.setOppoAgent(this.blackAgent);
+        this.blackAgent.setOppoAgent(this.redAgent, updateDict);
+        this.redAgent.setOppoAgent(this.blackAgent, updateDict);
+    }
+
+    // return playing agent in control
+    get_playing_agent() {
+        return this.playingTeam == 1 ? this.redAgent : this.blackAgent;;
     }
 
     // return | 1:win | -1:lose | 0:continue for playing team
     getEndState() {
-        var playing = this.playingTeam == 1 ? this.redAgent : this.blackAgent;
+        var playing = this.get_playing_agent();
         var endState = Rule.getGameEndState(playing);
         return endState;
     }
@@ -33,14 +39,14 @@ export class State {
     }
 
     // return next state by action
-    next_state(movePieceName, toPos) {
+    next_state(movePieceName, toPos, updateAgentPieceDict = false) {
         // make a copy a state
         var nextState = this.copy();
         nextState.switchTurn();
         var agent = this.playingTeam == 1 ? nextState.redAgent : nextState.blackAgent;
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
-        agent.updateState();
-        agent.oppoAgent.updateState();
+        agent.updateState(updateAgentPieceDict);
+        agent.oppoAgent.updateState(updateAgentPieceDict);
         return nextState;
     }
 
@@ -61,6 +67,7 @@ export class State {
             var oppo = dict.redAgent;
         }
         oppo = Agent.copyFromDict(oppo);
+        // console.log("STRATEGY:", agent.strategy);
         switch (agent.strategy) {
             case 1:
                 agent = GreedyAgent.copyFromDict(agent);
@@ -68,7 +75,11 @@ export class State {
             case 2:
                 agent = EvalFnAgent.copyFromDict(agent);
                 break;
+            case 5:
+                agent = TDLeaner.copyFromDict(agent);
+                break;
         }
+        // console.log("is TD?:", agent instanceof TDLeaner);
         if (dict.playingTeam == 1)
             return new State(agent, oppo, dict.playingTeam);
         else

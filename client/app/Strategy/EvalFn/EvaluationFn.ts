@@ -6,7 +6,6 @@ import { Evaluation } from '../_Param/Evaluation'
 export class EvalFnAgent extends Agent {
 
     DEPTH = 2;
-    strategy = 2;
     // private method of computing next move
     // return [piece, toPos];
     comptuteNextMove() {
@@ -20,10 +19,10 @@ export class EvalFnAgent extends Agent {
         return [movePiece, evalResult[1][1]];
     }
 
-    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = []) {
+    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = [], strategy = 2) {
         super(team, myPieces);
         this.DEPTH = depth;
-
+        this.strategy = strategy;
     }
 
     // return [score, [movePieceName, toPos]
@@ -66,7 +65,7 @@ export class EvalFnAgent extends Agent {
         if (isMax) var index = scores.indexOf(Math.max.apply(null, scores));
 
         else var index = scores.indexOf(Math.min.apply(null, scores));
-        // if (depth == 2) console.log("======================", next_evals[index], "======================");
+
         return next_evals[index];
     }
 

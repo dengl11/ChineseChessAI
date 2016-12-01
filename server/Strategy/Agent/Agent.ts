@@ -11,7 +11,7 @@ export class Agent {
     oppoPieces: Piece[];
     oppoAgent: Agent;
     strategy;
-    // myPiecesDic: {}; // {name -> pos}
+    myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
     // moved: EventEmitter<number> = new EventEmitter();
 
@@ -24,15 +24,16 @@ export class Agent {
             this.myPieces = myPieces;
         }
     }
-    setOppoAgent(oppoAgent) {
+    setOppoAgent(oppoAgent, updateDict = false) {
         this.oppoAgent = oppoAgent;
         this.oppoPieces = oppoAgent.myPieces;
-        this.updateState();
+        this.updateState(updateDict);
     }
     // return | 1:win | -1:lose | 0:continue
-    updateState() {
+    updateState(updateDict = false) {
         this.updateBoardState();
         this.computeLegalMoves();
+        if (updateDict) this.updatePieceDict();
     }
 
     // compute legals moves for my pieces after state updated
@@ -46,6 +47,14 @@ export class Agent {
         for (var i in this.myPieces) state[this.myPieces[i].position.toString()] = [this.myPieces[i].name, true];
         for (var i in this.oppoPieces) state[this.oppoPieces[i].position.toString()] = [this.oppoPieces[i].name, false];
         this.boardState = state;
+    }
+
+    // update dictionary of pieces
+    updatePieceDict() {
+        this.myPiecesDic = {};
+        for (var i in this.myPieces) {
+            this.myPiecesDic[this.myPieces[i].name] = this.myPieces[i].position;
+        }
     }
 
     movePieceTo(piece: Piece, pos, isCapture = undefined) {
