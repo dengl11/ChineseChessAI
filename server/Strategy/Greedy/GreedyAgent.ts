@@ -1,5 +1,6 @@
 
 import { Agent } from '../Agent/Agent'
+import { Piece } from '../../Objects/Piece'
 import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
@@ -14,30 +15,40 @@ export class GreedyAgent extends Agent {
         var maxVal = -Infinity;
         var fromPos = [];
         var toPos = [];
-        for (var i in this.myPieces) {
-            var name = this.myPieces[i].name;
+        var movablePieces = this.myPieces.filter(x => this.legalMoves[x.name].length > 0);
+        for (var i in movablePieces) {
+            var name = movablePieces[i].name;
             var moves = this.legalMoves[name];
             for (var j in moves) {
                 var move = moves[j];
                 var value = this.getValueOfMove(name, move);
-                fromPos = this.myPieces[i].position;
+                fromPos = movablePieces[i].position;
                 if (value > maxVal) {
                     toPos = move;
-                    piece = this.myPieces[i];
+                    piece = movablePieces[i];
                     maxVal = value;
                 }
             }
         }
+        if (maxVal > 0) return [piece, toPos]; // can capture opponent piece
+        // take random move
+        piece = movablePieces[Math.floor(movablePieces.length * Math.random())]
+        var moves = this.legalMoves[piece.name];
+        toPos = moves[Math.floor(moves.length * Math.random())];
         return [piece, toPos];
     }
 
 
     getValueOfMove(pieceName, toPos) {
         var piece = this.boardState[toPos.toString()];
-        var posVal = Evaluation.posValue(pieceName, toPos);
-        if (!piece) return posVal; // empty place
-        if (piece[1]) alert("Bug");
-        return Evaluation.pieceValue(piece[0]) + posVal;
+        // var posVal = Evaluation.posValue(pieceName, toPos);
+        if (piece) return Evaluation.pieceValue(piece[0]);
+        // console.log(pieceName, toPos, posVal)
+        // empty place
+        return 0;
+        // if (piece[1]) alert("Bug");
+        // // capture opponent piece
+        // return Evaluation.pieceValue(piece[0]) + posVal;
     }
 
 

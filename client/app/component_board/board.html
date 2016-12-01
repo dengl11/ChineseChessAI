@@ -12,7 +12,6 @@
 			<img src="resource/img/Pieces/1/{{piece.name[0]}}.png" alt="">
 		</button>
 
-
 		<!-- Black Pieces -->
 		<button *ngFor="let piece of state.blackAgent.myPieces" [style.left]="(piece.position[1]-1.5)*pieceSize+'px'" (click)="clickBlackPiece(piece)" [class.possibleMove]='state.playingTeam==1 && isPossibleMove(piece.position)' [style.bottom]="((piece.position[0]-1.5)*pieceSize + (piece.position[0] > 5 ? 15 : 0))+'px'">
 			<img src="resource/img/Pieces/-1/{{piece.name[0]}}.png" alt="">

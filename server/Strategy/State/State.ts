@@ -80,7 +80,9 @@ export class State {
         // console.log("playing:", agent.strategy)
         // if (agent instanceof EvalFnAgent)
         //     console.log("depth:", agent.DEPTH)
-        return agent.comptuteNextMove();
+        var r = agent.comptuteNextMove();
+        // console.log("move:", r)
+        return r;
     }
 
 }
