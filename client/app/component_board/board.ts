@@ -65,12 +65,15 @@ export class BoardComponent implements OnInit {
     }
 
     chooseRedAgent(desc) {
-        if (desc.includes('1')) { this.redAgentType = 1; }
+        if (desc == "") { this.redAgentType = 1; }
         if (desc.includes('2')) { this.redAgentType = 2; }
+        if (desc.includes('3')) { this.redAgentType = 3; }
     }
     chooseBlackAgent(desc) {
-        if (desc.includes('1')) { this.blackAgentType = 1; }
+        if (desc == "") { this.blackAgentType = 1; }
         if (desc.includes('2')) { this.blackAgentType = 2; }
+        if (desc.includes('3')) { this.blackAgentType = 3; }
+        if (this.humanMode) this.initGame();
     }
 
     /***************** LIFE_CYCLE *******************/
@@ -90,13 +93,16 @@ export class BoardComponent implements OnInit {
         // init agents
         var redAgent;
         switch (this.redAgentType) {
-            case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
-            case 2: { redAgent = new EvalFnAgent(this.redTeam); break; }
+            case 1: { redAgent = new GreedyAgent(this.redTeam); break; }
+            case 2: { redAgent = new EvalFnAgent(this.redTeam, 2); break; }
+            case 3: { redAgent = new EvalFnAgent(this.redTeam, 3); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
         switch (this.blackAgentType) {
-            case 2: { blackAgent = new EvalFnAgent(this.blackTeam); break; }
+            case 1: { blackAgent = new GreedyAgent(this.blackTeam); break; }
+            case 2: { blackAgent = new EvalFnAgent(this.blackTeam, 2); break; }
+            case 3: { blackAgent = new EvalFnAgent(this.blackTeam, 3); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
 
@@ -105,6 +111,7 @@ export class BoardComponent implements OnInit {
 
 
     simulate() {
+        if (this.redAgentType == 0) this.redAgentType = 2;
         this.initGame();
         this.continue_simulate();
     }

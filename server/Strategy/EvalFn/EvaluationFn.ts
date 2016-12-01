@@ -20,6 +20,12 @@ export class EvalFnAgent extends Agent {
         return [movePiece, evalResult[1][1]];
     }
 
+    constructor(team: number, myPieces = undefined, depth) {
+        super(team);
+        this.DEPTH = depth;
+
+    }
+
     // return [score, [movePieceName, toPos]
     recurseEvaluation(state: State, depth, alpha, beta) {
         var isMax = state.playingTeam == state.redAgent.team;
@@ -86,12 +92,11 @@ export class EvalFnAgent extends Agent {
         for (var i in this.myPieces) {
             copy_mypieces.push(this.myPieces[i].copy());
         }
-        return new EvalFnAgent(this.team, copy_mypieces, this.copyMoves());
+        return new EvalFnAgent(this.team, copy_mypieces, this.copyMoves(), this.DEPTH);
     }
 
     static copyFromDict(dict) {
-        return new EvalFnAgent(dict.team, this.piecesFromDict(dict.myPieces));
+        return new EvalFnAgent(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH);
     }
-
 
 }

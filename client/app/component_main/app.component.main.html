@@ -15,16 +15,18 @@
 	<div class="left">
 		<div *ngIf="board.humanMode">
 			<sm-button [disabled]="!(board.state.playingTeam==1 || board.gameEndState) " class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
-			<hr/>
-			<sm-button [disabled]="!board.lastState " class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
+			<div class="margin"></div>
+			<sm-button [disabled]="!board.lastState ||  board.state.playingTeam!=1" class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
+			<div class="margin"></div>
 			<hr/>
 		</div>
 
 		<div *ngIf="!board.humanMode">
 			<sm-button *ngIf="board.inSimulation" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
 			<sm-button *ngIf="!board.inSimulation" [disabled]="board.inSimulation" class="fluid medium negative " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
-			<hr/>
+			<div class="margin"></div>
 			<sm-button [disabled]="board.inSimulation" class="fluid medium teal control " icon="twitter " (click)="board.simulate() ">Simulate </sm-button>
+			<div class="margin"></div>
 			<hr/>
 		</div>
 
@@ -85,7 +87,6 @@
 			<div class="ui active centered inline loader "></div>
 		</div>
 		<sm-button *ngIf="board.playingTeam==1 " class="circular brown " icon="male big "></sm-button>
-		<img *ngIf="board.selectedPiece " src="resource/img/Pieces/1/{{board.selectedPiece.name[0]}}.png " alt=" ">
 		<hr/>
 
 		<h3 [style.color]=" 'red' "> Agent 0: {{board.state.redAgent.myPieces.length}} pieces</h3>

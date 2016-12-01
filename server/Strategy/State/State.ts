@@ -61,7 +61,6 @@ export class State {
             var oppo = dict.redAgent;
         }
         oppo = Agent.copyFromDict(oppo);
-
         switch (agent.strategy) {
             case 1:
                 agent = GreedyAgent.copyFromDict(agent);
@@ -78,6 +77,9 @@ export class State {
 
     nextMove() {
         var agent = this.playingTeam == 1 ? this.redAgent : this.blackAgent;
+        // console.log("playing:", agent.strategy)
+        // if (agent instanceof EvalFnAgent)
+        //     console.log("depth:", agent.DEPTH)
         return agent.comptuteNextMove();
     }
 
