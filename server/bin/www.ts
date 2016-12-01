@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { State } from '../Strategy/State/State'
-import { Agent } from '../Strategy/Agent/Agent'
-import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
-import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
-import { Piece } from '../Objects/Piece'
+// import { Agent } from '../Strategy/Agent/Agent'
+// import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
+// import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
+// import { Piece } from '../Objects/Piece'
 
 var app = require('../server').app;
 var debug = require('debug')('server:server');

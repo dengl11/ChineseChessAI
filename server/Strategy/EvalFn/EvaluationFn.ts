@@ -20,8 +20,8 @@ export class EvalFnAgent extends Agent {
         return [movePiece, evalResult[1][1]];
     }
 
-    constructor(team: number, myPieces = undefined, depth) {
-        super(team);
+    constructor(team: number, myPieces, depth) {
+        super(team, myPieces);
         this.DEPTH = depth;
 
     }

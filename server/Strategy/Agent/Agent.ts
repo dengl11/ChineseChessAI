@@ -7,7 +7,6 @@ import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 export class Agent {
     team: number;
     legalMoves: {}; // name->[positions]
-    pastMoves = [];
     myPieces: Piece[];
     oppoPieces: Piece[];
     oppoAgent: Agent;
@@ -17,14 +16,13 @@ export class Agent {
     // moved: EventEmitter<number> = new EventEmitter();
 
 
-    constructor(team: number, myPieces = undefined, pastMoves = []) {
+    constructor(team: number, myPieces = undefined) {
         this.team = team;
         if (myPieces == undefined)
             this.myPieces = (team == 1 ? InitGame.getRedPieces() : InitGame.getBlackPieces());
         else {
             this.myPieces = myPieces;
         }
-        this.pastMoves = pastMoves;
     }
     setOppoAgent(oppoAgent) {
         this.oppoAgent = oppoAgent;
@@ -52,7 +50,6 @@ export class Agent {
 
     movePieceTo(piece: Piece, pos, isCapture = undefined) {
         piece.moveTo(pos);
-        this.addMove(piece.name);
         if (isCapture == undefined) isCapture = this.oppoPieces.filter(x => x.position + '' == pos + '').length > 0;
         // having oppo piece in target pos
         if (isCapture) this.captureOppoPiece(pos);
@@ -69,10 +66,6 @@ export class Agent {
         }
     }
 
-    // add move to pastMoves
-    addMove(pieceName) {
-        this.pastMoves.push(pieceName);
-    }
 
     // TO BE IMPLEMENTED BY CHILD CLASS
     // return [piece:Piece, toPos];
@@ -90,12 +83,9 @@ export class Agent {
         for (var i in this.myPieces) {
             copy_mypieces.push(this.myPieces[i].copy());
         }
-        return new Agent(this.team, copy_mypieces, this.copyMoves());
+        return new Agent(this.team, copy_mypieces);
     }
 
-    copyMoves() {
-        return this.pastMoves.slice();
-    }
 
     static piecesFromDict(dict_list) {
         return dict_list.map(x => Piece.copyFromDict(x));
