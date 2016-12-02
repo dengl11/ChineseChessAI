@@ -14,7 +14,7 @@ export class EvalFnAgent extends Agent {
         else curr_state = new State(this.oppoAgent, this, this.team, updateDict);
         // console.log("curr_state:", curr_state)
         var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, -Infinity, Infinity);
-        // console.log("evalResult", evalResult)
+        if (evalResult == null) console.log("evalResult", evalResult)
         var movePiece = this.getPieceByName(evalResult[1][0]);
         // console.log("movePiece", movePiece)
         if (evalResult[0] * this.team == -Infinity) {

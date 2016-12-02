@@ -86,6 +86,10 @@ export class Agent {
     getPieceByName(name) {
         return this.myPieces.filter(x => x.name == name)[0];
     }
+    // check existance of my king
+    check_king_exist() {
+        return this.getPieceByName('k') != undefined;
+    }
 
     copy() {
         var copy_mypieces = [];

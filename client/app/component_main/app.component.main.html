@@ -13,6 +13,12 @@
 	<board #board class="board"></board>
 
 	<div class="left">
+
+		<sm-checkbox label="{{board.humanMode?'Human vs Computer':'Simulation'}}" [control]="humanMode " type="toggle " (change)="board.changeMode() "></sm-checkbox>
+
+		<div class="margin"></div>
+
+
 		<div *ngIf="board.humanMode">
 			<sm-button [disabled]="!(board.state.playingTeam==1 || board.gameEndState) " class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
 			<div class="margin"></div>
@@ -21,47 +27,47 @@
 			<hr/>
 		</div>
 
+
+
 		<div *ngIf="!board.humanMode">
 			<sm-button [disabled]="board.simulation_state < 1" [disabled]="board.simulation_state == 1" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
 			<div class="margin"></div>
-			<sm-button *ngIf="board.simulation_state >= 0" [disabled]="board.simulation_state == 1" class="fluid medium teal control " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
-			<sm-button *ngIf="board.simulation_state < 0" class="fluid medium teal control " icon="twitter " (click)="board.simulate() ">Simulate </sm-button>
+			<sm-button *ngIf="board.simulation_state >= 0 && board.nSimulations>0" [disabled]="board.simulation_state == 1" class="fluid medium teal control " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
+			<sm-button *ngIf="board.simulation_state < 0 " class="fluid medium teal control " icon="twitter " (click)="board.click_simulate() ">Simulate </sm-button>
 			<div class="margin"></div>
 			<hr/>
+
+
+			<h3 *ngIf="board.simulation_state >= 0">Simulating: {{board.nSimulations}} Games</h3>
+
+			<div *ngIf="board.simulation_state == -1">
+				<div class="margin"></div>
+				<div class="ui input focus">
+					<input type="text" placeholder="Number of Simulations" (change)="board.chooseNSimulations($event.target.value)">
+				</div>
+			</div>
+			<div class=" margin "></div>
+			<div *ngIf="!board.humanMode ">
+				<h3 style="color:red ">Red Agent</h3>
+				<sm-select placeholder="Black Agent Strategy " (change)="board.chooseRedAgent($event.target.value) ">
+					<option>0 -Greedy </option>
+					<option>1 -EvalFn (Depth 2)</option>
+					<option>2 -EvalFn (Depth 3)</option>
+					<option>3-EvalFn (Depth 4)</option>
+					<option>4-MoveReorder (Depth 2)</option>
+					<option>5-MoveReorder (Depth 3)</option>
+					<option>6-MoveReorder (Depth 4)</option>
+					<option>7-TDLeaner (Depth 2)</option>
+					<option>8-DLeaner (Depth 3)</option>
+					<option>9-DLeaner (Depth 3)</option>
+				</sm-select>
+			</div>
 		</div>
 
 
-		<sm-checkbox label="Human - Computer " [control]="humanMode " type="toggle " (change)="board.changeMode() "></sm-checkbox>
-
-
-		<div>
-
-
-			<h3>Black Agent</h3>
-			<sm-select placeholder="Opponent Agent " (change)="board.chooseBlackAgent($event.target.value) ">
-				<option>Level 1 - Greedy </option>
-				<option>Level 2 - EvalFn(Shallow)</option>
-				<option>Level 3 - EvalFn(Deep)</option>
-				<option>Level 4 - MCTS</option>
-				<option>Level 5 - Temporal</option>
-			</sm-select>
-		</div>
-		<hr>
-		<div *ngIf="!board.humanMode ">
-			<h3 style="color:red ">Red Agent</h3>
-			<sm-select placeholder="Opponent Agent " (change)="board.chooseRedAgent($event.target.value) ">
-				<option>Level 1 - Greedy </option>
-				<option>Level 2 - EvalFn(Shallow)</option>
-				<option>Level 3 - EvalFn(Deep)</option>
-				<option>Level 4 - MCTS</option>
-				<option>Level 5 - Temporal</option>
-			</sm-select>
-		</div>
-
-
-		<h1 *ngIf="board.gameEndState ">You {{board.gameEndState}}</h1>
-		<div class="margin"></div>
-		<div *ngIf="board.state.playingTeam==1 && !board.gameEndState && !board.humanMode &&  board.simulation_state==1" class="ui active centered inline loader "></div>
+		<h1 *ngIf="board.gameEndState ">Red {{board.gameEndState}}</h1>
+		<div class="margin "></div>
+		<div *ngIf="board.state.playingTeam==1 && !board.gameEndState && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
 
 		<h3 [style.color]=" 'black' "> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
 		<hr>
@@ -83,8 +89,24 @@
 
 
 	<div class="right ">
+		<div>
+			<h3>Black Agent</h3>
+			<sm-select placeholder="Red Agent Strategy " (change)="board.chooseBlackAgent($event.target.value) ">
+				<option>0 -Greedy </option>
+				<option>1 -EvalFn (Depth 2)</option>
+				<option>2 -EvalFn (Depth 3)</option>
+				<option>3-EvalFn (Depth 4)</option>
+				<option>4-MoveReorder (Depth 2)</option>
+				<option>5-MoveReorder (Depth 3)</option>
+				<option>6-MoveReorder (Depth 4)</option>
+				<option>7-TDLeaner (Depth 2)</option>
+				<option>8-DLeaner (Depth 3)</option>
+				<option>9-DLeaner (Depth 3)</option>
+			</sm-select>
+		</div>
+
 		<h2>Game State</h2>
-		<div *ngIf="board.state.playingTeam!=1 && !board.gameEndState &&(board.humanMode || board.simulation_state==1)" class="ui active centered inline loader "></div>
+		<div *ngIf="board.state.playingTeam!=1 && !board.gameEndState &&(board.humanMode || board.simulation_state==1) " class="ui active centered inline loader "></div>
 		<sm-button *ngIf="board.playingTeam==1 " class="circular brown " icon="male big "></sm-button>
 		<hr/>
 

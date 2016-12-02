@@ -9,6 +9,7 @@ import { State } from '../Strategy/State/State';
 import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent';
 import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn';
 import { TDLeaner } from '../Strategy/TDLearner/TDLearner';
+import { MoveReorderPruner } from '../Strategy/MoveReorderPruner/MoveReorderPruner';
 import { HumanAgent } from '../Strategy/Agent/HumanAgent';
 import { Agent } from '../Strategy/Agent/Agent';
 
@@ -45,6 +46,8 @@ export class BoardComponent implements OnInit {
     lastState: State;
     // -1: not started | 0: started but stoped | 1: in insimulation
     simulation_state = -1;
+    nSimulations = 1;
+    nSimulations_input;
 
 
     changeMode() {
@@ -74,6 +77,9 @@ export class BoardComponent implements OnInit {
         if (desc.includes('3')) { this.redAgentType = 3; }
         if (desc.includes('4')) { this.redAgentType = 4; }
         if (desc.includes('5')) { this.redAgentType = 5; }
+        if (desc.includes('6')) { this.redAgentType = 6; }
+        if (desc.includes('7')) { this.redAgentType = 7; }
+        if (desc.includes('8')) { this.redAgentType = 8; }
     }
     chooseBlackAgent(desc) {
         this.simulation_state = -1;
@@ -82,6 +88,9 @@ export class BoardComponent implements OnInit {
         if (desc.includes('3')) { this.blackAgentType = 3; }
         if (desc.includes('4')) { this.blackAgentType = 4; }
         if (desc.includes('5')) { this.blackAgentType = 5; }
+        if (desc.includes('6')) { this.blackAgentType = 6; }
+        if (desc.includes('7')) { this.blackAgentType = 7; }
+        if (desc.includes('8')) { this.blackAgentType = 8; }
         if (this.humanMode) this.initGame();
     }
 
@@ -93,6 +102,10 @@ export class BoardComponent implements OnInit {
     }
     constructor(server: ComputeService) {
         this.server = server;
+    }
+    // choose number of simulations
+    chooseNSimulations(n) {
+        this.nSimulations_input = parseInt(n);
     }
 
     initGame() {
@@ -119,10 +132,19 @@ export class BoardComponent implements OnInit {
             case 3: { blackAgent = new EvalFnAgent(this.blackTeam, 3); break; }
             case 4: { blackAgent = new EvalFnAgent(this.blackTeam, 4); break; }
             // TDLearner
+            case 5: { blackAgent = new MoveReorderPruner(this.blackTeam, 3); break; }
+            case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
+            case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
             case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
         this.state = new State(redAgent, blackAgent);
+    }
+
+    // response for clicking simulate
+    click_simulate() {
+        this.nSimulations = this.nSimulations_input;
+        this.simulate();
     }
 
 
@@ -131,7 +153,6 @@ export class BoardComponent implements OnInit {
         this.initGame();
         this.state.switchTurn();
         this.continue_simulate();
-
     }
     continue_simulate() {
         this.simulation_state = 1;
@@ -163,10 +184,16 @@ export class BoardComponent implements OnInit {
         this.switchTurn();
     }
 
-    // end the tame if playing agent lose
-    end_game(lose: boolean = true) {
-        this.simulation_state = -1;
-        this.gameEndState = lose ? 'Lose' : 'Win';
+    // end_state: -1: lose | 0: draw | 1: win
+    end_game(end_state) {
+        this.nSimulations -= 1;
+        if (this.nSimulations == 0) this.simulation_state = -1;
+        switch (end_state * this.state.playingTeam) {
+            case 1: this.gameEndState = " Win"; break;
+            case -1: this.gameEndState = " lose"; break;
+            default: this.gameEndState = " Draw";
+        }
+        if (this.nSimulations > 0) this.simulate();
     }
     // switch game turn
     switchTurn() {
@@ -176,20 +203,26 @@ export class BoardComponent implements OnInit {
         this.state.switchTurn();
         var agent = (this.state.playingTeam == 1 ? this.state.redAgent : this.state.blackAgent);
         agent.updateState();
-        this.selectedPiece = undefined;
-        var endState = this.state.getEndState();
-        if (endState != 0) {
-            this.end_game(endState * this.state.playingTeam == -1);
-            return;
+        if (this.humanMode) {
+            this.selectedPiece = undefined;
+            var endState = this.state.getEndState();
+            if (endState != 0) {
+                this.end_game(endState * this.state.playingTeam == -1);
+                return;
+            }
+            // if human's turn, return
+            if (this.state.playingTeam == 1) return;
         }
-        // if human's turn, return
-        if (this.humanMode && this.state.playingTeam == 1) return;
         // agent.nextMove();
         // this.switchTurn();
         this.server.launchCompute(this.state.copy(false)).then(
             move => {
                 if (!move) { // FAIL
-                    this.end_game();
+                    this.end_game(-1);
+                    return;
+                }
+                if (move.length == 0) { // DRAW
+                    this.end_game(0);
                     return;
                 }
                 var piece = agent.getPieceByName(move[0].name);

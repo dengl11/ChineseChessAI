@@ -91,7 +91,8 @@ export class State {
         // console.log("playing:", agent.strategy)
         // if (agent instanceof EvalFnAgent)
         //     console.log("depth:", agent.DEPTH)
-        var r = agent.comptuteNextMove();
+        var r = null;
+        if (agent.check_king_exist()) r = agent.comptuteNextMove();
         // console.log("move:", r)
         return r;
     }

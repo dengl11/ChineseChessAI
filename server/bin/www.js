@@ -21,9 +21,16 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+// ******************* PARAM ******************* //
+var N_MAX_MOVES = 200;
 app.put('/compute/', function (request, response) {
     // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
     var state = request.body;
+    if (state.redAgent.pastMoves.length >= N_MAX_MOVES) {
+        console.log("-=-=-=-=-= Draw -=-=-=-=-=-");
+        response.end(JSON.stringify([]));
+        return;
+    }
     state = State_1.State.copyFromDict(state);
     var start = new Date().getTime();
     var next = state.nextMove();
