@@ -4,7 +4,8 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
 
-    strategy = 1;
+    strategy = 0;
+    DEPTH = 1;
 
     // private method of computing next move
     comptuteNextMove() {

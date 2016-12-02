@@ -10,12 +10,11 @@ export class Agent {
     myPieces: Piece[];
     oppoPieces: Piece[];
     oppoAgent: Agent;
-    strategy;
     myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
     // moved: EventEmitter<number> = new EventEmitter();
 
-
+    strategy = 0;
     constructor(team: number, myPieces = undefined) {
         this.team = team;
         if (myPieces == undefined)

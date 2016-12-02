@@ -6,9 +6,11 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class MoveReorderPruner extends EvalFnAgent {
 
+    strategy = 2
+
     constructor(team: number, depth = 2, myPieces = undefined, pastMoves = []) {
         super(team, depth, myPieces, pastMoves);
-        this.strategy = 5;
+        this.DEPTH = depth;
     }
 
     copy() {

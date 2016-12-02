@@ -6,6 +6,7 @@ import { Evaluation } from '../_Param/Evaluation'
 export class EvalFnAgent extends Agent {
 
     DEPTH = 2;
+    strategy = 1;
     // private method of computing next move
     // return [piece, toPos];
     comptuteNextMove() {
@@ -19,10 +20,9 @@ export class EvalFnAgent extends Agent {
         return [movePiece, evalResult[1][1]];
     }
 
-    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = [], strategy = 2) {
+    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = []) {
         super(team, myPieces);
         this.DEPTH = depth;
-        this.strategy = strategy;
     }
 
     // return [score, [movePieceName, toPos]

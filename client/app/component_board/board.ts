@@ -30,7 +30,7 @@ export class BoardComponent implements OnInit {
     state: State;
     server: ComputeService;
     redAgentType = 0;
-    blackAgentType = 2;
+    blackAgentType = 0;
 
 
 
@@ -47,7 +47,10 @@ export class BoardComponent implements OnInit {
     // -1: not started | 0: started but stoped | 1: in insimulation
     simulation_state = -1;
     nSimulations = 1;
-    nSimulations_input;
+    nSimulations_input = 100;
+
+    /***************** ANALYSIS *******************/
+    results = [];
 
 
     changeMode() {
@@ -70,27 +73,18 @@ export class BoardComponent implements OnInit {
         }
     }
 
+    parse_agentType(desc) {
+        if (desc == "") return 0;
+        return parseInt(desc.split('-')[0]);
+    }
+
     chooseRedAgent(desc) {
         this.simulation_state = -1;
-        if (desc == "") { this.redAgentType = 1; }
-        if (desc.includes('2')) { this.redAgentType = 2; }
-        if (desc.includes('3')) { this.redAgentType = 3; }
-        if (desc.includes('4')) { this.redAgentType = 4; }
-        if (desc.includes('5')) { this.redAgentType = 5; }
-        if (desc.includes('6')) { this.redAgentType = 6; }
-        if (desc.includes('7')) { this.redAgentType = 7; }
-        if (desc.includes('8')) { this.redAgentType = 8; }
+        this.redAgentType = this.parse_agentType(desc);
     }
     chooseBlackAgent(desc) {
         this.simulation_state = -1;
-        if (desc == "") { this.blackAgentType = 1; }
-        if (desc.includes('2')) { this.blackAgentType = 2; }
-        if (desc.includes('3')) { this.blackAgentType = 3; }
-        if (desc.includes('4')) { this.blackAgentType = 4; }
-        if (desc.includes('5')) { this.blackAgentType = 5; }
-        if (desc.includes('6')) { this.blackAgentType = 6; }
-        if (desc.includes('7')) { this.blackAgentType = 7; }
-        if (desc.includes('8')) { this.blackAgentType = 8; }
+        this.blackAgentType = this.parse_agentType(desc);
         if (this.humanMode) this.initGame();
     }
 
@@ -117,39 +111,54 @@ export class BoardComponent implements OnInit {
         // console.log("red:", this.redAgentType)
         // console.log("black:", this.blackAgentType)
         switch (this.redAgentType) {
-            case 1: { redAgent = new GreedyAgent(this.redTeam); break; }
-            case 2: { redAgent = new EvalFnAgent(this.redTeam, 2); break; }
-            case 3: { redAgent = new EvalFnAgent(this.redTeam, 3); break; }
-            case 4: { redAgent = new EvalFnAgent(this.redTeam, 4); break; }
+            case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
+
+            case 1: { redAgent = new EvalFnAgent(this.redTeam, 2); break; }
+            case 2: { redAgent = new EvalFnAgent(this.redTeam, 3); break; }
+            case 3: { redAgent = new EvalFnAgent(this.redTeam, 4); break; }
+
+            case 4: { redAgent = new MoveReorderPruner(this.redTeam, 2); break; }
+            case 5: { redAgent = new MoveReorderPruner(this.redTeam, 3); break; }
+            case 6: { redAgent = new MoveReorderPruner(this.redTeam, 4); break; }
+
             // TDLearner
-            case 5: { redAgent = new TDLeaner(this.redTeam, 3); break; }
+            case 7: { redAgent = new TDLeaner(this.redTeam, 2); break; }
+            case 8: { redAgent = new TDLeaner(this.redTeam, 3); break; }
+            case 9: { redAgent = new TDLeaner(this.redTeam, 4); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
         switch (this.blackAgentType) {
-            case 1: { blackAgent = new GreedyAgent(this.blackTeam); break; }
-            case 2: { blackAgent = new EvalFnAgent(this.blackTeam, 2); break; }
-            case 3: { blackAgent = new EvalFnAgent(this.blackTeam, 3); break; }
-            case 4: { blackAgent = new EvalFnAgent(this.blackTeam, 4); break; }
-            // TDLearner
+            case 0: { blackAgent = new GreedyAgent(this.blackTeam); break; }
+
+            case 1: { blackAgent = new EvalFnAgent(this.blackTeam, 2); break; }
+            case 2: { blackAgent = new EvalFnAgent(this.blackTeam, 3); break; }
+            case 3: { blackAgent = new EvalFnAgent(this.blackTeam, 4); break; }
+
+            case 4: { blackAgent = new MoveReorderPruner(this.blackTeam, 2); break; }
             case 5: { blackAgent = new MoveReorderPruner(this.blackTeam, 3); break; }
-            case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
-            case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
-            case 5: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
-            default: blackAgent = new GreedyAgent(this.blackTeam); break;
+            case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, 4); break; }
+
+            // TDLearner
+            case 7: { blackAgent = new TDLeaner(this.blackTeam, 2); break; }
+            case 8: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
+            case 9: { blackAgent = new TDLeaner(this.blackTeam, 4); break; }
+            default: blackAgent = new EvalFnAgent(this.blackTeam, 2); break;
         }
+        // console.log(redAgent);
+        // console.log(blackAgent);
         this.state = new State(redAgent, blackAgent);
     }
 
     // response for clicking simulate
     click_simulate() {
         this.nSimulations = this.nSimulations_input;
+        this.results = [];
         this.simulate();
     }
 
 
     simulate() {
-        if (this.redAgentType == 0) this.redAgentType = 2;
         this.initGame();
         this.state.switchTurn();
         this.continue_simulate();
@@ -186,9 +195,13 @@ export class BoardComponent implements OnInit {
 
     // end_state: -1: lose | 0: draw | 1: win
     end_game(end_state) {
+        // console.log("end_state=", end_state)
+        var red_win = end_state * this.state.playingTeam;
+        this.results.push(red_win);
+        // console.log(this.results);
         this.nSimulations -= 1;
         if (this.nSimulations == 0) this.simulation_state = -1;
-        switch (end_state * this.state.playingTeam) {
+        switch (red_win) {
             case 1: this.gameEndState = " Win"; break;
             case -1: this.gameEndState = " lose"; break;
             default: this.gameEndState = " Draw";

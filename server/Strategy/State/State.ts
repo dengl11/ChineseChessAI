@@ -59,31 +59,23 @@ export class State {
     }
 
     static copyFromDict(dict) {
+        var agentDict;
         if (dict.playingTeam == 1) {
-            var agent = dict.redAgent;
+            var agentDict = dict.redAgent;
             var oppo = dict.blackAgent;
         } else {
-            var agent = dict.blackAgent;
+            var agentDict = dict.blackAgent;
             var oppo = dict.redAgent;
         }
         oppo = Agent.copyFromDict(oppo);
-        // console.log("STRATEGY:", agent.strategy);
-        switch (agent.strategy) {
-            case 1:
-                agent = GreedyAgent.copyFromDict(agent);
-                break;
-            case 2:
-                agent = EvalFnAgent.copyFromDict(agent);
-                break;
-            case 5:
-                agent = TDLeaner.copyFromDict(agent);
-                break;
-        }
+        var agent;
+        if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
+        if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
+        if (agentDict.strategy == 2) agent = TDLeaner.copyFromDict(agentDict);
+        if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
         // console.log("is TD?:", agent instanceof TDLeaner);
-        if (dict.playingTeam == 1)
-            return new State(agent, oppo, dict.playingTeam);
-        else
-            return new State(oppo, agent, dict.playingTeam);
+        if (dict.playingTeam == 1) return new State(agent, oppo, dict.playingTeam);
+        return new State(oppo, agent, dict.playingTeam);
     }
 
     nextMove() {

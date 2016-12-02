@@ -8,7 +8,7 @@ export class TDLeaner extends EvalFnAgent {
 
     constructor(team: number, depth = 2, myPieces = undefined, pastMoves = []) {
         super(team, depth, myPieces, pastMoves);
-        this.strategy = 5;
+        this.strategy = 3;
     }
 
     copy() {

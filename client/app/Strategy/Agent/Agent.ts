@@ -15,7 +15,7 @@ export class Agent {
     // moved: EventEmitter<number> = new EventEmitter();
     //
 
-
+    DEPTH = 0;
 
 
     constructor(team: number, myPieces = null, pastMoves = [], strategy = 0) {

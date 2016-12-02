@@ -22,7 +22,7 @@ function onListening() {
     debug('Listening on ' + bind);
 }
 // ******************* PARAM ******************* //
-var N_MAX_MOVES = 200;
+var N_MAX_MOVES = 100;
 app.put('/compute/', function (request, response) {
     // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
     var state = request.body;
@@ -31,11 +31,12 @@ app.put('/compute/', function (request, response) {
         response.end(JSON.stringify([]));
         return;
     }
+    // console.log(state);
     state = State_1.State.copyFromDict(state);
     var start = new Date().getTime();
     var next = state.nextMove();
     var now = new Date().getTime();
-    console.log("Agent { ", state.get_playing_agent().strategy, "} Compute Move Using: ", (now - start), " ms");
     response.end(JSON.stringify(next));
+    console.log("Agent { ", state.get_playing_agent().strategy + "-" + state.get_playing_agent().DEPTH, "} Compute Move Using: ", (now - start), " ms");
 });
 //# sourceMappingURL=www.js.map

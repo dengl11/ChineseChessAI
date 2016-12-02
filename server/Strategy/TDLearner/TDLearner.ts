@@ -7,7 +7,7 @@ import { Evaluation } from '../_Param/Evaluation'
 
 export class TDLeaner extends EvalFnAgent {
 
-    strategy = 5;
+    strategy = 2;
 
     comptuteNextMove() {
         if (this.team == 1) var curr_state = new State(this, this.oppoAgent, this.team, true);
