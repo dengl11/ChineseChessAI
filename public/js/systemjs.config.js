@@ -12,7 +12,8 @@ var isPublic = typeof window != "undefined";
     '@angular':                   (isPublic)? '@angular' : 'node_modules/@angular',
     '@angular/router':            (isPublic)? '@angular/router' : 'node_modules/@angular/router',
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs',
-     'ng-semantic':                 (isPublic)? 'ng-semantic' :'node_modules/ng-semantic'
+     'ng-semantic':                 (isPublic)? 'ng-semantic' :'node_modules/ng-semantic',
+     'ng2-charts':                 (isPublic)? 'ng2-charts' :'node_modules/ng2-charts'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -22,8 +23,11 @@ var isPublic = typeof window != "undefined";
     'ng-semantic': {
             main: './ng-semantic.js',
             defaultExtension: 'js'
+        },
+    'ng2-charts': {
+            main: './ng2-charts.js',
+            defaultExtension: 'js'
         }
-
   };
   var ngPackageNames = [
     'common',
