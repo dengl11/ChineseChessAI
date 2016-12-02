@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ComputeService } from '../service/service.compute';
 import { Piece } from '../Objects/Piece';
 import { DummyPiece } from '../Objects/DummyPiece';
@@ -48,6 +48,9 @@ export class BoardComponent implements OnInit {
     simulation_state = -1;
     nSimulations = 1;
     nSimulations_input = 100;
+
+    /***************** EVENT *******************/
+    @Output() onResultsUpdated = new EventEmitter<boolean>();
 
     /***************** ANALYSIS *******************/
     results = [];
@@ -198,6 +201,7 @@ export class BoardComponent implements OnInit {
         // console.log("end_state=", end_state)
         var red_win = end_state * this.state.playingTeam;
         this.results.push(red_win);
+        this.report_result();
         // console.log(this.results);
         this.nSimulations -= 1;
         if (this.nSimulations == 0) this.simulation_state = -1;
@@ -208,6 +212,13 @@ export class BoardComponent implements OnInit {
         }
         if (this.nSimulations > 0) this.simulate();
     }
+
+    // report results
+    report_result() {
+        this.onResultsUpdated.emit();
+    }
+
+
     // switch game turn
     switchTurn() {
         // stop simulation

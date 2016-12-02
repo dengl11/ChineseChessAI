@@ -1,3 +1,10 @@
-<div class="plot">
-    <canvas baseChart [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType" [data]="lineChartData"></canvas>
+<div class="plot" *ngIf="chartData.length > 0">
+
+    <h3 class="ui horizontal divider header">
+  <i class="bar chart icon"></i>
+  Red Team: Wining Rate
+</h3>
+    <div class="graph">
+        <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="lineChartOptions" [chartType]="'bar'"></canvas>
+    </div>
 </div>

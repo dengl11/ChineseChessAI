@@ -10,7 +10,7 @@
 
 <div class="body_content" (keyup.Enter)="board.initGame()">
 
-	<board #board class="board"></board>
+	<board #board class="board" (onResultsUpdated)="update_result(board.results)"></board>
 
 	<div class="left">
 
@@ -54,9 +54,9 @@
 					<option>1 -EvalFn (Depth 2)</option>
 					<option>2 -EvalFn (Depth 3)</option>
 					<option>3-EvalFn (Depth 4)</option>
-					<option>4-MoveReorder (Depth 2)</option>
-					<option>5-MoveReorder (Depth 3)</option>
-					<option>6-MoveReorder (Depth 4)</option>
+					<option>4-Reorder (Depth 2)</option>
+					<option>5-Reorder (Depth 3)</option>
+					<option>6-Reorder (Depth 4)</option>
 					<option>7-TDLeaner (Depth 2)</option>
 					<option>8-DLeaner (Depth 3)</option>
 					<option>9-DLeaner (Depth 3)</option>
@@ -96,9 +96,9 @@
 				<option>1 -EvalFn (Depth 2)</option>
 				<option>2 -EvalFn (Depth 3)</option>
 				<option>3-EvalFn (Depth 4)</option>
-				<option>4-MoveReorder (Depth 2)</option>
-				<option>5-MoveReorder (Depth 3)</option>
-				<option>6-MoveReorder (Depth 4)</option>
+				<option>4-Reorder (Depth 2)</option>
+				<option>5-Reorder (Depth 3)</option>
+				<option>6-Reorder (Depth 4)</option>
 				<option>7-TDLeaner (Depth 2)</option>
 				<option>8-DLeaner (Depth 3)</option>
 				<option>9-DLeaner (Depth 3)</option>
