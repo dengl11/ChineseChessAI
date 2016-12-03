@@ -20,7 +20,8 @@ export class TDLeaner extends Reorder {
 
     static copyFromDict(dict) {
         // console.log("coioy: ", dict.weights)
-        return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), 1, dict.weights);
+        return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH, dict.weights);
+        // return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), 1, dict.weights);
     }
 
 
@@ -39,6 +40,8 @@ export class TDLeaner extends Reorder {
     getValueOfState(state: State) {
         var score_vec = [];
         var fea_vec = this.extract_state_feature(state.redAgent, state, state.blackAgent);
+        // console.log("fea_vec:", fea_vec)
+        // console.log("this.weights:", this.weights)
         for (var i = 0; i < fea_vec.length; i++) score_vec.push(fea_vec[i] * this.weights[i]);
         var score = score_vec.reduce((x, y) => x + y);
         // console.log("score=", score)
@@ -87,7 +90,7 @@ export class TDLeaner extends Reorder {
     // return number of pieces that are threatening the oppo king
     get_num_threatening(agent: Agent, state: State) {
         var n = 0;
-        console.log("agent.oppoAgent.myPiecesDic:", agent.oppoAgent.myPiecesDic)
+        // console.log("agent.oppoAgent.myPiecesDic:", agent.oppoAgent.myPiecesDic)
         var oppoKing = agent.oppoAgent.myPiecesDic['k'].toString();
         for (var pieceName in agent.legalMoves) {
             for (var i in agent.legalMoves[pieceName]) {

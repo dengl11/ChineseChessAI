@@ -114,7 +114,7 @@ export class State {
                 console.log("REPEATING ")
                 r = agent.random_move();
             }
-        } else console.log("KING DIED ", r)
+        } else console.log("-=-=-=-=-=- KING DIED -=-=-=-=-=-", r)
         return r;
     }
 
