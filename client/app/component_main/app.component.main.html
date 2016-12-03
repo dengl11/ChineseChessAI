@@ -20,7 +20,7 @@
 
 
 		<div *ngIf="board.humanMode">
-			<sm-button [disabled]="!(board.state.playingTeam==1 || board.gameEndState) " class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
+			<sm-button class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
 			<div class="margin"></div>
 			<sm-button [disabled]="!board.lastState" class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
 			<div class="margin"></div>

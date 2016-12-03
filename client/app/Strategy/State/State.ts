@@ -23,7 +23,7 @@ export class State {
         this.blackAgent.update_weights(nSimulations, this.endFlag);
     }
     record_feature(feature_vec) {
-        console.log("record_feature")
+        // console.log("record_feature")
         this.redAgent.save_state(feature_vec);
         this.blackAgent.save_state(feature_vec);
     }

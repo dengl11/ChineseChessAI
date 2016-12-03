@@ -27,6 +27,7 @@ export class Agent {
         }
         this.pastMoves = pastMoves;
         this.strategy = strategy;
+        // console.log("Agent")
     }
     setOppoAgent(oppoAgent) {
         this.oppoAgent = oppoAgent;
@@ -93,15 +94,11 @@ export class Agent {
     }
 
     // TO BE OVERIDE BY TDLeaner
-    update_weights(nSimulations, result) { }
+    update_weights(nSimulations, result) { return []; }
     // TO BE OVERIDE BY TDLeaner
     save_state(feature_vec) { }
     copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new Agent(this.team, copy_mypieces, this.copyMoves());
+        return new Agent(this.team, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
 
     copyMoves() {

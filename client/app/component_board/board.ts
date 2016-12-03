@@ -31,7 +31,8 @@ export class BoardComponent implements OnInit {
     server: ComputeService;
     redAgentType = 0;
     blackAgentType = 0;
-
+    weigths = [0, 0, 0, 0, 0, 0, 0];
+    INIT_WEIGHT = [0, 0, 0, 0, 0, 0, 0];
 
 
 
@@ -58,6 +59,7 @@ export class BoardComponent implements OnInit {
     clear_results() {
         this.results = [];
         this.report_result();
+        this.weigths = this.INIT_WEIGHT;
     }
 
 
@@ -131,9 +133,9 @@ export class BoardComponent implements OnInit {
             case 6: { redAgent = new MoveReorderPruner(this.redTeam, 4); break; }
 
             // TDLearner
-            case 7: { redAgent = new TDLeaner(this.redTeam, 2); break; }
-            case 8: { redAgent = new TDLeaner(this.redTeam, 3); break; }
-            case 9: { redAgent = new TDLeaner(this.redTeam, 4); break; }
+            case 7: { redAgent = new TDLeaner(this.redTeam, 2, this.weigths); break; }
+            case 8: { redAgent = new TDLeaner(this.redTeam, 3, this.weigths); break; }
+            case 9: { redAgent = new TDLeaner(this.redTeam, 4, this.weigths); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
@@ -147,11 +149,10 @@ export class BoardComponent implements OnInit {
             case 4: { blackAgent = new MoveReorderPruner(this.blackTeam, 2); break; }
             case 5: { blackAgent = new MoveReorderPruner(this.blackTeam, 3); break; }
             case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, 4); break; }
-
             // TDLearner
-            case 7: { blackAgent = new TDLeaner(this.blackTeam, 2); break; }
-            case 8: { blackAgent = new TDLeaner(this.blackTeam, 3); break; }
-            case 9: { blackAgent = new TDLeaner(this.blackTeam, 4); break; }
+            case 7: { blackAgent = new TDLeaner(this.blackTeam, 2, this.weigths); break; }
+            case 8: { blackAgent = new TDLeaner(this.blackTeam, 3, this.weigths); break; }
+            case 9: { blackAgent = new TDLeaner(this.blackTeam, 4, this.weigths); break; }
             default: blackAgent = new EvalFnAgent(this.blackTeam, 2); break;
         }
         // console.log(redAgent);
@@ -206,12 +207,13 @@ export class BoardComponent implements OnInit {
     end_game(end_state) {
         // console.log("end_state=", end_state)
         var red_win = end_state * this.state.playingTeam;
+        // console.log("before leanr:", this.state.blackAgent.feature_matrix)
         // update state for end state
         this.state.endFlag = red_win;
         this.results.push(red_win);
         this.report_result();
+        this.weigths = this.state.blackAgent.update_weights(this.results.length, red_win);
         if (!this.humanMode) this.end_simulation();
-        this.state.learn(this.nSimulations_input - this.nSimulations);
     }
 
 
@@ -238,22 +240,22 @@ export class BoardComponent implements OnInit {
         agent.updateState();
         if (this.humanMode) {
             this.selectedPiece = undefined;
-            var endState = this.state.getEndState();
-            if (endState != 0) {
-                this.end_game(endState);
-                return;
-            }
             // if human's turn, return
             if (this.state.playingTeam == 1) return;
         }
         // agent.nextMove();
+        var endState = this.state.getEndState();
+        if (endState != 0) {
+            this.end_game(endState);
+            return;
+        }
         // this.switchTurn();
         this.server.launchCompute(this.state.copy(false)).then(
             result => {
                 var move = result['move'];
                 var time = result['time'];
                 var state_feature = result['state_feature'];
-                this.state.record_feature(state_feature);
+                if (state_feature) agent.save_state(state_feature);
                 // console.log("time", time)
                 // console.log("state_feature", state_feature)
                 if (!move) { // FAIL

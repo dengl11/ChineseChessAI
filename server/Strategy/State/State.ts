@@ -10,6 +10,8 @@ export class State {
     blackAgent: Agent;
     playingTeam: number;
 
+    is_repeating = false;
+
     constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1, updateDict = false) {
         this.redAgent = redAgent;
         this.blackAgent = blacAgent;
@@ -66,6 +68,14 @@ export class State {
 
     }
 
+    static check_repeating(agent): boolean {
+        var moves = agent.pastMoves;
+        var n = moves.length;
+        if (n < 10) return false;
+        return (moves[n - 3].toString() == moves[n - 1].toString());
+    }
+
+
     static copyFromDict(dict) {
         var agentDict;
         if (dict.playingTeam == 1) {
@@ -77,14 +87,20 @@ export class State {
         }
         oppo = Agent.copyFromDict(oppo);
         var agent;
+        var is_repeating = this.check_repeating(agentDict);
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
         if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
         // console.log("is TD?:", agent instanceof TDLeaner);
-        if (dict.playingTeam == 1) return new State(agent, oppo, dict.playingTeam);
-        return new State(oppo, agent, dict.playingTeam);
+        var new_state;
+        if (dict.playingTeam == 1) new_state = new State(agent, oppo, dict.playingTeam);
+        else new_state = new State(oppo, agent, dict.playingTeam);
+        new_state.is_repeating = is_repeating;
+        return new_state;
     }
+
+
 
     nextMove() {
         var agent = this.playingTeam == 1 ? this.redAgent : this.blackAgent;
@@ -92,8 +108,13 @@ export class State {
         // if (agent instanceof EvalFnAgent)
         //     console.log("depth:", agent.DEPTH)
         var r = null;
-        if (agent.check_king_exist()) r = agent.comptuteNextMove();
-        // console.log("move:", r)
+        if (agent.check_king_exist()) {
+            if (!this.is_repeating) r = agent.comptuteNextMove();
+            else {
+                console.log("REPEATING ")
+                r = agent.random_move();
+            }
+        } else console.log("KING DIED ", r)
         return r;
     }
 

@@ -12,9 +12,9 @@ export class ComputeService {
 
     constructor(private http: Http) { }
 
-    launchCompute(piece) {
-        // console.log("\n-=-=-=-=-=-=-= compute launched -=-=-=-=-=-=-=\n");
-        return this.http.put(this.computeURL, piece)
+    launchCompute(state) {
+        // console.log("\n-=-=-=-=-=-=-= compute launched -=-=-=-=-=-=-=\n", state);
+        return this.http.put(this.computeURL, state)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);

@@ -44,10 +44,6 @@ export class GreedyAgent extends Agent {
 
     // return a copy of an agent
     copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new GreedyAgent(this.team, copy_mypieces, this.copyMoves());
+        return new GreedyAgent(this.team, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
 }
