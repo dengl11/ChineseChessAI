@@ -43,6 +43,7 @@ app.put('/compute/', function(request, response) {
         response.end(JSON.stringify({ "move": [] }));
         return;
     }
+
     state = State.copyFromDict(state);
     // console.log(playing.strategy)
     // console.log(playing instanceof TDLeaner)
