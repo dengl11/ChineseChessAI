@@ -31,13 +31,15 @@ export class Reorder extends EvalFnAgent {
         }
         if (depth == 0) return [this.getValueOfState(state), null];
         var moves = this.reordered_moves(state); // [[pieceName, move]]
-        // console.log("Reorderd: ", moves)
+        console.log("Reorderd: ", moves)
         var next_evals = []; // list of [score, [movePieceName, toPos]]
         for (var i in moves) { //legalMoves: {name: []}
             var movePieceName = moves[i][0];
             var move = moves[i][1];
-            console.log(movePieceName, move)
             var nextState = state.next_state(movePieceName, move, true);
+            console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
+            console.log(state.playingTeam, movePieceName, move)
+            console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
             // console.log("=====================", nextState.playingTeam, "=====================");
             // eval: [score, [movePieceName, toPos]]
             var eval_result = [this.recurseEvaluation(nextState, depth - 1, alpha, beta)[0], [movePieceName, move]];
@@ -66,7 +68,6 @@ export class Reorder extends EvalFnAgent {
     // [[pieceName, move]]
     reordered_moves(state) {
         var agent = state.get_playing_agent();
-
         var typed_moves = this.get_typed_moves(agent, state);
         var checkmates = typed_moves.filter(x => x[1] == 3).map(x => x[0]);
         var threatening = typed_moves.filter(x => x[1] == 2).map(x => x[0]);;
@@ -91,6 +92,7 @@ export class Reorder extends EvalFnAgent {
                 r.push([[movePieceName, toPosList[i]], type_dc[movePieceName][i]])
             }
         }
+        // console.log("get_typed_moves: ", r)
         return r;
     }
 
@@ -118,6 +120,7 @@ export class Reorder extends EvalFnAgent {
                 this.add_move_type(types, movePieceName, 0);
             }
         }
+        // console.log("get_moves_types: ", types)
         return types;
     }
 
@@ -134,6 +137,7 @@ export class Reorder extends EvalFnAgent {
 
     // check if a move is threatening the oppo king
     is_threatening_move(state: State, movePieceName, move) {
+        console.log("old state: ", state)
         var nextState = state.next_state(movePieceName, move, true);
         var agent = nextState.get_playing_agent().oppoAgent;
         var oppo_king_pos = agent.oppoAgent.myPiecesDic['k'].toString();

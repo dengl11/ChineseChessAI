@@ -45,6 +45,7 @@ export class State {
         var nextState = this.copy();
         nextState.switchTurn();
         var agent = this.playingTeam == 1 ? nextState.redAgent : nextState.blackAgent;
+        console.log(agent.getPieceByName(movePieceName), " - Move:", movePieceName)
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
         agent.updateState(updateAgentPieceDict);
         agent.oppoAgent.updateState(updateAgentPieceDict);

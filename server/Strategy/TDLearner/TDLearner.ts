@@ -24,13 +24,14 @@ export class TDLeaner extends Reorder {
     // extract feature vector of current state for agent
     extract_state_feature(agent, state) {
         var typed_moves = this.get_typed_moves(agent, state);
-        var num_threaten = this.get_num_threatening(typed_moves);
+        // var num_threaten = this.get_num_threatening(typed_moves);
         var num_center_cannon = StateFeatureExtractor.num_center_cannon(agent)
         var num_bottom_cannon = StateFeatureExtractor.num_bottom_cannon(agent);
         var rook_mob = this.num_piece_moves(agent, 'j1') + this.num_piece_moves(agent, 'j2');
         var horse_mob = this.num_piece_moves(agent, 'm1') + this.num_piece_moves(agent, 'm2');
         var elephant_mob = this.num_piece_moves(agent, 'x1') + this.num_piece_moves(agent, 'x2');
-        var feature_vec = [num_threaten, num_center_cannon, num_bottom_cannon, rook_mob, horse_mob, elephant_mob];
+        var feature_vec = [num_center_cannon, num_bottom_cannon, rook_mob, horse_mob, elephant_mob];
+        // var feature_vec = [num_threaten, num_center_cannon, num_bottom_cannon, rook_mob, horse_mob, elephant_mob];
         // console.log(feature_vec);
         // console.log("num_center_cannon:", num_center_cannon);
         // console.log("num_bottom_cannon:", num_bottom_cannon);
