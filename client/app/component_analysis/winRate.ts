@@ -19,6 +19,10 @@ export class WinRaterComponent implements OnInit {
 
 
     update(r) {
+        if (r.length == 0) {
+            this.chartData = [];
+            return;
+        }
         // no draw
         var x = r.filter(x => x != 0);
         var ave_win = this.process_results_ave(x);

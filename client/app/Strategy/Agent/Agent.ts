@@ -54,7 +54,7 @@ export class Agent {
 
     movePieceTo(piece: Piece, pos, isCapture = undefined) {
         piece.moveTo(pos);
-        this.addMove(piece.name);
+        this.addMove(piece.name, pos);
         if (isCapture == undefined) isCapture = this.oppoPieces.filter(x => x.position + '' == pos + '').length > 0;
         // having oppo piece in target pos
         if (isCapture) this.captureOppoPiece(pos);
@@ -72,8 +72,8 @@ export class Agent {
     }
 
     // add move to pastMoves
-    addMove(pieceName) {
-        this.pastMoves.push(pieceName);
+    addMove(pieceName, pos) {
+        this.pastMoves.push(pieceName + "->" + pos);
     }
 
     // agent take action

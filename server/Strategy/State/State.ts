@@ -2,6 +2,7 @@ import { Agent } from '../Agent/Agent'
 import { GreedyAgent } from '../Greedy/GreedyAgent'
 import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 import { TDLeaner } from '../TDLearner/TDLearner'
+import { Reorder } from '../Reorder/Reorder'
 import { Rule } from '../../ChineseChess/Rule/Rule'
 
 export class State {
@@ -71,7 +72,7 @@ export class State {
         var agent;
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
-        if (agentDict.strategy == 2) agent = TDLeaner.copyFromDict(agentDict);
+        if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
         if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
         // console.log("is TD?:", agent instanceof TDLeaner);
         if (dict.playingTeam == 1) return new State(agent, oppo, dict.playingTeam);

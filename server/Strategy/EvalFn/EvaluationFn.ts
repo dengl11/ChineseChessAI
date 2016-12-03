@@ -137,10 +137,10 @@ export class EvalFnAgent extends Agent {
 
     // return value of state for redAgent
     getValueOfState(state: State) {
-        return this.getValueOfAgent(state.redAgent) - this.getValueOfAgent(state.blackAgent);
+        return this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
     }
 
-    getValueOfAgent(agent: Agent) {
+    getValueOfAgent(agent: Agent, state = null) {
         // console.log("======================");
         var score = 0;
         for (var i in agent.myPieces) {

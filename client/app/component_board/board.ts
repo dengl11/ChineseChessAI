@@ -49,16 +49,23 @@ export class BoardComponent implements OnInit {
     nSimulations = 1;
     nSimulations_input = 100;
 
+
     /***************** EVENT *******************/
     @Output() onResultsUpdated = new EventEmitter<boolean>();
 
+
     /***************** ANALYSIS *******************/
     results = [];
+    clear_results() {
+        this.results = [];
+        this.report_result();
+    }
 
 
     changeMode() {
         this.humanMode = !this.humanMode;
         this.simulation_state = -1;
+        this.clear_results();
         this.initGame();
     }
     isPossibleMove(pos) {
@@ -88,6 +95,7 @@ export class BoardComponent implements OnInit {
     chooseBlackAgent(desc) {
         this.simulation_state = -1;
         this.blackAgentType = this.parse_agentType(desc);
+        this.clear_results();
         if (this.humanMode) this.initGame();
     }
 
@@ -156,7 +164,7 @@ export class BoardComponent implements OnInit {
     // response for clicking simulate
     click_simulate() {
         this.nSimulations = this.nSimulations_input;
-        this.results = [];
+        this.clear_results();
         this.simulate();
     }
 
@@ -202,14 +210,20 @@ export class BoardComponent implements OnInit {
         var red_win = end_state * this.state.playingTeam;
         this.results.push(red_win);
         this.report_result();
-        // console.log(this.results);
-        this.nSimulations -= 1;
-        if (this.nSimulations == 0) this.simulation_state = -1;
         switch (red_win) {
             case 1: this.gameEndState = " Win"; break;
             case -1: this.gameEndState = " lose"; break;
             default: this.gameEndState = " Draw";
         }
+        if (!this.humanMode) this.end_simulation();
+
+    }
+
+
+    end_simulation() {
+        // console.log(this.results);
+        this.nSimulations -= 1;
+        if (this.nSimulations == 0) this.simulation_state = -1;
         if (this.nSimulations > 0) this.simulate();
     }
 
@@ -231,7 +245,7 @@ export class BoardComponent implements OnInit {
             this.selectedPiece = undefined;
             var endState = this.state.getEndState();
             if (endState != 0) {
-                this.end_game(endState * this.state.playingTeam == -1);
+                this.end_game(endState);
                 return;
             }
             // if human's turn, return
@@ -257,6 +271,7 @@ export class BoardComponent implements OnInit {
     }
     // reverse game state to previous state
     go2PreviousState() {
+        if (!this.lastState) return;
         this.state = this.lastState;
         this.lastState = null;
         this.gameEndState = null;
