@@ -56,7 +56,7 @@ app.put('/compute/', function(request, response) {
     var feature_vec = null;
 
     var playing = state.get_playing_agent();
-    if (playing.check_king_exist() && playing instanceof TDLeaner) {
+    if (playing.check_king_exist() && playing instanceof TDLeaner && !state.is_repeating) {
         // console.log(playing.weights)
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }

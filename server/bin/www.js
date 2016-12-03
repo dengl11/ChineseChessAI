@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
-var State_1 = require('../Strategy/State/State');
-var TDLearner_1 = require('../Strategy/TDLearner/TDLearner');
+var State_1 = require("../Strategy/State/State");
+var TDLearner_1 = require("../Strategy/TDLearner/TDLearner");
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
@@ -46,7 +46,7 @@ app.put('/compute/', function (request, response) {
     var t = (now - start);
     var feature_vec = null;
     var playing = state.get_playing_agent();
-    if (playing.check_king_exist() && playing instanceof TDLearner_1.TDLeaner) {
+    if (playing.check_king_exist() && playing instanceof TDLearner_1.TDLeaner && !state.is_repeating) {
         // console.log(playing.weights)
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }
