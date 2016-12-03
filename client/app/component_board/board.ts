@@ -40,7 +40,6 @@ export class BoardComponent implements OnInit {
     // keep track of all pieces, just for UI purpose (including dummy pieces)
     pieceSize: number = 67;
     selectedPiece: Piece;
-    gameEndState;
     dummyPieces: DummyPiece[] = [];
     subscription: any;
     lastState: State;
@@ -114,7 +113,6 @@ export class BoardComponent implements OnInit {
     }
 
     initGame() {
-        this.gameEndState = undefined;
         this.selectedPiece = undefined;
         this.lastState = null;
         // init agents
@@ -183,17 +181,17 @@ export class BoardComponent implements OnInit {
         this.simulation_state = 0;
     }
     clickDummyPiece(piece: Piece) {
-        if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
+        if (!this.isPossibleMove(piece.position) || this.state.endFlag != null) return;
         this.humanMove(piece);
     }
 
     clickRedPiece(piece: Piece) {
-        if (this.gameEndState) return;
+        if (this.state.endFlag != null) return;
         this.selectedPiece = piece;
     }
 
     clickBlackPiece(piece: Piece) {
-        if (!this.isPossibleMove(piece.position) || this.gameEndState) return;
+        if (!this.isPossibleMove(piece.position) || this.state.endFlag != null) return;
         this.humanMove(piece);
     }
 
@@ -208,15 +206,12 @@ export class BoardComponent implements OnInit {
     end_game(end_state) {
         // console.log("end_state=", end_state)
         var red_win = end_state * this.state.playingTeam;
+        // update state for end state
+        this.state.endFlag = red_win;
         this.results.push(red_win);
         this.report_result();
-        switch (red_win) {
-            case 1: this.gameEndState = " Win"; break;
-            case -1: this.gameEndState = " lose"; break;
-            default: this.gameEndState = " Draw";
-        }
         if (!this.humanMode) this.end_simulation();
-
+        this.state.learn(this.nSimulations_input - this.nSimulations);
     }
 
 
@@ -254,7 +249,13 @@ export class BoardComponent implements OnInit {
         // agent.nextMove();
         // this.switchTurn();
         this.server.launchCompute(this.state.copy(false)).then(
-            move => {
+            result => {
+                var move = result['move'];
+                var time = result['time'];
+                var state_feature = result['state_feature'];
+                this.state.record_feature(state_feature);
+                // console.log("time", time)
+                // console.log("state_feature", state_feature)
                 if (!move) { // FAIL
                     this.end_game(-1);
                     return;
@@ -263,6 +264,7 @@ export class BoardComponent implements OnInit {
                     this.end_game(0);
                     return;
                 }
+
                 var piece = agent.getPieceByName(move[0].name);
                 agent.movePieceTo(piece, move[1]);
                 this.switchTurn();
@@ -274,7 +276,6 @@ export class BoardComponent implements OnInit {
         if (!this.lastState) return;
         this.state = this.lastState;
         this.lastState = null;
-        this.gameEndState = null;
     }
 
     copyCurrentState() {

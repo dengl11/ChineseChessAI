@@ -92,6 +92,10 @@ export class Agent {
         return this.myPieces.filter(x => x.name == name)[0];
     }
 
+    // TO BE OVERIDE BY TDLeaner
+    update_weights(nSimulations, result) { }
+    // TO BE OVERIDE BY TDLeaner
+    save_state(feature_vec) { }
     copy() {
         var copy_mypieces = [];
         for (var i in this.myPieces) {

@@ -1,10 +1,9 @@
-import { Piece } from '../../Objects/Piece';
 
+import {Piece} from '../../Objects/Piece'
 export class InitGame {
 
 
-    static getRedPieces()
-     {
+    static getRedPieces() {
         return [
             new Piece('j1', [1, 1]),
             new Piece('j2', [1, 9]),

@@ -64,7 +64,7 @@ export class Reorder extends EvalFnAgent {
         return next_evals[index];
     }
 
-    // return a list of reordered moves of playing agent: checkmates->captures->empty_moves
+    // return a list ofreorder reordered moves of playing agent: checkmates->captures->empty_moves
     // [[pieceName, move]]
     reordered_moves(state) {
         var agent = state.get_playing_agent();

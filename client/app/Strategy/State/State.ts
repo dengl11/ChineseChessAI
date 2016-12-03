@@ -5,6 +5,7 @@ export class State {
     redAgent: Agent;
     blackAgent: Agent;
     playingTeam: number;
+    endFlag = null; // null: on going | 1: red win | -1: black win | 0: draw
 
     constructor(redAgent: Agent, blacAgent: Agent, playingTeam = 1, setOppoo = true) {
         this.redAgent = redAgent;
@@ -14,6 +15,17 @@ export class State {
             this.blackAgent.setOppoAgent(this.redAgent);
             this.redAgent.setOppoAgent(this.blackAgent);
         }
+    }
+
+    // TDlearning
+    learn(nSimulations) {
+        this.redAgent.update_weights(nSimulations, this.endFlag);
+        this.blackAgent.update_weights(nSimulations, this.endFlag);
+    }
+    record_feature(feature_vec) {
+        console.log("record_feature")
+        this.redAgent.save_state(feature_vec);
+        this.blackAgent.save_state(feature_vec);
     }
 
     // return | 1:win | -1:lose | 0:continue for playing team
