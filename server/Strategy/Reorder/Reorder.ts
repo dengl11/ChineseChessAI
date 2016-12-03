@@ -31,17 +31,17 @@ export class Reorder extends EvalFnAgent {
         }
         if (depth == 0) return [this.getValueOfState(state), null];
         var moves = this.reordered_moves(state); // [[pieceName, move]]
-        console.log("Reorderd: ", moves)
+        // console.log("Reorderd: ", moves)
         var next_evals = []; // list of [score, [movePieceName, toPos]]
         for (var i in moves) { //legalMoves: {name: []}
             var movePieceName = moves[i][0];
             var move = moves[i][1];
             var nextState = state.next_state(movePieceName, move, true);
-            console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
-            console.log(state.playingTeam, movePieceName, move)
-            console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
-            // console.log("=====================", nextState.playingTeam, "=====================");
-            // eval: [score, [movePieceName, toPos]]
+            // console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
+            // console.log(state.playingTeam, movePieceName, move)
+            // console.log("-=-=-=--=--=-=-=-=-=-=-=-=-=-=")
+            // console.log("=====================", nextState.playingTeam, nextState.get_playing_agent().legalMoves, "=====================");
+            // eval: [score, [movePieceNareordered_movesme, toPos]]
             var eval_result = [this.recurseEvaluation(nextState, depth - 1, alpha, beta)[0], [movePieceName, move]];
             next_evals.push(eval_result);
 
@@ -84,7 +84,10 @@ export class Reorder extends EvalFnAgent {
 
     // return [[[pieceName, move], type]]
     get_typed_moves(agent: Agent, state) {
+
+        // console.log("get_typed_moves: ", agent.team)
         var type_dc = this.get_moves_types(state, agent);
+        // console.log("get_typed_moves: ", agent.team)
         var r = [];
         for (var movePieceName in agent.legalMoves) { //legalMoves: {name: []}
             var toPosList = agent.legalMoves[movePieceName];
@@ -92,7 +95,6 @@ export class Reorder extends EvalFnAgent {
                 r.push([[movePieceName, toPosList[i]], type_dc[movePieceName][i]])
             }
         }
-        // console.log("get_typed_moves: ", r)
         return r;
     }
 
@@ -109,11 +111,11 @@ export class Reorder extends EvalFnAgent {
                     this.add_move_type(types, movePieceName, 3);
                     continue;
                 }
-                if (this.is_threatening_move(state, movePieceName, move)) {
+                if (this.is_threatening_move(state, agent.team, movePieceName, move)) {
                     this.add_move_type(types, movePieceName, 2);
                     continue;
                 }
-                if (this.is_capture_move(agent, movePieceName, move, mostStr)) {
+                if (this.is_capture_move(agent, movePieceName, mostStr)) {
                     this.add_move_type(types, movePieceName, 1);
                     continue;
                 }
@@ -136,9 +138,12 @@ export class Reorder extends EvalFnAgent {
     }
 
     // check if a move is threatening the oppo king
-    is_threatening_move(state: State, movePieceName, move) {
-        console.log("old state: ", state)
-        var nextState = state.next_state(movePieceName, move, true);
+    is_threatening_move(state: State, team, movePieceName, move) {
+        // console.log("old state: ", state.get_playing_agent().myPieces.length, state.get_playing_agent().oppoAgent.myPieces.length)
+        // console.log("is_threatening_move: ", movePieceName)
+        // console.log("BUG HERE ", state.get_playing_agent().myPieces.length)
+        // console.log("is_threatening_move:", state.get_playing_agent().team)
+        var nextState = state.get_next_by_team(movePieceName, move, team, true);
         var agent = nextState.get_playing_agent().oppoAgent;
         var oppo_king_pos = agent.oppoAgent.myPiecesDic['k'].toString();
         for (var piece in agent.legalMoves) {
@@ -147,12 +152,13 @@ export class Reorder extends EvalFnAgent {
                 if (moves[i].toString() == oppo_king_pos) { return true; }
             }
         }
+        // console.log("old state: ", state.get_playing_agent().myPieces.length, state.get_playing_agent().oppoAgent.myPieces.length)
         return false;
     }
 
     // check if a move is a capture move
-    is_capture_move(agent: Agent, movePieceName, move, mostStr) {
-        var oppo_piece = agent.boardState[mostStr]; // [name, isMyPiece] or null
+    is_capture_move(agent: Agent, movePieceName, moveStr) {
+        var oppo_piece = agent.boardState[moveStr]; // [name, isMyPiece] or null
         return oppo_piece && !oppo_piece[1];
     }
 
