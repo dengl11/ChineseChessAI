@@ -41,15 +41,21 @@ export class State {
 
     // return next state by action
     next_state(movePieceName, toPos, updateAgentPieceDict = false) {
+        return this.get_next_by_team(movePieceName, toPos, this.playingTeam, updateAgentPieceDict);
+    }
+
+    get_next_by_team(movePieceName, toPos, team, updateAgentPieceDict = false) {
         // make a copy a state
         var nextState = this.copy();
         nextState.switchTurn();
-        var agent = this.playingTeam == 1 ? nextState.redAgent : nextState.blackAgent;
-        console.log(agent.getPieceByName(movePieceName), " - Move:", movePieceName)
+        var agent = team == 1 ? nextState.redAgent : nextState.blackAgent;
+        // console.log(agent.myPieces, " - Move:", movePieceName)
+        // console.log(agent.team, movePieceName, agent.myPieces, agent.getPieceByName(movePieceName), " - Move:", toPos)
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
         agent.updateState(updateAgentPieceDict);
         agent.oppoAgent.updateState(updateAgentPieceDict);
         return nextState;
+
     }
 
     switchTurn() {
