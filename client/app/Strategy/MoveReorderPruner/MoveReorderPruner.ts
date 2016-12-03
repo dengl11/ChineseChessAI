@@ -14,11 +14,8 @@ export class MoveReorderPruner extends EvalFnAgent {
     }
 
     copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new MoveReorderPruner(this.team, this.DEPTH, copy_mypieces, this.copyMoves());
+        return new MoveReorderPruner(this.team, this.DEPTH, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
+
 
 }

@@ -82,12 +82,29 @@ export class Agent {
         return null;
     }
 
+
+
     getPieceByName(name) {
         return this.myPieces.filter(x => x.name == name)[0];
     }
     // check existance of my king
     check_king_exist() {
         return this.getPieceByName('k') != undefined;
+    }
+
+    random_move() {
+        // console.log("this.legalMoves:", this.legalMoves)
+        var movablePieces = Object.keys(this.legalMoves);
+        if (movablePieces.length == 0) return [];
+        var name = movablePieces[Math.floor(movablePieces.length * Math.random())];
+        var moves = this.legalMoves[name];
+        while (moves.length == 0) {
+            name = movablePieces[Math.floor(movablePieces.length * Math.random())];
+            moves = this.legalMoves[name];
+        }
+        // console.log("moves:", moves)
+        var move = moves[Math.floor(moves.length * Math.random())];
+        return [this.getPieceByName(name), move];
     }
 
     copy() {

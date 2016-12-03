@@ -14,6 +14,7 @@ export class Reorder extends EvalFnAgent {
         else curr_state = new State(this.oppoAgent, this, this.team, true);
         // console.log("curr_state:", curr_state)
         var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, -Infinity, Infinity);
+        if (evalResult[1] == null) return null;
         // console.log("evalResult", evalResult)
         var movePiece = this.getPieceByName(evalResult[1][0]);
         // console.log("movePiece", movePiece)
@@ -163,6 +164,13 @@ export class Reorder extends EvalFnAgent {
     }
 
 
+    copy() {
+        var copy_mypieces = [];
+        for (var i in this.myPieces) {
+            copy_mypieces.push(this.myPieces[i].copy());
+        }
+        return new Reorder(this.team, copy_mypieces, this.DEPTH);
+    }
 
     static copyFromDict(dict) {
         return new Reorder(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH);

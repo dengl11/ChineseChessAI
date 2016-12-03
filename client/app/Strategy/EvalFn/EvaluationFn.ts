@@ -20,8 +20,9 @@ export class EvalFnAgent extends Agent {
         return [movePiece, evalResult[1][1]];
     }
 
-    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = []) {
-        super(team, myPieces);
+    constructor(team: number, depth = 2, myPieces = null, pastMoves = []) {
+        // console.log("EvalFnAgent")
+        super(team, myPieces, pastMoves);
         this.DEPTH = depth;
     }
 
@@ -86,13 +87,11 @@ export class EvalFnAgent extends Agent {
     getValOfPiece(piece, team) {
         return Evaluation.posValue(piece.name, piece.position, team) + Evaluation.pieceValue(piece.name);
     }
+
     copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new EvalFnAgent(this.team, this.DEPTH, copy_mypieces, this.copyMoves());
+        return new EvalFnAgent(this.team, this.DEPTH, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
+
 
 
 }

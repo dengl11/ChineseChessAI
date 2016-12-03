@@ -10,30 +10,43 @@ export class TDLeaner extends EvalFnAgent {
     INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
     feature_matrix = []; //[fea_vec]
 
-    constructor(team: number, depth = 2, myPieces = undefined, pastMoves = [], weights = null) {
+    constructor(team: number, depth = 2, weights, myPieces = null, pastMoves = []) {
         super(team, depth, myPieces, pastMoves);
-        this.weights = weights ? weights : this.INIT_WEIGHTS;
+        this.weights = weights;
+        // console.log(this.myPieces)
+        // this.weights = weights ? weights : this.INIT_WEIGHTS;
     }
 
     copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new TDLeaner(this.team, this.DEPTH, copy_mypieces, this.copyMoves(), this.weights);
+        // console.log(this.pastMoves)
+        // console.log(this.copyMoves())
+        return new TDLeaner(this.team, this.DEPTH, this.weights, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
 
+    merge_arr(x, y) {
+        var r = [];
+        for (var i = 0; i < x.length; i++) r.push(x[i] + y[i]);
+        return r;
+    }
+
+
     // result: 1-red win | -1:red lose
+    // [nThreat, nCapture, nCenterCannon, nBottomCannon, rook_mob, horse_mob, elephant_mob]
     update_weights(nSimulations, result) {
+        if (result == 0) return;
         result *= this.team;
         // consolidate features vectors throught whole game into one
-        var accu_fea = this.feature_matrix.reduce((x, y) => ([x[0] + y[0], x[1] + y[1], x[2] + y[2], x[3] + y[3], x[4] + y[4]]));
-        console.log("result:", result)
-        console.log("accu_fea:", accu_fea)
+        // console.log("this.feature_matrix:", this.feature_matrix)
+        var accu_fea = this.feature_matrix.reduce(this.merge_arr);
+        // console.log("accu_fea:", accu_fea)
+        // console.log("nSimulations:", nSimulations)
         var eta = 1 / Math.sqrt(nSimulations); // learning rate
-        var gradient = accu_fea.map(x => x * eta);
-        console.log("gradient:", gradient)
-        for (var i = 0; i < accu_fea.length; i++) this.weights[i] += gradient;
+        // console.log("eta:", eta)
+        var gradient = accu_fea.map(x => x * eta * result);
+        // console.log("gradient:", gradient)
+        // console.log("this.weights:", this.weights)
+        for (var i = 0; i < accu_fea.length; i++) this.weights[i] += gradient[i];
+        console.log("UPDATE:", this.weights)
         return this.weights;
     }
 

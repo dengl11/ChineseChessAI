@@ -272,6 +272,7 @@ export class Rule {
             var piece = myPieces[i];
             var moves4Piece = this.possibleMoves(piece, boardStates, isLowerTeam);
             // console.log("moves4Piece", piece.name, moves4Piece)
+            // if (!moves4Piece || moves4Piece.length == 0) continue;
             moves[piece.name] = moves4Piece;
         }
         return moves;
