@@ -33,7 +33,7 @@ export class TDLeaner extends EvalFnAgent {
     // result: 1-red win | -1:red lose
     // [nThreat, nCapture, nCenterCannon, nBottomCannon, rook_mob, horse_mob, elephant_mob]
     update_weights(nSimulations, result) {
-        // console.log(result)
+        console.log(result)
         if (result == 0) return this.weights;
         result *= this.team;
         // consolidate features vectors throught whole game into one

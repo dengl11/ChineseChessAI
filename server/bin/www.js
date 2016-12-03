@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
-var State_1 = require("../Strategy/State/State");
-var TDLearner_1 = require("../Strategy/TDLearner/TDLearner");
+var State_1 = require('../Strategy/State/State');
+var TDLearner_1 = require('../Strategy/TDLearner/TDLearner');
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
