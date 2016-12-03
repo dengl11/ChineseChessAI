@@ -4,9 +4,15 @@
 }
 
 .graph{
-  margin-top: -10em;
+  margin-top: 3em;
 }
 
 h3{
-  margin-bottom: -20em;
+  /*margin-bottom: -20em;*/
+}
+
+#switch{
+  width: 100%;
+  margin: auto;
+  padding: auto;
 }

@@ -1,10 +1,15 @@
 <div class="plot" *ngIf="chartData.length > 0">
 
+    <div class="ui center aligned basic segment">
+        <sm-checkbox [control]="teamControl" label="{{team==1?'Red':'Black'}}" type="toggle " (change)="swithTeam() "></sm-checkbox>
+    </div>
     <h3 class="ui horizontal divider header">
   <i class="bar chart icon"></i>
-  Red Team: Wining Rate
+  {{team==1?'Red ':'Black '}} Team: Wining Rate
 </h3>
-    <div class="graph">
-        <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="lineChartOptions" [chartType]="'bar'"></canvas>
+
+    <!-- label="{{board.humanMode?'Human vs Computer':'Simulation'}}" -->
+    <div class="graph ">
+        <canvas baseChart [datasets]="chartData " [labels]="chartLabels " [options]="lineChartOptions " [chartType]=" 'bar' "></canvas>
     </div>
 </div>

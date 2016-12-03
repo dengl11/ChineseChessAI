@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'winRater',
@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core'
 
 export class WinRaterComponent implements OnInit {
     N = 10;
+    public team = 1;
+    data_input;
     ngOnInit() {
 
     }
@@ -17,12 +19,18 @@ export class WinRaterComponent implements OnInit {
     public chartData: Array<any> = [];
     public chartLabels: Array<any> = [];
 
+    swithTeam() {
+        this.team *= -1;
+        this.update(this.data_input);
+    }
 
     update(r) {
         if (r.length == 0) {
             this.chartData = [];
             return;
         }
+        this.data_input = r;
+        r = this.pre_process(r);
         // no draw
         var x = r.filter(x => x != 0);
         var ave_win = this.process_results_ave(x);
@@ -72,6 +80,13 @@ export class WinRaterComponent implements OnInit {
             rate.push(wins.length / period.length);
         }
         return rate;
+    }
+
+    teamControl: FormControl = new FormControl();
+
+    pre_process(arr) {
+        if (this.team == 1) return arr;
+        return arr.map(x => x *= -1);
     }
 
 
