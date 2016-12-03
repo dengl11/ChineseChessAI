@@ -22,7 +22,7 @@
 		<div *ngIf="board.humanMode">
 			<sm-button [disabled]="!(board.state.playingTeam==1 || board.gameEndState) " class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
 			<div class="margin"></div>
-			<sm-button [disabled]="!board.lastState ||  (board.state.playingTeam!=1 && !board.gameEndState)" class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
+			<sm-button [disabled]="!board.lastState" class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
 			<div class="margin"></div>
 			<hr/>
 		</div>
@@ -65,9 +65,17 @@
 		</div>
 
 
-		<h1 *ngIf="board.gameEndState ">Red {{board.gameEndState}}</h1>
 		<div class="margin "></div>
-		<div *ngIf="board.state.playingTeam==1 && !board.gameEndState && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
+		<div class="result" *ngIf="board.state.endFlag">
+			<button class="ui fluid basic circular red button">
+	  <i class="heart icon"></i>  {{board.state.endFlag == 1 ? 'Red Win' : (board.state.endFlag == -1? 'Black Win': "Draw")}}
+	</button>
+
+		</div>
+
+
+		<div class="margin "></div>
+		<div *ngIf="board.state.playingTeam==1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
 
 		<h3 [style.color]=" 'black' "> Agent 1: {{board.state.blackAgent.myPieces.length}} pieces</h3>
 		<hr>
@@ -106,7 +114,7 @@
 		</div>
 
 		<h2>Game State</h2>
-		<div *ngIf="board.state.playingTeam!=1 && !board.gameEndState &&(board.humanMode || board.simulation_state==1) " class="ui active centered inline loader "></div>
+		<div *ngIf="board.state.playingTeam!=1 && board.state.endFlag==null &&(board.humanMode || board.simulation_state==1) " class="ui active centered inline loader "></div>
 		<sm-button *ngIf="board.playingTeam==1 " class="circular brown " icon="male big "></sm-button>
 		<hr/>
 

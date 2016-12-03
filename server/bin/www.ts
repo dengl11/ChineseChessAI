@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { State } from '../Strategy/State/State'
+import { TDLeaner } from '../Strategy/TDLearner/TDLearner'
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
@@ -34,16 +35,26 @@ var N_MAX_MOVES = 100;
 app.put('/compute/', function(request, response) {
     // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
     var state = request.body;
+    var to_return = {};
     if (state.redAgent.pastMoves.length >= N_MAX_MOVES) {
         console.log("-=-=-=-=-= Draw -=-=-=-=-=-");
-        response.end(JSON.stringify([]));
+        response.end(JSON.stringify({ "move": [] }));
         return;
     }
-    // console.log(state);
     state = State.copyFromDict(state);
+    // console.log(state);
+    // console.log(playing.strategy)
+    // console.log(playing instanceof TDLeaner)
+    // console.log(playing.oppoAgent instanceof TDLeaner)
     var start = new Date().getTime();
     let next = state.nextMove();
     var now = new Date().getTime();
-    response.end(JSON.stringify(next));
-    console.log("Agent { ", state.get_playing_agent().strategy + "-" + state.get_playing_agent().DEPTH, "} Compute Move Using: ", (now - start), " ms");
+    var t = (now - start);
+
+    var feature_vec = null;
+
+    var playing = state.get_playing_agent();
+    if (playing instanceof TDLeaner) feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
+    response.end(JSON.stringify({ "move": next, "time": t, "state_feature": feature_vec }));
+    console.log("Agent { ", playing.strategy + "-" + state.get_playing_agent().DEPTH, "} Compute Move Using: ", t, " ms");
 });
