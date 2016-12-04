@@ -12,7 +12,8 @@ export class RuntimeAnalysist {
     names = [
         'Greedy',
         'Alpha-Beta Pruning',
-        'Alpha-Beta Pruning with Move Reorder',
+        'Alpha-Beta Pruning with Move Reorder (Type A)',
+        'Alpha-Beta Pruning with Move Reorder (Type B)',
         'Temporal Difference Learning',
         'Monte Carlo Tree Search',
         'Combined Strategy'
