@@ -8,7 +8,8 @@ export class TDLeaner extends EvalFnAgent {
     strategy = 3;
     weights = [];
     // INIT_WEIGHTS = [20, 15, 30, 7, 20, 0, 20];
-    INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
+    // INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
+    INIT_WEIGHTS = [5, 10, 2, 0, 2, 0, 10];
     feature_matrix = []; //[fea_vec]
 
     constructor(team: number, depth = 2, weights, myPieces = null, pastMoves = []) {
