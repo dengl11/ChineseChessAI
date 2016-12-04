@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
         // console.log(v);
     }
     // update analysis results
-    update_result(x, agent_param) {
-        this.winRaterComp.update(x, agent_param);
+    update_result(x, humanMode, agent_param) {
+        this.winRaterComp.update(x, humanMode, agent_param);
     }
 
     update_runtime(x) {

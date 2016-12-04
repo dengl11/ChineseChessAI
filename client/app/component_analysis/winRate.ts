@@ -23,6 +23,7 @@ export class WinRaterComponent implements OnInit {
     public team = 1;
     data_input;
     agent_param;
+    humanMode;
     ngOnInit() {
 
     }
@@ -32,16 +33,17 @@ export class WinRaterComponent implements OnInit {
 
     swithTeam() {
         this.team *= -1;
-        this.update(this.data_input, this.agent_param);
+        this.update(this.data_input, this.humanMode, this.agent_param);
     }
 
-    update(r, agent_param) {
+    update(r, humanMode, agent_param) {
         if (r.length == 0) {
             this.chartData = [];
             return;
         }
         this.data_input = r;
         this.agent_param = agent_param;
+        this.humanMode = humanMode;
         r = this.pre_process(r);
         // no draw
         var x = r.filter(x => x != 0);
@@ -102,7 +104,9 @@ export class WinRaterComponent implements OnInit {
     }
 
     get_plot_title() {
-        var red = this.names[this.agent_param[0]] + "-Depth " + this.agent_param[1];
+        var red;
+        if (!this.humanMode) red = this.names[this.agent_param[0]] + "-Depth " + this.agent_param[1];
+        else red = "You ";
         var black = this.names[this.agent_param[2]] + "-Depth " + this.agent_param[3];
         var first = this.team == 1 ? red : black;
         var second = this.team == 1 ? black : red;

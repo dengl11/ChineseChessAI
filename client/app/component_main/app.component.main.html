@@ -10,7 +10,7 @@
 
 <div class="body_content" (keyup.Enter)="board.initGame()">
 
-	<board #board class="board" (onResultsUpdated)="update_result(board.results, [board.redAgentType, board.redAgentDepth, board.blackAgentType, board.blackAgentDepth])" (onTimeUpdated)="update_runtime(board.runtime_dict)"></board>
+	<board #board class="board" (onResultsUpdated)="update_result(board.results, board.humanMode, [board.redAgentType, board.redAgentDepth, board.blackAgentType, board.blackAgentDepth])" (onTimeUpdated)="update_runtime(board.runtime_dict)"></board>
 
 	<div class="left">
 		<button class="ui green basic button fluid">
