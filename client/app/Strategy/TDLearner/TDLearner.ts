@@ -7,6 +7,7 @@ import { Evaluation } from '../_Param/Evaluation'
 export class TDLeaner extends EvalFnAgent {
     strategy = 3;
     weights = [];
+    // INIT_WEIGHTS = [20, 15, 30, 7, 20, 0, 20];
     INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
     feature_matrix = []; //[fea_vec]
 
@@ -33,7 +34,6 @@ export class TDLeaner extends EvalFnAgent {
     // result: 1-red win | -1:red lose
     // [nThreat, nCapture, nCenterCannon, nBottomCannon, rook_mob, horse_mob, elephant_mob]
     update_weights(nSimulations, result) {
-        console.log(result)
         if (result == 0) return this.weights;
         result *= this.team;
         // consolidate features vectors throught whole game into one
@@ -44,10 +44,10 @@ export class TDLeaner extends EvalFnAgent {
         var eta = 1 / Math.sqrt(nSimulations); // learning rate
         // console.log("eta:", eta)
         var gradient = accu_fea.map(x => x * eta * result);
-        // console.log("gradient:", gradient)
+        console.log("gradient:", gradient)
         // console.log("this.weights:", this.weights)
         for (var i = 0; i < accu_fea.length; i++) this.weights[i] += gradient[i];
-        console.log("UPDATE:", this.weights)
+        console.log("UPDATED WEIGHT:", this.weights)
         return this.weights;
     }
 
