@@ -43,7 +43,7 @@
 				<div *ngIf="!board.humanMode ">
 					<h4 class="ui horizontal divider header red"><i class="Flag red icon"></i>Red</h4>
 
-					<sm-select placeholder="Strategy (Greedy)" (change)="board.chooseRedAgent($event.target.value) ">
+					<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseRedAgent($event.target.value) ">
 						<option>6-Ultimate</option>
 						<option>5-MCTS</option>
 						<option>4-TDLean</option>
@@ -55,7 +55,7 @@
 
 				</div>
 				<div class=" margin "></div>
-				<sm-select *ngIf="board.redAgentType>0" placeholder="Depth (2)" (change)="board.chooseRedAgentDepth($event.target.value) ">
+				<sm-select class="fluid" *ngIf="board.redAgentType>0" placeholder="Depth (2)" (change)="board.chooseRedAgentDepth($event.target.value) ">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -67,7 +67,7 @@
 
 		<div id="blackAgentSelection">
 			<h4 class="ui horizontal divider header black"><i class="Flag icon"></i>Black</h4>
-			<sm-select placeholder="Strategy (Greedy)" (change)="board.chooseBlackAgent($event.target.value) ">
+			<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseBlackAgent($event.target.value) ">
 				<option>6-Ultimate</option>
 				<option>5-MCTS</option>
 				<option>4-TDLean</option>
@@ -77,7 +77,7 @@
 				<option>0-Greedy </option>
 			</sm-select>
 			<div class=" margin "></div>
-			<sm-select *ngIf="board.blackAgentType>0" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
+			<sm-select class="fluid" *ngIf="board.blackAgentType>0" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>

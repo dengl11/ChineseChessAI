@@ -12,7 +12,9 @@ export class WinRaterComponent implements OnInit {
     names = [
         'Greedy',
         'ABPruning',
-        'MoveReorder',
+        // 'MoveReorder',
+        'MoveReorder(A)',
+        'MoveReorder(B)',
         'TDLearning',
         'MCTS',
         'Ultimate'
@@ -105,6 +107,7 @@ export class WinRaterComponent implements OnInit {
 
     get_plot_title() {
         var red;
+        // console.log(this.agent_param)
         if (!this.humanMode) red = this.names[this.agent_param[0]] + "-Depth " + this.agent_param[1];
         else red = "You ";
         var black = this.names[this.agent_param[2]] + "-Depth " + this.agent_param[3];
