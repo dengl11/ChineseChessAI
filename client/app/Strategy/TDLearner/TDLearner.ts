@@ -56,7 +56,7 @@ export class TDLeaner extends EvalFnAgent {
         return this.weights;
     }
 
-    squash(x, range = 10) { return (1 / (Math.exp(-x) + 1) - 0.5) * range; }
+    squash(x, range = 20) { return (1 / (Math.exp(-x) + 1) - 0.5) * range; }
 
     save_state(feature_vec) {
         // console.log("save_state: ", feature_vec, " | Current: ", this.feature_matrix)
