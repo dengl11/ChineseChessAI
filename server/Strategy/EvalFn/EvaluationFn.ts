@@ -12,12 +12,11 @@ export class EvalFnAgent extends Agent {
     // return [piece, toPos]; null if fail
     comptuteNextMove(curr_state: State) {
         var evalResult = this.recurseEvaluation(curr_state, this.DEPTH, -Infinity, Infinity);
-        if (evalResult == null) console.log("evalResult", evalResult)
-        var movePiece = this.getPieceByName(evalResult[1][0]);
         if (evalResult[0] * this.team == -Infinity) {
             console.log("FAIL!!!!")
             return null;
         }
+        var movePiece = this.getPieceByName(evalResult[1][0]);
         return [movePiece, evalResult[1][1]];
     }
 

@@ -11,7 +11,7 @@ export class Agent {
     oppoPieces: Piece[];
     oppoAgent: Agent;
     myPiecesDic: {}; // {name -> pos}
-    boardState: {}; // {posStr->[name, isMyPiece]}
+    boardState; // {posStr->[name, isMyPiece]}
     // moved: EventEmitter<number> = new EventEmitter();
 
     strategy = 0;

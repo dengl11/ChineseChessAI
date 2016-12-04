@@ -40,17 +40,17 @@ export class State {
         return newState;
     }
 
-    // return next state by action
-    next_state(movePieceName, toPos) {
-        // make a copy a state
-        var nextState = this.copy();
-        nextState.switchTurn();
-        var agent = this.playingTeam == 1 ? nextState.redAgent : nextState.blackAgent;
-        agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
-        agent.updateState();
-        agent.oppoAgent.updateState();
-        return nextState;
-    }
+    // // return next state by action
+    // next_state(movePieceName, toPos) {
+    //     // make a copy a state
+    //     var nextState = this.copy();
+    //     nextState.switchTurn();
+    //     var agent = this.playingTeam == 1 ? nextState.redAgent : nextState.blackAgent;
+    //     agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
+    //     agent.updateState();
+    //     agent.oppoAgent.updateState();
+    //     return nextState;
+    // }
 
     switchTurn() {
         this.playingTeam = -this.playingTeam;

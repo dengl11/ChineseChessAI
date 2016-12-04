@@ -36,7 +36,7 @@ app.put('/compute/', function(request, response) {
     // console.log("-=-=-=-= Server: Compute get Request Received  -=-=-=-=-=-=-");
     var state = request.body;
     var to_return = {};
-    // console.log(state.redAgent.pastMoves.length)
+    // console.log(state)
     // console.log(state.blackAgent.pastMoves.length)
     if (state.redAgent.pastMoves.length >= N_MAX_MOVES) {
         console.log("-=-=-=-=-= Draw -=-=-=-=-=-");

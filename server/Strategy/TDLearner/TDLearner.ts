@@ -25,9 +25,16 @@ export class TDLeaner extends Reorder {
     getValueOfState(state: State) {
         var score_vec = [];
         var playing = state.get_playing_agent();
+        if (!playing.boardState) playing.updateBoardState();
         playing.updatePieceDict();
+        if (!playing.myPiecesDic['k']) return playing.team * Infinity;
+        playing.oppoAgent.updatePieceDict();
+        if (!playing.oppoAgent.myPiecesDic['k']) return playing.team * (-Infinity);
         playing.computeLegalMoves();
-        playing.oppoAgent.updateState();
+        playing.oppoAgent.updateBoardState();
+        playing.oppoAgent.computeLegalMoves();
+
+
 
         var fea_vec = this.extract_state_feature(state.redAgent, state, state.blackAgent);
         for (var i = 0; i < fea_vec.length; i++) score_vec.push(fea_vec[i] * this.weights[i]);

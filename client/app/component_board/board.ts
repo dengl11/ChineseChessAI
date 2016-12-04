@@ -9,6 +9,7 @@ import { State } from '../Strategy/State/State';
 import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent';
 import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn';
 import { TDLeaner } from '../Strategy/TDLearner/TDLearner';
+import { MCTS } from '../Strategy/MCTS/MCTS';
 import { MoveReorderPruner } from '../Strategy/MoveReorderPruner/MoveReorderPruner';
 import { HumanAgent } from '../Strategy/Agent/HumanAgent';
 import { Agent } from '../Strategy/Agent/Agent';
@@ -82,10 +83,10 @@ export class BoardComponent implements OnInit {
     changeMode() {
         this.humanMode = !this.humanMode;
         this.simulation_state = -1;
-        this.redAgentType = this.DEFAULT_TYPE;
-        this.blackAgentType = this.DEFAULT_TYPE;
-        this.redAgentDepth = this.DEFAULT_DEPTH;
-        this.blackAgentDepth = this.DEFAULT_DEPTH;
+        // this.redAgentType = this.DEFAULT_TYPE;
+        // this.blackAgentType = this.DEFAULT_TYPE;
+        // this.redAgentDepth = this.DEFAULT_DEPTH;
+        // this.blackAgentDepth = this.DEFAULT_DEPTH;
         this.clear_results();
         this.initGame();
     }
@@ -112,6 +113,7 @@ export class BoardComponent implements OnInit {
     chooseRedAgent(desc) {
         this.simulation_state = -1;
         this.redAgentType = this.parse_agentType(desc);
+
     }
     chooseBlackAgent(desc) {
         this.simulation_state = -1;
@@ -156,6 +158,7 @@ export class BoardComponent implements OnInit {
             case 3: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
             // TDLearner
             case 4: { redAgent = new TDLeaner(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
+            case 5: { redAgent = new MCTS(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
@@ -167,6 +170,7 @@ export class BoardComponent implements OnInit {
             case 3: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
             // TDLearner
             case 4: { blackAgent = new TDLeaner(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
+            case 5: { blackAgent = new MCTS(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
         // console.log(redAgent);

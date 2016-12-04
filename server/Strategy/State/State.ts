@@ -2,6 +2,7 @@ import { Agent } from '../Agent/Agent'
 import { GreedyAgent } from '../Greedy/GreedyAgent'
 import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 import { TDLeaner } from '../TDLearner/TDLearner'
+import { MCTS } from '../MCTS/MCTS'
 import { Reorder } from '../Reorder/Reorder'
 import { Rule } from '../../ChineseChess/Rule/Rule'
 
@@ -42,6 +43,8 @@ export class State {
         var nextState = this.copy();
         nextState.switchTurn();
         var agent = nextState.get_playing_agent().oppoAgent;
+        // console.log(agent)
+        // console.log("movePieceName", movePieceName)
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
         return nextState;
 
@@ -71,11 +74,13 @@ export class State {
         }
         oppo = Agent.copyFromDict(oppo);
         var agent;
+        // console.log(agentDict.strategy)
         var is_repeating = this.check_repeating(agentDict);
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
         if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
+        if (agentDict.strategy == 5) agent = MCTS.copyFromDict(agentDict);
         var new_state;
         if (dict.playingTeam == 1) new_state = new State(agent, oppo, dict.playingTeam);
         else new_state = new State(oppo, agent, dict.playingTeam);
