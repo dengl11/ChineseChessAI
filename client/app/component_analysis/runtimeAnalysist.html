@@ -1,0 +1,29 @@
+<div class="runtimeTable plot">
+
+
+
+
+    <h3 class="ui horizontal divider header">
+  <i class="Twitter icon"></i>Search Effenciency Comparison </h3>
+
+    <sm-segment class="raised" *ngIf="runtime_dict">
+        <table class="ui sortable celled table">
+            <thead>
+                <tr>
+                    <th (click)="sort_strategy()">Strategy</th>
+                    <!-- <th><button class="ui red basic button" (click)="sort_strategy()">Strategy</button></th> -->
+                    <th (click)="sort_depth()">Search Depth</th>
+                    <th (click)="sort_time()">Average Runtime for Each Move(ms)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let agent of runtime_arr">
+                    <td>{{agent.strategy}}</td>
+                    <td>{{agent.depth}}</td>
+                    <td>{{agent.time}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </sm-segment>
+</div>

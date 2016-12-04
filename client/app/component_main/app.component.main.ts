@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { WinRaterComponent } from '../component_analysis/winRate';
+import { RuntimeAnalysist } from '../component_analysis/runtimeAnalysist';
 
 @Component({
     selector: 'app',
@@ -15,6 +16,10 @@ export class AppComponent implements OnInit {
     options: any;
     @ViewChild(WinRaterComponent)
     private winRaterComp: WinRaterComponent;
+
+    @ViewChild(RuntimeAnalysist)
+    private runtimeAnalysist: RuntimeAnalysist;
+
     ngOnInit() {
     }
 
@@ -26,6 +31,10 @@ export class AppComponent implements OnInit {
     // update analysis results
     update_result(x) {
         this.winRaterComp.update(x);
+    }
+
+    update_runtime(x) {
+        this.runtimeAnalysist.update(x);
     }
 
 

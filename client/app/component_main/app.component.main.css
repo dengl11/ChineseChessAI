@@ -47,3 +47,15 @@
 .margin{
   height: 1em;
 }
+
+.simu_num{
+  font-style: bold;
+  font-size: 2em;
+  color: red;
+}
+.nMove{
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  display: block;
+}

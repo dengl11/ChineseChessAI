@@ -29,11 +29,18 @@ export class BoardComponent implements OnInit {
     humanMode = true;
     state: State;
     server: ComputeService;
-    redAgentType = 0;
-    blackAgentType = 0;
+
     weigths_1 = [0, 0, 0, 0, 0, 0, 0];
     weigths_2 = [0, 0, 0, 0, 0, 0, 0];
     INIT_WEIGHT = [0, 0, 0, 0, 0, 0, 0];
+
+    // Strategy
+    redAgentType = 0;
+    blackAgentType = 0;
+    // DEPTH
+    // Strategy
+    redAgentDepth = 2;
+    blackAgentDepth = 2;
 
 
 
@@ -47,12 +54,18 @@ export class BoardComponent implements OnInit {
     lastState: State;
     // -1: not started | 0: started but stoped | 1: in insimulation
     simulation_state = -1;
-    nSimulations = 1;
     nSimulations_input = 100;
+    nSimulations = 100;
+
 
 
     /***************** EVENT *******************/
+    // new game result obtained
     @Output() onResultsUpdated = new EventEmitter<boolean>();
+    // new runtime for move obtained
+    @Output() onTimeUpdated = new EventEmitter<boolean>();
+    // {"strategy-depth": [average_move_runtime, nMoves]}
+    runtime_dict = {};
 
 
     /***************** ANALYSIS *******************/
@@ -101,6 +114,13 @@ export class BoardComponent implements OnInit {
         this.clear_results();
         if (this.humanMode) this.initGame();
     }
+    chooseRedAgentDepth(depth) {
+        this.redAgentDepth = parseInt(depth);
+    }
+    chooseBlackAgentDepth(depth) {
+        this.blackAgentDepth = parseInt(depth);
+        if (this.humanMode) this.initGame();
+    }
 
     /***************** LIFE_CYCLE *******************/
     ngOnInit() {
@@ -125,37 +145,24 @@ export class BoardComponent implements OnInit {
         // console.log("black:", this.blackAgentType)
         switch (this.redAgentType) {
             case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
+            case 1: { redAgent = new EvalFnAgent(this.redTeam, this.redAgentDepth); break; }
 
-            case 1: { redAgent = new EvalFnAgent(this.redTeam, 2); break; }
-            case 2: { redAgent = new EvalFnAgent(this.redTeam, 3); break; }
-            case 3: { redAgent = new EvalFnAgent(this.redTeam, 4); break; }
-
-            case 4: { redAgent = new MoveReorderPruner(this.redTeam, 2); break; }
-            case 5: { redAgent = new MoveReorderPruner(this.redTeam, 3); break; }
-            case 6: { redAgent = new MoveReorderPruner(this.redTeam, 4); break; }
-
+            case 2: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
+            case 3: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
             // TDLearner
-            case 7: { redAgent = new TDLeaner(this.redTeam, 2, this.weigths_1); break; }
-            case 8: { redAgent = new TDLeaner(this.redTeam, 3, this.weigths_1); break; }
-            case 9: { redAgent = new TDLeaner(this.redTeam, 4, this.weigths_1); break; }
+            case 4: { redAgent = new TDLeaner(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
         switch (this.blackAgentType) {
             case 0: { blackAgent = new GreedyAgent(this.blackTeam); break; }
+            case 1: { blackAgent = new EvalFnAgent(this.blackTeam, this.blackAgentDepth); break; }
 
-            case 1: { blackAgent = new EvalFnAgent(this.blackTeam, 2); break; }
-            case 2: { blackAgent = new EvalFnAgent(this.blackTeam, 3); break; }
-            case 3: { blackAgent = new EvalFnAgent(this.blackTeam, 4); break; }
-
-            case 4: { blackAgent = new MoveReorderPruner(this.blackTeam, 2); break; }
-            case 5: { blackAgent = new MoveReorderPruner(this.blackTeam, 3); break; }
-            case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, 4); break; }
+            case 2: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
+            case 3: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
             // TDLearner
-            case 7: { blackAgent = new TDLeaner(this.blackTeam, 2, this.weigths_2); break; }
-            case 8: { blackAgent = new TDLeaner(this.blackTeam, 3, this.weigths_2); break; }
-            case 9: { blackAgent = new TDLeaner(this.blackTeam, 4, this.weigths_2); break; }
-            default: blackAgent = new EvalFnAgent(this.blackTeam, 2); break;
+            case 4: { blackAgent = new TDLeaner(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
+            default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
         // console.log(redAgent);
         // console.log(blackAgent);
@@ -217,6 +224,7 @@ export class BoardComponent implements OnInit {
         this.weigths_1 = this.state.redAgent.update_weights(this.results.length, red_win);
         this.weigths_2 = this.state.blackAgent.update_weights(this.results.length, red_win);
         if (!this.humanMode) this.end_simulation();
+        else this.selectedPiece = undefined;
     }
 
 
@@ -231,6 +239,15 @@ export class BoardComponent implements OnInit {
     report_result() {
         this.onResultsUpdated.emit();
     }
+    report_runtime(strategy, depth, time) {
+        var type = this.runtime_dict[strategy + "-" + depth];
+        if (!type) this.runtime_dict[strategy + "-" + depth] = [time, 1];
+        else {
+            var new_num = type[1] + 1;
+            this.runtime_dict[strategy + "-" + depth] = [Math.ceil((type[0] * type[1] + time) / new_num), new_num]
+        }
+        this.onTimeUpdated.emit();
+    }
 
 
     // switch game turn
@@ -241,23 +258,26 @@ export class BoardComponent implements OnInit {
         this.state.switchTurn();
         var agent = (this.state.playingTeam == 1 ? this.state.redAgent : this.state.blackAgent);
         agent.updateState();
-        if (this.humanMode) {
-            this.selectedPiece = undefined;
-            // if human's turn, return
-            if (this.state.playingTeam == 1) return;
-        }
         // agent.nextMove();
         var endState = this.state.getEndState();
         if (endState != 0) {
             this.end_game(endState);
             return;
         }
+
+        if (this.humanMode) {
+            this.selectedPiece = undefined;
+            // if human's turn, return
+            if (this.state.playingTeam == 1) return;
+        }
+
         // this.switchTurn();
         this.server.launchCompute(this.state.copy(false)).then(
             result => {
                 var move = result['move'];
-                var time = result['time'];
+                var time = parseInt(result['time']);
                 var state_feature = result['state_feature'];
+                this.report_runtime(agent.strategy, agent.DEPTH, time)
                 if (state_feature) agent.save_state(state_feature);
                 // console.log("time", time)
                 // console.log("state_feature", state_feature)

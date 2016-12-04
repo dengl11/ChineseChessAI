@@ -5,6 +5,7 @@ import { AppComponent } from './component_main/app.component.main';
 import { HttpModule } from '@angular/http';
 import { BoardComponent } from './component_board/board';
 import { WinRaterComponent } from './component_analysis/winRate';
+import { RuntimeAnalysist } from './component_analysis/runtimeAnalysist';
 import { MapToIterable} from './pipe/MapToIterable';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -24,7 +25,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
         AppComponent,
         BoardComponent,
         MapToIterable,
-        WinRaterComponent
+        WinRaterComponent,
+        RuntimeAnalysist
     ]
 })
 export class AppModule { }
