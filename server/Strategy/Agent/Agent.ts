@@ -23,16 +23,18 @@ export class Agent {
             this.myPieces = myPieces;
         }
     }
-    setOppoAgent(oppoAgent, updateDict = false) {
+    setOppoAgent(oppoAgent) {
+        // setOppoAgent(oppoAgent, calMoves = true, updateDict = false) {
         this.oppoAgent = oppoAgent;
         this.oppoPieces = oppoAgent.myPieces;
-        this.updateState(updateDict);
+        // this.updateState(updateDict);
+        // this.updateState(calMoves, updateDict);
     }
-    // return | 1:win | -1:lose | 0:continue
-    updateState(updateDict = false) {
+
+    updateState() {
         this.updateBoardState();
+        this.updatePieceDict();
         this.computeLegalMoves();
-        if (updateDict) this.updatePieceDict();
     }
 
     // compute legals moves for my pieces after state updated
@@ -77,8 +79,8 @@ export class Agent {
 
     // TO BE IMPLEMENTED BY CHILD CLASS
     // return [piece:Piece, toPos];
-    comptuteNextMove() {
-        console.log("comptuteNextMove CALLED ")
+    comptuteNextMove(state) {
+        console.log("BUG comptuteNextMove CALLED ")
         return null;
     }
 
@@ -107,14 +109,8 @@ export class Agent {
         return [this.getPieceByName(name), move];
     }
 
-    copy() {
-        var copy_mypieces = [];
-        for (var i in this.myPieces) {
-            copy_mypieces.push(this.myPieces[i].copy());
-        }
-        return new Agent(this.team, copy_mypieces);
-    }
 
+    copy() { return new Agent(this.team, this.myPieces.map(x => x.copy())); }
 
     static piecesFromDict(dict_list) {
         return dict_list.map(x => Piece.copyFromDict(x));
@@ -122,5 +118,18 @@ export class Agent {
 
     static copyFromDict(dict) {
         return new Agent(dict.team, this.piecesFromDict(dict.myPieces));
+    }
+
+    // get array of legalMoves: [[movePieceName, move]]
+    get_moves_arr() {
+        var moves = [];
+        for (var movePieceName in this.legalMoves) { //legalMoves: {name: []}
+            var toPosList = this.legalMoves[movePieceName];
+            for (var i in toPosList) {
+                var move = toPosList[i];
+                moves.push([movePieceName, move]);
+            }
+        }
+        return moves;
     }
 }

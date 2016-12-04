@@ -130,13 +130,15 @@
 			</div>
 		</div>
 
-		<div class="ui segments" *ngIf="board.state.endFlag">
+		<div class="ui segments" *ngIf="board.state.endFlag!=null">
 			<div class="ui segment center aligned icon">
 				<i *ngIf="board.state.endFlag == 1" class="circular flag red icon"></i>
 				<i *ngIf="board.state.endFlag != 1" class="circular flag black icon"></i>
+				<h4 class="ui aligned center red" style="color:red">{{board.state.endFlag==0? 'DRAW' : 'WIN'}}</h4>
 			</div>
 			<div class="ui red segment center aligned">
-				<img src="resource/img/pieces/{{board.state.endFlag}}/k.png" alt="">
+				<img *ngIf="board.state.endFlag >=0" src="resource/img/pieces/1/k.png" alt="">
+				<img *ngIf="board.state.endFlag <=0" src="resource/img/pieces/-1/k.png" alt="">
 			</div>
 		</div>
 

@@ -46,7 +46,7 @@ export class TDLeaner extends EvalFnAgent {
         // console.log("eta:", eta)
         var gradient = accu_fea.map(x => x * eta * result);
         console.log("gradient:", gradient)
-        // console.log("this.weights:", this.weights)
+        console.log("this.weights:", this.weights)
         for (var i = 0; i < accu_fea.length; i++) this.weights[i] += gradient[i];
         console.log("UPDATED WEIGHT:", this.weights)
         return this.weights;

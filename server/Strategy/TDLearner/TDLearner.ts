@@ -19,32 +19,19 @@ export class TDLeaner extends Reorder {
     }
 
     static copyFromDict(dict) {
-        // console.log("coioy: ", dict.weights)
         return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH, dict.weights);
-        // return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), 1, dict.weights);
     }
 
-
-
-
-
-    //
-    // getValueOfAgent(agent: Agent, state) {
-    //     // console.log("getValueOfAgent: ", agent.team, " has ", agent.myPieces.length)
-    //     var score = super.getValueOfAgent(agent);
-    //     // console.log("Playing: ", agent.team, " - ", fea_vec)
-    //     // console.log(agent.myPiecesDic)
-    //     return score;
-    // }
-    // return value of state for redAgent
     getValueOfState(state: State) {
         var score_vec = [];
+        var playing = state.get_playing_agent();
+        playing.updatePieceDict();
+        playing.computeLegalMoves();
+        playing.oppoAgent.updateState();
+
         var fea_vec = this.extract_state_feature(state.redAgent, state, state.blackAgent);
-        // console.log("fea_vec:", fea_vec)
-        // console.log("this.weights:", this.weights)
         for (var i = 0; i < fea_vec.length; i++) score_vec.push(fea_vec[i] * this.weights[i]);
         var score = score_vec.reduce((x, y) => x + y);
-        // console.log("score=", score)
         return score + this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
     }
 
@@ -74,10 +61,6 @@ export class TDLeaner extends Reorder {
         /*7*/
         var elephant_mob = this.num_piece_moves(agent, 'x1') + this.num_piece_moves(agent, 'x2');
         var feature_vec = [num_threat, num_capture, num_center_cannon, num_bottom_cannon, rook_mob, horse_mob, elephant_mob];
-        // var feature_vec = [num_threaten, num_center_cannon, num_bottom_cannon, rook_mob, horse_mob, elephant_mob];
-        // console.log(feature_vec);
-        // console.log("num_center_cannon:", num_center_cannon);
-        // console.log("num_bottom_cannon:", num_bottom_cannon);
         return feature_vec;
     }
 

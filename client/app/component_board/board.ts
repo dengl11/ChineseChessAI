@@ -35,10 +35,11 @@ export class BoardComponent implements OnInit {
     INIT_WEIGHT = [0, 0, 0, 0, 0, 0, 0];
 
     // Strategy
+    private DEFAULT_TYPE = 0;
     redAgentType = 0;
     blackAgentType = 0;
     // DEPTH
-    // Strategy
+    DEFAULT_DEPTH = 2;
     redAgentDepth = 2;
     blackAgentDepth = 2;
 
@@ -81,6 +82,10 @@ export class BoardComponent implements OnInit {
     changeMode() {
         this.humanMode = !this.humanMode;
         this.simulation_state = -1;
+        this.redAgentType = this.DEFAULT_TYPE;
+        this.blackAgentType = this.DEFAULT_TYPE;
+        this.redAgentDepth = this.DEFAULT_DEPTH;
+        this.blackAgentDepth = this.DEFAULT_DEPTH;
         this.clear_results();
         this.initGame();
     }
@@ -277,7 +282,7 @@ export class BoardComponent implements OnInit {
                 var move = result['move'];
                 var time = parseInt(result['time']);
                 var state_feature = result['state_feature'];
-                this.report_runtime(agent.strategy, agent.DEPTH, time)
+                if (time) this.report_runtime(agent.strategy, agent.DEPTH, time)
                 if (state_feature) agent.save_state(state_feature);
                 // console.log("time", time)
                 // console.log("state_feature", state_feature)

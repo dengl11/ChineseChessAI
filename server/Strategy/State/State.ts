@@ -16,14 +16,12 @@ export class State {
         this.redAgent = redAgent;
         this.blackAgent = blacAgent;
         this.playingTeam = playingTeam;
-        this.blackAgent.setOppoAgent(this.redAgent, updateDict);
-        this.redAgent.setOppoAgent(this.blackAgent, updateDict);
+        this.blackAgent.setOppoAgent(this.redAgent);
+        this.redAgent.setOppoAgent(this.blackAgent);
     }
 
     // return playing agent in control
-    get_playing_agent() {
-        return this.playingTeam == 1 ? this.redAgent : this.blackAgent;;
-    }
+    get_playing_agent() { return this.playingTeam == 1 ? this.redAgent : this.blackAgent; }
 
     // return | 1:win | -1:lose | 0:continue for playing team
     getEndState() {
@@ -32,41 +30,27 @@ export class State {
         return endState;
     }
     // return a copy of state
-    copy(setOppoo = true) {
-        var newState = new State(this.redAgent.copy(), this.blackAgent.copy(), this.playingTeam);
-        if (setOppoo) {
-            newState.redAgent.setOppoAgent(newState.blackAgent);
-            newState.blackAgent.setOppoAgent(newState.redAgent);
-        }
-        return newState;
-    }
+    copy() { return new State(this.redAgent.copy(), this.blackAgent.copy(), this.playingTeam); }
 
     // return next state by action
-    next_state(movePieceName, toPos, updateAgentPieceDict = false) {
-        return this.get_next_by_team(movePieceName, toPos, this.playingTeam, updateAgentPieceDict);
+    next_state(movePieceName, toPos) {
+        return this.get_next_by_team(movePieceName, toPos, this.playingTeam);
     }
 
-    get_next_by_team(movePieceName, toPos, team, updateAgentPieceDict = false) {
+    get_next_by_team(movePieceName, toPos, team) {
         // make a copy a state
         var nextState = this.copy();
         nextState.switchTurn();
-        var agent = team == 1 ? nextState.redAgent : nextState.blackAgent;
-        // console.log(agent.myPieces, " - Move:", movePieceName)
-        // console.log(agent.team, movePieceName, agent.myPieces, agent.getPieceByName(movePieceName), " - Move:", toPos)
+        var agent = nextState.get_playing_agent().oppoAgent;
         agent.movePieceTo(agent.getPieceByName(movePieceName), toPos);
-        agent.updateState(updateAgentPieceDict);
-        agent.oppoAgent.updateState(updateAgentPieceDict);
         return nextState;
 
     }
 
-    switchTurn() {
-        this.playingTeam = -this.playingTeam;
-    }
-    // return a evaluation score for this state
-    getEvaludation(team) {
+    switchTurn() { this.playingTeam = -this.playingTeam; }
 
-    }
+    // return a evaluation score for this state
+    getEvaludation(team) { }
 
     static check_repeating(agent): boolean {
         var moves = agent.pastMoves;
@@ -92,7 +76,6 @@ export class State {
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
         if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
-        // console.log("is TD?:", agent instanceof TDLeaner);
         var new_state;
         if (dict.playingTeam == 1) new_state = new State(agent, oppo, dict.playingTeam);
         else new_state = new State(oppo, agent, dict.playingTeam);
@@ -103,15 +86,13 @@ export class State {
 
 
     nextMove() {
-        var agent = this.playingTeam == 1 ? this.redAgent : this.blackAgent;
-        // console.log("playing:", agent.strategy)
-        // if (agent instanceof EvalFnAgent)
-        //     console.log("depth:", agent.DEPTH)
+        var agent = this.get_playing_agent();
         var r = null;
         if (agent.check_king_exist()) {
-            if (!this.is_repeating) r = agent.comptuteNextMove();
+            if (!this.is_repeating) r = agent.comptuteNextMove(this);
             else {
                 console.log("REPEATING ")
+                agent.updateState();
                 r = agent.random_move();
             }
         } else console.log("-=-=-=-=-=- KING DIED -=-=-=-=-=-", r)
