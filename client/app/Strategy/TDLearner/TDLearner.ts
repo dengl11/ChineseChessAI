@@ -39,23 +39,25 @@ export class TDLearner extends EvalFnAgent {
         result *= this.team;
         // consolidate features vectors throught whole game into one
         // console.log("this.feature_matrix:", this.feature_matrix)
-        // var accu_fea = this.feature_matrix.reduce(this.merge_arr);
+        var accu_fea = this.feature_matrix.reduce(this.merge_arr);
+        accu_fea = accu_fea.map(x => x / this.feature_matrix.length)
         var last_fea = this.feature_matrix[this.feature_matrix.length - 1];
-        var combined_fea = last_fea;
+        // var combined_fea = last_fea;
         // accu_fea = accu_fea.map(this.squash);
-        // console.log("accu_fea:", accu_fea)
+        console.log("accu_fea:", accu_fea)
+        console.log("last_fea:", last_fea)
         // console.log("nSimulations:", nSimulations)
         var eta = 2 / Math.sqrt(nSimulations); // learning rate
         // console.log("eta:", eta)
-        var gradient = combined_fea.map(x => x * result);
+        // var gradient = combined_fea.map(x => x * result);
         // console.log("gradient:", gradient)
         // console.log("this.weights:", this.weights)
-        for (var i = 0; i < combined_fea.length; i++) {
-            this.weights[i] += eta * (gradient[i] - this.weights[i] + 10 * last_fea[i]);
+        for (var i = 0; i < last_fea.length; i++) {
+            this.weights[i] += eta * result * (10 * accu_fea[i] - this.weights[i] + 20 * last_fea[i]);
             // this.weights[i] += eta * (this.squash(gradient[i], this.weights[i]+1) - this.weights[i]);
-            this.weights[i] = Math.max(this.weights[i], 0);
+            this.weights[i] = Math.min(Math.max(this.weights[i], 0), 100);
         }
-        // console.log("UPDATED WEIGHT:", this.weights)
+        console.log("UPDATED WEIGHT:", this.weights)
         return this.weights;
     }
 
