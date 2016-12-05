@@ -9,8 +9,8 @@
 </div>
 
 <div class="body_content" (keyup.Enter)="board.initGame()">
-
-	<board #board class="board" (onResultsUpdated)="update_result(board.results, board.humanMode, [board.redAgentType, board.redAgentDepth, board.blackAgentType, board.blackAgentDepth])" (onTimeUpdated)="update_runtime(board.runtime_dict)"></board>
+	<board #board class="board" (onResultsUpdated)="update_result(board.results, board.humanMode, [board.redAgentType, board.redAgentDepth, board.blackAgentType, board.blackAgentDepth])" (onTimeUpdated)="update_runtime(board.runtime_dict)" (onWeightUpdated)="update_weight(board.state.redAgent.strategy==3? board.weigths_1: undefined, board.state.blackAgent.strategy==3? board.weigths_2:undefined)"
+					(onClear)="clear()"></board>
 
 	<div class="left">
 		<button class="ui green basic button fluid">
@@ -44,13 +44,13 @@
 					<h4 class="ui horizontal divider header red"><i class="Flag red icon"></i>Red</h4>
 
 					<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseRedAgent($event.target.value) ">
-						<option>6-Ultimate</option>
-						<option>5-MCTS</option>
-						<option>4-TDLean</option>
-						<option>3-Reorder(B)</option>
-						<option>2-Reorder(A)</option>
-						<option>1-ABPruning</option>
 						<option>0-Greedy </option>
+						<option>1-ABPruning</option>
+						<option>2-MoveReorder</option>
+						<option>3-TDLeaner</option>
+						<option>4-TDLean(Trained)</option>
+						<option>5-MCTS</option>
+						<option>6-Ultimate</option>
 					</sm-select>
 
 				</div>
@@ -71,13 +71,13 @@
 		<div id="blackAgentSelection">
 			<h4 class="ui horizontal divider header black"><i class="Flag icon"></i>Black</h4>
 			<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseBlackAgent($event.target.value) ">
-				<option>6-Ultimate</option>
-				<option>5-MCTS</option>
-				<option>4-TDLean</option>
-				<option>3-Reorder(B)</option>
-				<option>2-Reorder(A)</option>
-				<option>1-ABPruning</option>
 				<option>0-Greedy </option>
+				<option>1-ABPruning</option>
+				<option>2-MoveReorder</option>
+				<option>3-TDLeaner</option>
+				<option>4-TDLean(Trained)</option>
+				<option>5-MCTS</option>
+				<option>6-Ultimate</option>
 			</sm-select>
 			<div class=" margin "></div>
 			<sm-select class="fluid" *ngIf="board.blackAgentType>0" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
@@ -93,10 +93,9 @@
 
 
 		<div class="margin "></div>
-		<hr>
 
 
-		<div *ngIf="board.simulation_state == -1">
+		<div *ngIf="board.simulation_state == -1 && !board.humanMode">
 			<div class="margin"></div>
 			<div class="ui input focus fluid">
 				<input type="text" placeholder="Number of Simulations (100)" (change)="board.chooseNSimulations($event.target.value)">
@@ -122,13 +121,19 @@
 
 			<div class="ui red segment">
 				<h4 class="ui red" style="color:red">Red: {{board.state.redAgent.pastMoves.length}}</h4>
-				<h3 class="nMove" style="color:red">{{board.state.playingTeam==1? "":board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1]}}</h3>
-				<div *ngIf="board.state.playingTeam==1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
+				<div class="nMove" *ngIf="board.state.redAgent.pastMoves.length>0 && board.state.playingTeam!=1">
+					<img src="resource/img/pieces/1/{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].name[0]}}.png">
+					<h3>{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].position}}</h3>
+				</div>
 			</div>
 
 			<div class="ui black segment">
 				<h4 class="ui  black">Black: {{board.state.blackAgent.pastMoves.length}}</h4>
-				<h3 class="nMove">{{board.state.playingTeam!=1? "":board.state.blackAgent.pastMoves[board.state.blackAgent.pastMoves.length-1]}}</h3>
+				<div class="nMove" *ngIf="board.state.blackAgent.pastMoves.length>0 && board.state.playingTeam==1">
+					<img src="resource/img/pieces/-1/{{board.state.blackAgent.pastMoves[board.state.blackAgent.pastMoves.length-1].name[0]}}.png">
+					<h3>{{board.state.blackAgent.pastMoves[board.state.blackAgent.pastMoves.length-1].position}}</h3>
+				</div>
+
 
 				<div *ngIf="board.state.playingTeam!=1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
 
@@ -159,4 +164,6 @@
 <div class="analysis">
 	<winRater></winRater>
 	<runtimeAnalysist></runtimeAnalysist>
+	<weightTable [depth1]="board.state.redAgent.DEPTH" [depth2]="board.state.blackAgent.DEPTH"></weightTable>
 </div>
+div>

@@ -1,0 +1,54 @@
+<div class="runtimeTable plot" *ngIf="weight_record_1.length > 0">
+
+
+    <h3 class="ui horizontal divider header">
+  <i class="Align Right icon"></i> Red: TDLearner (Depth {{depth1}}) Weight Tuning</h3>
+    <sm-segment class="raised">
+        <table class="ui sortable celled table">
+            <thead>
+                <tr>
+                    <th>N Threatening</th>
+                    <th>N Captures</th>
+                    <th>N Center Cannons</th>
+                    <th>N Aligned Cannons</th>
+                    <th>Rook Mobiligy</th>
+                    <th>Horse Mobiligy</th>
+                    <th>Elephant Mobiligy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let w of weight_record_1">
+                    <td *ngFor="let e of w">{{e.toFixed(1)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </sm-segment>
+</div>
+
+
+<div class="runtimeTable plot" *ngIf="weight_record_2.length > 0">
+
+
+    <h3 class="ui horizontal divider header">
+  <i class="Align Right icon"></i> Black: TDLearner (Depth {{depth2}}) Weight Tuning</h3>
+    <sm-segment class="raised">
+        <table class="ui sortable celled table">
+            <thead>
+                <tr>
+                    <th>N Threatening</th>
+                    <th>N Captures</th>
+                    <th>N Center Cannons</th>
+                    <th>N Aligned Cannons</th>
+                    <th>Rook Mobiligy</th>
+                    <th>Horse Mobiligy</th>
+                    <th>Elephant Mobiligy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let w of weight_record_2">
+                    <td *ngFor="let e of w">{{e.toFixed(1)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </sm-segment>
+</div>

@@ -2,6 +2,7 @@
 "use strict";
 var State_1 = require('../Strategy/State/State');
 var TDLearner_1 = require('../Strategy/TDLearner/TDLearner');
+var TDLearnerTrained_1 = require('../Strategy/TDLearner/TDLearnerTrained');
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
@@ -36,7 +37,7 @@ app.put('/compute/', function (request, response) {
         return;
     }
     state = State_1.State.copyFromDict(state);
-    // console.log(playing.strategy)
+    // console.log(state)
     // console.log(playing instanceof TDLeaner)
     // console.log(playing.oppoAgent instanceof TDLeaner)
     var start = new Date().getTime();
@@ -46,7 +47,7 @@ app.put('/compute/', function (request, response) {
     var t = (now - start);
     var feature_vec = null;
     var playing = state.get_playing_agent();
-    if (playing.check_king_exist() && playing instanceof TDLearner_1.TDLeaner && !state.is_repeating) {
+    if (playing.check_king_exist() && playing instanceof TDLearner_1.TDLearner && !state.is_repeating && !(playing instanceof TDLearnerTrained_1.TDLearnerTrained)) {
         // console.log(playing.weights)
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }

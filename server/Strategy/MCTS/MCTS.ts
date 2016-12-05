@@ -2,10 +2,10 @@
 import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
 import { StateFeatureExtractor } from '../State/StateFeatureExtractor'
-import { TDLeaner } from '../TDLearner/TDLearner'
+import { TDLearner } from '../TDLearner/TDLearner'
 import { MCTS_State } from './MCTS_State'
 
-export class MCTS extends TDLeaner {
+export class MCTS extends TDLearner {
 
     K_BEST = 12;
     strategy = 5;

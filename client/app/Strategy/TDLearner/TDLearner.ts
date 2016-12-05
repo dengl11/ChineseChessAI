@@ -4,8 +4,8 @@ import { State } from '../State/State'
 import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 import { Evaluation } from '../_Param/Evaluation'
 
-export class TDLeaner extends EvalFnAgent {
-    strategy = 4;
+export class TDLearner extends EvalFnAgent {
+    strategy = 3;
     weights = [];
     // INIT_WEIGHTS = [20, 15, 30, 7, 20, 0, 20];
     // INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
@@ -22,7 +22,7 @@ export class TDLeaner extends EvalFnAgent {
     copy() {
         // console.log(this.pastMoves)
         // console.log(this.copyMoves())
-        return new TDLeaner(this.team, this.DEPTH, this.weights, this.myPieces.map(x => x.copy()), this.copyMoves());
+        return new TDLearner(this.team, this.DEPTH, this.weights, this.myPieces.map(x => x.copy()), this.copyMoves());
     }
 
     merge_arr(x, y) {
@@ -41,19 +41,19 @@ export class TDLeaner extends EvalFnAgent {
         // console.log("this.feature_matrix:", this.feature_matrix)
         var accu_fea = this.feature_matrix.reduce(this.merge_arr);
         // accu_fea = accu_fea.map(this.squash);
-        console.log("accu_fea:", accu_fea)
-        console.log("nSimulations:", nSimulations)
+        // console.log("accu_fea:", accu_fea)
+        // console.log("nSimulations:", nSimulations)
         var eta = 1 / Math.sqrt(nSimulations); // learning rate
         // console.log("eta:", eta)
         var gradient = accu_fea.map(x => x * result);
-        console.log("gradient:", gradient)
-        console.log("this.weights:", this.weights)
+        // console.log("gradient:", gradient)
+        // console.log("this.weights:", this.weights)
         for (var i = 0; i < accu_fea.length; i++) {
             this.weights[i] += eta * (gradient[i] - this.weights[i]);
             // this.weights[i] += eta * (this.squash(gradient[i], this.weights[i]+1) - this.weights[i]);
             this.weights[i] = Math.max(this.weights[i], 0);
         }
-        console.log("UPDATED WEIGHT:", this.weights)
+        // console.log("UPDATED WEIGHT:", this.weights)
         return this.weights;
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { WinRaterComponent } from '../component_analysis/winRate';
 import { RuntimeAnalysist } from '../component_analysis/runtimeAnalysist';
+import { WeightTableComponent } from '../component_analysis/weights';
 
 @Component({
     selector: 'app',
@@ -20,6 +21,10 @@ export class AppComponent implements OnInit {
     @ViewChild(RuntimeAnalysist)
     private runtimeAnalysist: RuntimeAnalysist;
 
+    @ViewChild(WeightTableComponent)
+    private weightTable: WeightTableComponent;
+
+
     ngOnInit() {
     }
 
@@ -35,6 +40,14 @@ export class AppComponent implements OnInit {
 
     update_runtime(x) {
         this.runtimeAnalysist.update(x);
+    }
+
+    update_weight(w1, w2) {
+        this.weightTable.update(w1, w2);
+    }
+
+    clear() {
+        this.update_weight(null, null);
     }
 
 

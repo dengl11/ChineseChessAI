@@ -8,7 +8,8 @@ import { Rule } from '../ChineseChess/Rule/Rule';
 import { State } from '../Strategy/State/State';
 import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent';
 import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn';
-import { TDLeaner } from '../Strategy/TDLearner/TDLearner';
+import { TDLearner } from '../Strategy/TDLearner/TDLearner';
+import { TDLearnerTrained } from '../Strategy/TDLearner/TDLearnerTrained';
 import { MCTS } from '../Strategy/MCTS/MCTS';
 import { MoveReorderPruner } from '../Strategy/MoveReorderPruner/MoveReorderPruner';
 import { HumanAgent } from '../Strategy/Agent/HumanAgent';
@@ -44,9 +45,6 @@ export class BoardComponent implements OnInit {
     redAgentDepth = 2;
     blackAgentDepth = 2;
 
-
-
-
     /***************** UI *******************/
     // keep track of all pieces, just for UI purpose (including dummy pieces)
     pieceSize: number = 67;
@@ -67,6 +65,9 @@ export class BoardComponent implements OnInit {
     // new runtime for move obtained
     @Output() onTimeUpdated = new EventEmitter<boolean>();
     // {"strategy-depth": [average_move_runtime, nMoves]}
+    @Output() onWeightUpdated = new EventEmitter<boolean>();
+    @Output() onClear = new EventEmitter<boolean>();
+    // {"strategy-depth": [average_move_runtime, nMoves]}
     runtime_dict = {};
 
 
@@ -83,6 +84,7 @@ export class BoardComponent implements OnInit {
     changeMode() {
         this.humanMode = !this.humanMode;
         this.simulation_state = -1;
+        this.onClear.emit();
         // this.redAgentType = this.DEFAULT_TYPE;
         // this.blackAgentType = this.DEFAULT_TYPE;
         // this.redAgentDepth = this.DEFAULT_DEPTH;
@@ -113,11 +115,13 @@ export class BoardComponent implements OnInit {
     }
 
     chooseRedAgent(desc) {
+        this.onClear.emit();
         this.simulation_state = -1;
         this.redAgentType = this.parse_agentType(desc);
 
     }
     chooseBlackAgent(desc) {
+        this.onClear.emit();
         this.simulation_state = -1;
         this.blackAgentType = this.parse_agentType(desc);
         this.clear_results();
@@ -152,15 +156,17 @@ export class BoardComponent implements OnInit {
         var redAgent;
         // console.log("red:", this.redAgentType)
         // console.log("black:", this.blackAgentType)
+
         switch (this.redAgentType) {
             case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
             case 1: { redAgent = new EvalFnAgent(this.redTeam, this.redAgentDepth); break; }
 
             case 2: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
-            case 3: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
+            case 3: { redAgent = new TDLearner(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
             // TDLearner
-            case 4: { redAgent = new TDLeaner(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
+            case 4: { redAgent = new TDLearnerTrained(this.redTeam, this.redAgentDepth); break; }
             case 5: { redAgent = new MCTS(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
+            case 6: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
         var blackAgent;
@@ -169,10 +175,11 @@ export class BoardComponent implements OnInit {
             case 1: { blackAgent = new EvalFnAgent(this.blackTeam, this.blackAgentDepth); break; }
 
             case 2: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
-            case 3: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
+            case 3: { blackAgent = new TDLearner(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
+            case 4: { blackAgent = new TDLearnerTrained(this.blackTeam, this.blackAgentDepth); break; }
             // TDLearner
-            case 4: { blackAgent = new TDLeaner(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
             case 5: { blackAgent = new MCTS(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
+            case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
         // console.log(redAgent);
@@ -249,6 +256,7 @@ export class BoardComponent implements OnInit {
     // report results
     report_result() {
         this.onResultsUpdated.emit();
+        this.onWeightUpdated.emit();
     }
     report_runtime(strategy, depth, time) {
         var type = this.runtime_dict[strategy + "-" + depth];

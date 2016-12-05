@@ -1,10 +1,10 @@
 
 import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
-import { TDLeaner } from '../TDLearner/TDLearner'
+import { TDLearner } from '../TDLearner/TDLearner'
 import { MoveReorderPruner } from '../MoveReorderPruner/MoveReorderPruner'
 
-export class MCTS extends TDLeaner {
+export class MCTS extends TDLearner {
 
     weights = [20, 15, 30, 7, 20, 0, 20];
 

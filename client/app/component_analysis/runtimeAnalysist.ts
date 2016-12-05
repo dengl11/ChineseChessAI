@@ -12,11 +12,11 @@ export class RuntimeAnalysist {
     names = [
         'Greedy',
         'Alpha-Beta Pruning',
-        'Alpha-Beta Pruning with Move Reorder (Type A)',
-        'Alpha-Beta Pruning with Move Reorder (Type B)',
+        'Alpha-Beta Pruning with Move Reorder',
         'Temporal Difference Learning',
+        'Temporal Difference Learning (Trained)',
         'Monte Carlo Tree Search',
-        'Combined Strategy'
+        'Ultimate (Combined Strategy)'
     ]
     // INPUT
     runtime_dict;

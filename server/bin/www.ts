@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import { State } from '../Strategy/State/State'
-import { TDLeaner } from '../Strategy/TDLearner/TDLearner'
+import { TDLearner } from '../Strategy/TDLearner/TDLearner'
+import { TDLearnerTrained } from '../Strategy/TDLearner/TDLearnerTrained'
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
@@ -44,7 +45,7 @@ app.put('/compute/', function(request, response) {
         return;
     }
     state = State.copyFromDict(state);
-    // console.log(playing.strategy)
+    // console.log(state)
     // console.log(playing instanceof TDLeaner)
     // console.log(playing.oppoAgent instanceof TDLeaner)
     var start = new Date().getTime();
@@ -56,7 +57,7 @@ app.put('/compute/', function(request, response) {
     var feature_vec = null;
 
     var playing = state.get_playing_agent();
-    if (playing.check_king_exist() && playing instanceof TDLeaner && !state.is_repeating) {
+    if (playing.check_king_exist() && playing instanceof TDLearner && !state.is_repeating && !(playing instanceof TDLearnerTrained)) {
         // console.log(playing.weights)
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }

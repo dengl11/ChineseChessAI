@@ -6,7 +6,7 @@ import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 import { Evaluation } from '../_Param/Evaluation'
 import { Reorder } from '../Reorder/Reorder'
 
-export class TDLeaner extends Reorder {
+export class TDLearner extends Reorder {
     strategy = 3;
     weights = [];
     // current state feature vector
@@ -19,7 +19,7 @@ export class TDLeaner extends Reorder {
     }
 
     static copyFromDict(dict) {
-        return new TDLeaner(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH, dict.weights);
+        return new TDLearner(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH, dict.weights);
     }
 
     getValueOfState(state: State) {
@@ -33,8 +33,6 @@ export class TDLeaner extends Reorder {
         playing.computeLegalMoves();
         playing.oppoAgent.updateBoardState();
         playing.oppoAgent.computeLegalMoves();
-
-
 
         var fea_vec = this.extract_state_feature(state.redAgent, state, state.blackAgent);
         for (var i = 0; i < fea_vec.length; i++) score_vec.push(fea_vec[i] * this.weights[i]);

@@ -74,7 +74,7 @@ export class Agent {
 
     // add move to pastMoves
     addMove(pieceName, pos) {
-        this.pastMoves.push(pieceName + "->" + pos);
+        this.pastMoves.push({ "name": pieceName, "position": pos });
     }
 
     // agent take action

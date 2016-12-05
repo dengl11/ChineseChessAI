@@ -11,13 +11,12 @@ import { FormControl } from '@angular/forms';
 export class WinRaterComponent implements OnInit {
     names = [
         'Greedy',
-        'ABPruning',
-        // 'MoveReorder',
-        'MoveReorder(A)',
-        'MoveReorder(B)',
-        'TDLearning',
-        'MCTS',
-        'Ultimate'
+        'Alpha-Beta Pruning',
+        'Alpha-Beta Pruning with Move Reorder',
+        'Temporal Difference Learning',
+        'Temporal Difference Learning (Trained)',
+        'Monte Carlo Tree Search',
+        'Ultimate (Combined Strategy)'
     ]
 
 
