@@ -40,7 +40,7 @@ export class TDLearner extends EvalFnAgent {
         // consolidate features vectors throught whole game into one
         // console.log("this.feature_matrix:", this.feature_matrix)
         // var accu_fea = this.feature_matrix.reduce(this.merge_arr);
-        var last_fea = this.feature_matrix[-1];
+        var last_fea = this.feature_matrix[this.feature_matrix.length - 1];
         var combined_fea = last_fea;
         // accu_fea = accu_fea.map(this.squash);
         // console.log("accu_fea:", accu_fea)
@@ -51,7 +51,7 @@ export class TDLearner extends EvalFnAgent {
         // console.log("gradient:", gradient)
         // console.log("this.weights:", this.weights)
         for (var i = 0; i < combined_fea.length; i++) {
-            this.weights[i] += eta * (gradient[i] - this.weights[i]);
+            this.weights[i] += eta * (gradient[i] - this.weights[i] + 10 * last_fea[i]);
             // this.weights[i] += eta * (this.squash(gradient[i], this.weights[i]+1) - this.weights[i]);
             this.weights[i] = Math.max(this.weights[i], 0);
         }
