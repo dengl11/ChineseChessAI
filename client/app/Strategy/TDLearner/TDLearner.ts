@@ -53,9 +53,10 @@ export class TDLearner extends EvalFnAgent {
         // console.log("gradient:", gradient)
         // console.log("this.weights:", this.weights)
         for (var i = 0; i < last_fea.length; i++) {
-            this.weights[i] += eta * result * (10 * accu_fea[i] - this.weights[i] + 10 * last_fea[i]);
+            this.weights[i] += eta * result * (- this.weights[i] + 10 * last_fea[i]);
+            // this.weights[i] += eta * result * (10 * accu_fea[i] - this.weights[i] + 10 * last_fea[i]);
             // this.weights[i] += eta * (this.squash(gradient[i], this.weights[i]+1) - this.weights[i]);
-            this.weights[i] = Math.min(Math.max(this.weights[i], 0), 30);
+            this.weights[i] = Math.min(Math.max(this.weights[i], 0), 20);
         }
         console.log("UPDATED WEIGHT:", this.weights)
         return this.weights;
