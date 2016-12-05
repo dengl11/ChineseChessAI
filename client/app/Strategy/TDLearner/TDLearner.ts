@@ -40,7 +40,7 @@ export class TDLeaner extends EvalFnAgent {
         // consolidate features vectors throught whole game into one
         // console.log("this.feature_matrix:", this.feature_matrix)
         var accu_fea = this.feature_matrix.reduce(this.merge_arr);
-        // accu_fea = accu_fea.map(this.squash);
+        accu_fea = accu_fea.map(this.squash);
         console.log("accu_fea:", accu_fea)
         // console.log("nSimulations:", nSimulations)
         var eta = 1 / Math.sqrt(nSimulations); // learning rate
@@ -49,7 +49,7 @@ export class TDLeaner extends EvalFnAgent {
         console.log("gradient:", gradient)
         console.log("this.weights:", this.weights)
         for (var i = 0; i < accu_fea.length; i++) {
-            this.weights[i] += eta * (this.weights[i] - gradient[i]);
+            this.weights[i] += eta * (gradient[i] - this.weights[i]);
             this.weights[i] = Math.max(this.weights[i], 0);
         }
         console.log("UPDATED WEIGHT:", this.weights)
