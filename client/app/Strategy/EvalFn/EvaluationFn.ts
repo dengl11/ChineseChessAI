@@ -14,6 +14,11 @@ export class EvalFnAgent extends Agent {
         this.DEPTH = depth;
     }
 
+    // return a copy of an agent
+    copy() {
+        return new EvalFnAgent(this.team, this.DEPTH, this.myPieces.map(x => x.copy()), this.copyMoves());
+    }
+
 
 
 

@@ -5,7 +5,7 @@ import { EvalFnAgent } from '../EvalFn/EvaluationFn'
 import { Evaluation } from '../_Param/Evaluation'
 
 export class TDLeaner extends EvalFnAgent {
-    strategy = 3;
+    strategy = 4;
     weights = [];
     // INIT_WEIGHTS = [20, 15, 30, 7, 20, 0, 20];
     // INIT_WEIGHTS = [0, 0, 0, 0, 0, 0, 0];
@@ -40,16 +40,16 @@ export class TDLeaner extends EvalFnAgent {
         // consolidate features vectors throught whole game into one
         // console.log("this.feature_matrix:", this.feature_matrix)
         var accu_fea = this.feature_matrix.reduce(this.merge_arr);
-        accu_fea = accu_fea.map(this.squash);
+        // accu_fea = accu_fea.map(this.squash);
         console.log("accu_fea:", accu_fea)
         // console.log("nSimulations:", nSimulations)
         var eta = 1 / Math.sqrt(nSimulations); // learning rate
         // console.log("eta:", eta)
-        var gradient = accu_fea.map(x => x * eta * result);
+        var gradient = accu_fea.map(x => x * result);
         console.log("gradient:", gradient)
         console.log("this.weights:", this.weights)
         for (var i = 0; i < accu_fea.length; i++) {
-            this.weights[i] += gradient[i];
+            this.weights[i] += eta * (this.weights[i] - gradient[i]);
             this.weights[i] = Math.max(this.weights[i], 0);
         }
         console.log("UPDATED WEIGHT:", this.weights)

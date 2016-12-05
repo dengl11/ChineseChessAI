@@ -79,7 +79,8 @@ export class State {
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
-        if (agentDict.strategy == 3) agent = TDLeaner.copyFromDict(agentDict);
+        if (agentDict.strategy == 3) agent = Reorder.copyFromDict(agentDict);
+        if (agentDict.strategy == 4) agent = TDLeaner.copyFromDict(agentDict);
         if (agentDict.strategy == 5) agent = MCTS.copyFromDict(agentDict);
         var new_state;
         if (dict.playingTeam == 1) new_state = new State(agent, oppo, dict.playingTeam);

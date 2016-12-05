@@ -106,7 +106,9 @@ export class BoardComponent implements OnInit {
     }
 
     parse_agentType(desc) {
-        if (desc == "") return 0;
+        if (desc == "") {
+            return 0;
+        }
         return parseInt(desc.split('-')[0]);
     }
 

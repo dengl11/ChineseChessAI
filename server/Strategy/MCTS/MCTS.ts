@@ -105,4 +105,8 @@ export class MCTS extends TDLeaner {
         return k_best.slice(0, k).map(x => x.slice(0, 2));
     }
 
+    getValueOfState(state: State) {
+        return this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
+    }
+
 }
