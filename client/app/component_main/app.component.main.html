@@ -125,6 +125,7 @@
 					<img src="resource/img/pieces/1/{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].name[0]}}.png">
 					<h3>{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].position}}</h3>
 				</div>
+				<div *ngIf="board.state.playingTeam==1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
 			</div>
 
 			<div class="ui black segment">
