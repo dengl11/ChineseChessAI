@@ -7,7 +7,7 @@ import { MCTS_State } from './MCTS_State'
 
 export class MCTS extends TDLeaner {
 
-    K_BEST = 8;
+    K_BEST = 12;
     strategy = 5;
 
     static copyFromDict(dict) {
