@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl } from '@angular/forms';
+import { MCTS } from '../Strategy/MCTS/MCTS';
 
 @Component({
     selector: 'runtimeAnalysist',
@@ -39,6 +40,7 @@ export class RuntimeAnalysist {
         }
 
     }
+
 
     sort_strategy() {
         this.runtime_arr.sort((x, y) => (

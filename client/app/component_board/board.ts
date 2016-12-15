@@ -44,6 +44,8 @@ export class BoardComponent implements OnInit {
     DEFAULT_DEPTH = 2;
     redAgentDepth = 2;
     blackAgentDepth = 2;
+    blackAgentSimulations = 2000;
+    redAgentSimulations = 2000;
 
     /***************** UI *******************/
     // keep track of all pieces, just for UI purpose (including dummy pieces)
@@ -135,6 +137,15 @@ export class BoardComponent implements OnInit {
         if (this.humanMode) this.initGame();
     }
 
+    chooseBlackSimulations(n) {
+        this.blackAgentSimulations = parseInt(n);
+        // console.log(this.blackAgentSimulations)
+        if (this.humanMode) this.initGame();
+    }
+    chooseRedSimulations(n) {
+        this.redAgentSimulations = parseInt(n);
+    }
+
     /***************** LIFE_CYCLE *******************/
     ngOnInit() {
         this.initDummyButtons();
@@ -165,7 +176,7 @@ export class BoardComponent implements OnInit {
             case 3: { redAgent = new TDLearner(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
             // TDLearner
             case 4: { redAgent = new TDLearnerTrained(this.redTeam, this.redAgentDepth); break; }
-            case 5: { redAgent = new MCTS(this.redTeam, this.redAgentDepth, this.weigths_1); break; }
+            case 5: { redAgent = new MCTS(this.redTeam, this.redAgentSimulations); break; }
             case 6: { redAgent = new MoveReorderPruner(this.redTeam, this.redAgentDepth); break; }
             default: redAgent = new HumanAgent(this.redTeam); break;
         }
@@ -178,7 +189,7 @@ export class BoardComponent implements OnInit {
             case 3: { blackAgent = new TDLearner(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
             case 4: { blackAgent = new TDLearnerTrained(this.blackTeam, this.blackAgentDepth); break; }
             // TDLearner
-            case 5: { blackAgent = new MCTS(this.blackTeam, this.blackAgentDepth, this.weigths_2); break; }
+            case 5: { blackAgent = new MCTS(this.blackTeam, this.blackAgentSimulations); break; }
             case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
@@ -296,8 +307,9 @@ export class BoardComponent implements OnInit {
                 var move = result['move'];
                 var time = parseInt(result['time']);
                 var state_feature = result['state_feature'];
-                if (time) this.report_runtime(agent.strategy, agent.DEPTH, time)
+                if (time) this.report_runtime(agent.strategy, (agent instanceof MCTS ? agent.N_SIMULATION : agent.DEPTH), time)
                 if (state_feature) agent.save_state(state_feature);
+                // console.log("move", move)
                 // console.log("time", time)
                 // console.log("state_feature", state_feature)
                 if (!move) { // FAIL

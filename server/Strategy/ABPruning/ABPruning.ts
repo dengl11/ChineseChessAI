@@ -3,7 +3,7 @@ import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
 import { Evaluation } from '../_Param/Evaluation'
 
-export class EvalFnAgent extends Agent {
+export class ABPruning extends Agent {
 
     DEPTH = 2;
     strategy = 1;
@@ -69,28 +69,12 @@ export class EvalFnAgent extends Agent {
 
     get_ordered_moves(agent: Agent) { return agent.get_moves_arr(); }
 
-    // return value of state for redAgent
-    getValueOfState(state: State) {
-        return this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
-    }
 
-    getValueOfAgent(agent: Agent, state = null) {
-        // console.log("======================");
-        var score = 0;
-        for (var i in agent.myPieces) {
-            score += this.getValOfPiece(agent.myPieces[i], agent.team);
-        }
-        return score;
-    }
-
-    getValOfPiece(piece, team) {
-        return Evaluation.posValue(piece.name, piece.position, team) + Evaluation.pieceValue(piece.name);
-    }
 
     // copy() { return new EvalFnAgent(this.team, this.myPieces.map(x => x.copy()), this.DEPTH); }
 
     static copyFromDict(dict) {
-        return new EvalFnAgent(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH);
+        return new ABPruning(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH);
     }
 
 }

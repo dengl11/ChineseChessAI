@@ -1,6 +1,6 @@
 import { Agent } from '../Agent/Agent'
 import { GreedyAgent } from '../Greedy/GreedyAgent'
-import { EvalFnAgent } from '../EvalFn/EvaluationFn'
+import { ABPruning } from '../ABPruning/ABPruning'
 import { TDLearner } from '../TDLearner/TDLearner'
 import { TDLearnerTrained } from '../TDLearner/TDLearnerTrained'
 import { MCTS } from '../MCTS/MCTS'
@@ -60,9 +60,15 @@ export class State {
         var moves = agent.pastMoves;
         var n = moves.length;
         if (n < 10) return false;
-        return (moves[n - 3].toString() == moves[n - 1].toString()) &&
-            (moves[n - 5].toString() == moves[n - 3].toString()) &&
-            (moves[n - 7].toString() == moves[n - 5].toString());
+        if (this.samveMove(moves[n - 1], moves[n - 3]) && this.samveMove(moves[n - 5], moves[n - 3])) {
+            console.log(moves)
+            return true;
+        };
+        return false;
+    }
+
+    static samveMove(move1, move2) {
+        return move1.name == move2.name && (move1.position.toString() == move2.position.toString());
     }
 
 
@@ -81,7 +87,7 @@ export class State {
         var is_repeating = this.check_repeating(agentDict);
 
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
-        if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
+        if (agentDict.strategy == 1) agent = ABPruning.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
         if (agentDict.strategy == 3) agent = TDLearner.copyFromDict(agentDict);
         if (agentDict.strategy == 4) agent = TDLearnerTrained.copyFromDict(agentDict);

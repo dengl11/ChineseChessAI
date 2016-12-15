@@ -2,111 +2,123 @@
 import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
 import { StateFeatureExtractor } from '../State/StateFeatureExtractor'
-import { TDLearner } from '../TDLearner/TDLearner'
 import { MCTS_State } from './MCTS_State'
 
-export class MCTS extends TDLearner {
+export class MCTS extends Agent {
 
-    K_BEST = 12;
     strategy = 5;
+    N_SIMULATION;
+
+    constructor(team, pieces, N) {
+        super(team, pieces);
+        // this.N_SIMULATION = 4000;
+        this.N_SIMULATION = N;
+    }
 
     static copyFromDict(dict) {
-        return new MCTS(dict.team, this.piecesFromDict(dict.myPieces), dict.DEPTH, dict.weights);
+        return new MCTS(dict.team, this.piecesFromDict(dict.myPieces), dict.N_SIMULATION);
     }
 
-    // var endState = state.getEndState();
-    // if (endState != 0) {
-    //     // return game score for red agent
-    //     return [state.playingTeam * endState * Infinity, null];
-    // }
-    // if (depth == 0) return [this.getValueOfState(state), null];
 
-
-    // return [score, [movePieceName, toPos]
-    recurseEvaluation(state: State, depth, alpha, beta) {
-        var isMax = state.playingTeam == state.redAgent.team;
-        var playingAgent: Agent = state.get_playing_agent();
-        playingAgent.updateBoardState();
-        var endState = state.getEndState();
-        if (endState != 0) {
-            // return game score for red agent
-            return [state.playingTeam * endState * Infinity, null];
+    // return [piece:Piece, toPos];
+    comptuteNextMove(state) {
+        var root = new MCTS_State(state, null);
+        // console.log("root:", root.visits);
+        var i_simulation = 1;
+        while (i_simulation <= this.N_SIMULATION) {
+            // console.log("======================", i_simulation, "======================")
+            i_simulation += 1;
+            var seleted_state: MCTS_State = this.select(root);
+            // console.log("selecting:", seleted_state.depth(), "- from -", seleted_state.parentMove);
+            // console.log("selecting: visits", seleted_state.visits);
+            // console.log("selecting: sum score", seleted_state.sum_score);
+            // if (!seleted_state) continue; // end state
+            var simulated_state = this.simulate(root, seleted_state);
+            // console.log("simulated_state:", simulated_state.depth());
+            // this.back_propagate(simulated_state);
+            if (simulated_state) this.back_propagate(simulated_state);
+            // if (root.children.filter(x => x.visits == 0).length == 0) {
+            //     for (var i in root.children) {
+            //         console.log(root.children[i].parentMove, " => [ave SCORE: ]", root.children[i].get_ave_score(), "=> [visits]:", root.children[i].visits)
+            //     }
+            // }
         }
-        if (depth == 0) {
-            var sim = this.simulate(state);
-            return [sim, null];
+        // for (var i in root.children) {
+        //     console.log(root.children[i].parentMove, " => [SUM SCORE: ]", root.children[i].sum_score, " => [ave SCORE: ]", root.children[i].get_ave_score(), "=> [visits]:", root.children[i].visits)
+        // }
+        var r = this.pick_max_UCB_child(root).parentMove;
+
+        // console.log("======================MOVE: ", r, "======================")
+        return r;
+    }
+
+    // select one child node to simulate
+    // return null if end state
+    select(mcts_state: MCTS_State) {
+        // not visited before, need to generate child ndoes
+        if (mcts_state.parent && mcts_state.visits == 0) {
+            mcts_state.visits = 1;
+            return mcts_state;
         }
+        if (!mcts_state.children) mcts_state.generate_children();
+        var unvisited = mcts_state.children.filter(x => x.visits == 0);
+        if (unvisited.length > 0) return unvisited[0];
+        // mcts_state.children[0].parent
+        // console.log("======================CHILDREDN: ", mcts_state.visits, mcts_state.children.length, "======================")
+        var selected = this.pick_max_UCB_child(mcts_state);
+        // console.log("SELECT:", selected.parentMove)
+        if (selected) return this.select(selected);
+        // if (selected) return this.select(selected);
+        else return mcts_state;
+    }
 
-        playingAgent.updatePieceDict();
-        playingAgent.oppoAgent.updatePieceDict();
-        playingAgent.computeLegalMoves();
-
-        // console.log("before get_typed_moves");
-        var typed_moves = this.get_typed_moves(playingAgent);
-        // console.log("after get_typed_moves:", typed_moves);
-        var checkmates = typed_moves.filter(x => x[1] == 3).map(x => x[0]);
-        if (checkmates.length > 0) return [playingAgent.team * Infinity, checkmates[0]];
-        var captures = typed_moves.filter(x => x[1] == 1).map(x => x[0]);; // [[pieceName, move, oppo_piece_name]]
-
-        var next_states = captures.map(x => state.next_state(x[0], x[1]));
-
-        var empty_moves = typed_moves.filter(x => x[1] == 0).map(x => x[0]);;
-        var k_best_empty_moves = this.pick_k_best_next_states(state, empty_moves, this.K_BEST);
-        next_states = next_states.concat(k_best_empty_moves.map(x => x[0]));
-        var selected_moves = captures.concat(k_best_empty_moves.map(x => x[1]));
-
-        var next_evals = []; // list of [score, [movePieceName, toPos]]
-        for (var i in selected_moves) { //legalMoves: {name: []}
-            var nextState = next_states[i];
-            // console.log("nextState:", nextState)
-            var move = selected_moves[i];
-            var eval_result = [this.recurseEvaluation(nextState, depth - 1, alpha, beta)[0], move];
-            next_evals.push(eval_result);
-            if (isMax) {// max node -> increase lower bound
-                alpha = Math.max(alpha, eval_result[0]);
-                // if lower bound of this max node is higher than upper bound of its descendant min nodes, then return
-                if (beta <= alpha) return eval_result; // beta cutoff
-            } else { // min node -> decrease upper bound
-                beta = Math.min(beta, eval_result[0]);
-                // if upper bound of this min node is lower than upper bound of its descendant max nodes, then return
-                if (beta <= alpha) return eval_result; // alpha cutoff
+    pick_max_UCB_child(mcts_state: MCTS_State) {
+        var selected: MCTS_State = null;
+        var max_value = -Infinity;
+        for (var i in mcts_state.children) {
+            var child = mcts_state.children[i];
+            var v = child.UCB_valule();
+            // console.log("ucb value:", v)
+            if (v > max_value) {
+                max_value = v;
+                selected = child;
             }
         }
-        var scores = next_evals.map(x => x[0]);
-        var index = scores.indexOf(Math.max.apply(null, scores));
-        if (isMax) var index = scores.indexOf(Math.max.apply(null, scores));
-        else var index = scores.indexOf(Math.min.apply(null, scores));
-        return next_evals[index];
+        return selected;
+    }
+
+    simulate(root_state: MCTS_State, selected: MCTS_State) {
+        var move = selected.state.get_playing_agent().updateState().greedy_move();
+        // console.log("simulate: move=", move)
+        if (move.length == 0) return null;
+        var nextState = selected.state.next_state(move[0].name, move[1]);
+        // console.log("simulate: nextState=", nextState)
+        var mcts_new_state = new MCTS_State(nextState, move);
+        // console.log("mcts_new_state:", mcts_new_state)
+        mcts_new_state.visits += 1;
+        mcts_new_state.set_parent(selected);
+        mcts_new_state.sum_score += (mcts_new_state.state.redAgent.getValueOfState(mcts_new_state.state)) * root_state.state.playingTeam;
+        return mcts_new_state;
+    }
+
+    back_propagate(simulated_state: MCTS_State) {
+        var temp = simulated_state;
+        var added_score = simulated_state.sum_score;
+        // console.log("emp.parent:", temp.parent)
+        while (temp.parent) {
+            // console.log("back_propagate:", temp.parent.visits)
+            temp.parent.visits += 1;
+            temp.parent.sum_score += added_score;
+            temp = temp.parent;
+        }
     }
 
 
-    simulate(state: State) {
-        var agent = state.get_playing_agent();
-        agent.updateState();
-        var move = agent.random_move();
-        var next_state = state.next_state(move[0].name, move[1]);
-        // console.log('simulate')
-        return (this.getValueOfState(state) + this.getValueOfState(next_state)) / 2;
-    }
 
-    // return [[next_state, move]]
-    pick_k_best_next_states(state: State, moves, k) {
-        // console.log("pick_k_best_next_states: moves:", moves)
-        var next_states = moves.map(move => state.next_state(move[0], move[1]));
-        // console.log("pick_k_best_next_states: next_states:", next_states.length)
-        var values = next_states.map(x => this.getValueOfState(x));
-        // console.log("values:", values)
-        var evals = [];
-        var comparator;
-        if (state.playingTeam == 1) comparator = (x, y) => (y[2] - x[2]);
-        else comparator = (x, y) => (x[2] - y[2]);
-        for (var i = 0; i < values.length; i++) evals.push([next_states[i], moves[i], values[i]]);
-        var k_best = evals.sort(comparator);
-        return k_best.slice(0, k).map(x => x.slice(0, 2));
-    }
 
-    getValueOfState(state: State) {
-        return this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
-    }
+
+
+
+
 
 }

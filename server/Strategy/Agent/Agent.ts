@@ -2,8 +2,10 @@ import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
 import { InitGame } from '../../ChineseChess/InitGame/init';
 import { GreedyAgent } from '../Greedy/GreedyAgent'
-import { EvalFnAgent } from '../EvalFn/EvaluationFn'
+import { ABPruning } from '../ABPruning/ABPruning'
 import { Evaluation } from '../_Param/Evaluation'
+import { State } from '../State/State'
+
 
 export class Agent {
     team: number;
@@ -36,6 +38,7 @@ export class Agent {
         this.updateBoardState();
         this.updatePieceDict();
         this.computeLegalMoves();
+        return this;
     }
 
     // compute legals moves for my pieces after state updated
@@ -120,6 +123,7 @@ export class Agent {
     // get greedy move
     greedy_move() {
         var moves = this.get_moves_arr(); //[[movePieceName, move]]
+        // console.log(moves)
         var values = moves.map(x => this.getValueOfGreedyMove(x[0], x[1]));
         var max = -Infinity;
         var pos = -1;
@@ -159,5 +163,23 @@ export class Agent {
             }
         }
         return moves;
+    }
+
+    // return value of state for redAgent
+    getValueOfState(state: State) {
+        return this.getValueOfAgent(state.redAgent, state) - this.getValueOfAgent(state.blackAgent, state);
+    }
+
+    getValueOfAgent(agent: Agent, state = null) {
+        // console.log("======================");
+        var score = 0;
+        for (var i in agent.myPieces) {
+            score += this.getValOfPiece(agent.myPieces[i], agent.team);
+        }
+        return score;
+    }
+
+    getValOfPiece(piece, team) {
+        return Evaluation.posValue(piece.name, piece.position, team) + Evaluation.pieceValue(piece.name);
     }
 }

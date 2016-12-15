@@ -2,6 +2,7 @@
 "use strict";
 var State_1 = require('../Strategy/State/State');
 var TDLearner_1 = require('../Strategy/TDLearner/TDLearner');
+var MCTS_1 = require('../Strategy/MCTS/MCTS');
 var TDLearnerTrained_1 = require('../Strategy/TDLearner/TDLearnerTrained');
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
@@ -52,6 +53,7 @@ app.put('/compute/', function (request, response) {
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }
     response.end(JSON.stringify({ "move": next, "time": t, "state_feature": feature_vec }));
-    console.log("Agent { ", playing.strategy + "-" + state.get_playing_agent().DEPTH, "} Compute Move Using: ", t, " ms");
+    var param = (playing instanceof MCTS_1.MCTS) ? playing.N_SIMULATION : playing.DEPTH;
+    console.log("Agent { ", playing.strategy + "-" + param, "} Compute Move Using: ", t, " ms");
 });
 //# sourceMappingURL=www.js.map

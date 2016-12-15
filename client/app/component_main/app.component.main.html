@@ -55,7 +55,7 @@
 
 				</div>
 				<div class=" margin "></div>
-				<sm-select class="fluid" *ngIf="board.redAgentType>0" placeholder="Depth (2)" (change)="board.chooseRedAgentDepth($event.target.value) ">
+				<sm-select class="fluid" *ngIf="board.redAgentType>0 && board.redAgentType!=5" placeholder="Depth (2)" (change)="board.chooseRedAgentDepth($event.target.value) ">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -63,6 +63,13 @@
 					<option>5</option>
 					<option>6</option>
 					<option>7</option>
+				</sm-select>
+				<sm-select class="fluid" *ngIf="board.redAgentType==5" placeholder="Simulations" (change)="board.chooseRedSimulations($event.target.value) ">
+					<option>1000</option>
+					<option>2000</option>
+					<option>3000</option>
+					<option>4000</option>
+					<option>5000</option>
 				</sm-select>
 			</div>
 		</div>
@@ -80,7 +87,7 @@
 				<option>6-Ultimate</option>
 			</sm-select>
 			<div class=" margin "></div>
-			<sm-select class="fluid" *ngIf="board.blackAgentType>0" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
+			<sm-select class="fluid" *ngIf="board.blackAgentType>0 && board.blackAgentType!=5" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
@@ -88,6 +95,13 @@
 				<option>5</option>
 				<option>6</option>
 				<option>7</option>
+			</sm-select>
+			<sm-select class="fluid" *ngIf="board.blackAgentType==5" placeholder="Simulations" (change)="board.chooseBlackSimulations($event.target.value) ">
+				<option>1000</option>
+				<option>2000</option>
+				<option>3000</option>
+				<option>4000</option>
+				<option>5000</option>
 			</sm-select>
 		</div>
 

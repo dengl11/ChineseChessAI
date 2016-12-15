@@ -2,6 +2,7 @@
 
 import { State } from '../Strategy/State/State'
 import { TDLearner } from '../Strategy/TDLearner/TDLearner'
+import { MCTS } from '../Strategy/MCTS/MCTS'
 import { TDLearnerTrained } from '../Strategy/TDLearner/TDLearnerTrained'
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
@@ -62,5 +63,6 @@ app.put('/compute/', function(request, response) {
         feature_vec = playing.extract_state_feature(playing, state, playing.oppoAgent);
     }
     response.end(JSON.stringify({ "move": next, "time": t, "state_feature": feature_vec }));
-    console.log("Agent { ", playing.strategy + "-" + state.get_playing_agent().DEPTH, "} Compute Move Using: ", t, " ms");
+    var param = (playing instanceof MCTS) ? playing.N_SIMULATION : playing.DEPTH;
+    console.log("Agent { ", playing.strategy + "-" + param, "} Compute Move Using: ", t, " ms");
 });
