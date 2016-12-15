@@ -3,6 +3,7 @@ import { Rule } from '../../ChineseChess/Rule/Rule'
 import { InitGame } from '../../ChineseChess/InitGame/init';
 import { GreedyAgent } from '../Greedy/GreedyAgent'
 import { EvalFnAgent } from '../EvalFn/EvaluationFn'
+import { Evaluation } from '../_Param/Evaluation'
 
 export class Agent {
     team: number;
@@ -108,6 +109,33 @@ export class Agent {
         var move = moves[Math.floor(moves.length * Math.random())];
         return [this.getPieceByName(name), move];
     }
+
+
+    getValueOfGreedyMove(pieceName, toPos) {
+        var piece = this.boardState[toPos.toString()];
+        if (piece) return Evaluation.pieceValue(piece[0]);
+        return 0;
+    }
+
+    // get greedy move
+    greedy_move() {
+        var moves = this.get_moves_arr(); //[[movePieceName, move]]
+        var values = moves.map(x => this.getValueOfGreedyMove(x[0], x[1]));
+        var max = -Infinity;
+        var pos = -1;
+        for (var i = 0; i < values.length; i++) {
+            if (values[i] > max) {
+                pos = i;
+                max = values[i];
+            }
+        }
+        if (max > 0) return [this.getPieceByName(moves[pos][0]), moves[pos][1]]; // can capture opponent piece
+        // take random move
+        return this.random_move();
+    }
+
+
+
 
 
     copy() { return new Agent(this.team, this.myPieces.map(x => x.copy())); }

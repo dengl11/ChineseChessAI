@@ -60,7 +60,9 @@ export class State {
         var moves = agent.pastMoves;
         var n = moves.length;
         if (n < 10) return false;
-        return (moves[n - 3].toString() == moves[n - 1].toString());
+        return (moves[n - 3].toString() == moves[n - 1].toString()) &&
+            (moves[n - 5].toString() == moves[n - 3].toString()) &&
+            (moves[n - 7].toString() == moves[n - 5].toString());
     }
 
 
@@ -77,6 +79,7 @@ export class State {
         var agent;
         // console.log(agentDict.strategy)
         var is_repeating = this.check_repeating(agentDict);
+
         if (agentDict.strategy == 0) agent = GreedyAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 1) agent = EvalFnAgent.copyFromDict(agentDict);
         if (agentDict.strategy == 2) agent = Reorder.copyFromDict(agentDict);
