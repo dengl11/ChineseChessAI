@@ -1,0 +1,2287 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install' ]
+2 info using npm@3.10.9
+3 info using node@v7.1.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly loadAllDepsIntoIdealTree Finishing
+20 silly loadIdealTree Finishing
+21 silly currentTree ChineseChessAi@1.0.0
+21 silly currentTree ├── @angular/common@2.0.1
+21 silly currentTree ├── @angular/compiler@2.0.1
+21 silly currentTree ├── @angular/core@2.0.1
+21 silly currentTree ├── @angular/forms@2.0.1
+21 silly currentTree ├── @angular/http@2.0.1
+21 silly currentTree ├── @angular/platform-browser-dynamic@2.0.1
+21 silly currentTree ├── @angular/platform-browser@2.0.1
+21 silly currentTree ├── @angular/router@3.0.0
+21 silly currentTree ├── @angular/upgrade@2.0.1
+21 silly currentTree ├── angular2-in-memory-web-api@0.0.20
+21 silly currentTree ├─┬ body-parser@1.13.3
+21 silly currentTree │ ├── bytes@2.1.0
+21 silly currentTree │ ├── content-type@1.0.2
+21 silly currentTree │ ├─┬ debug@2.2.0
+21 silly currentTree │ │ └── ms@0.7.1
+21 silly currentTree │ ├── depd@1.0.1
+21 silly currentTree │ ├─┬ http-errors@1.3.1
+21 silly currentTree │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ └── statuses@1.3.0
+21 silly currentTree │ ├── iconv-lite@0.4.11
+21 silly currentTree │ ├─┬ on-finished@2.3.0
+21 silly currentTree │ │ └── ee-first@1.1.1
+21 silly currentTree │ ├── qs@4.0.0
+21 silly currentTree │ ├─┬ raw-body@2.1.7
+21 silly currentTree │ │ ├── bytes@2.4.0
+21 silly currentTree │ │ ├── iconv-lite@0.4.13
+21 silly currentTree │ │ └── unpipe@1.0.0
+21 silly currentTree │ └─┬ type-is@1.6.13
+21 silly currentTree │   ├── media-typer@0.3.0
+21 silly currentTree │   └─┬ mime-types@2.1.12
+21 silly currentTree │     └── mime-db@1.24.0
+21 silly currentTree ├─┬ chart.js@2.4.0
+21 silly currentTree │ └─┬ chartjs-color@2.0.0
+21 silly currentTree │   ├─┬ chartjs-color-string@0.4.0
+21 silly currentTree │   │ └── color-name@1.1.1
+21 silly currentTree │   └── color-convert@0.5.3
+21 silly currentTree ├─┬ concurrently@2.2.0
+21 silly currentTree │ ├── bluebird@2.9.6
+21 silly currentTree │ ├─┬ chalk@0.5.1
+21 silly currentTree │ │ ├── ansi-styles@1.1.0
+21 silly currentTree │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │ ├─┬ has-ansi@0.1.0
+21 silly currentTree │ │ │ └── ansi-regex@0.2.1
+21 silly currentTree │ │ ├─┬ strip-ansi@0.3.0
+21 silly currentTree │ │ │ └── ansi-regex@0.2.1
+21 silly currentTree │ │ └── supports-color@0.2.0
+21 silly currentTree │ ├── commander@2.6.0
+21 silly currentTree │ ├─┬ cross-spawn@0.2.9
+21 silly currentTree │ │ └── lru-cache@2.7.3
+21 silly currentTree │ ├── lodash@4.16.6
+21 silly currentTree │ └── rx@2.3.24
+21 silly currentTree ├── core-js@2.4.1
+21 silly currentTree ├─┬ debug@2.3.2
+21 silly currentTree │ └── ms@0.7.2
+21 silly currentTree ├─┬ del@2.2.2
+21 silly currentTree │ ├─┬ globby@5.0.0
+21 silly currentTree │ │ ├─┬ array-union@1.0.2
+21 silly currentTree │ │ │ └── array-uniq@1.0.3
+21 silly currentTree │ │ ├── arrify@1.0.1
+21 silly currentTree │ │ └─┬ glob@7.1.1
+21 silly currentTree │ │   ├── fs.realpath@1.0.0
+21 silly currentTree │ │   ├─┬ inflight@1.0.6
+21 silly currentTree │ │   │ └── wrappy@1.0.2
+21 silly currentTree │ │   ├── inherits@2.0.3
+21 silly currentTree │ │   ├─┬ minimatch@3.0.3
+21 silly currentTree │ │   │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │   │   ├── balanced-match@0.4.2
+21 silly currentTree │ │   │   └── concat-map@0.0.1
+21 silly currentTree │ │   ├─┬ once@1.4.0
+21 silly currentTree │ │   │ └── wrappy@1.0.2
+21 silly currentTree │ │   └── path-is-absolute@1.0.1
+21 silly currentTree │ ├── is-path-cwd@1.0.0
+21 silly currentTree │ ├─┬ is-path-in-cwd@1.0.0
+21 silly currentTree │ │ └─┬ is-path-inside@1.0.0
+21 silly currentTree │ │   └── path-is-inside@1.0.2
+21 silly currentTree │ ├── object-assign@4.1.0
+21 silly currentTree │ ├── pify@2.3.0
+21 silly currentTree │ ├─┬ pinkie-promise@2.0.1
+21 silly currentTree │ │ └── pinkie@2.0.4
+21 silly currentTree │ └─┬ rimraf@2.5.4
+21 silly currentTree │   └─┬ glob@7.1.1
+21 silly currentTree │     ├── fs.realpath@1.0.0
+21 silly currentTree │     ├─┬ inflight@1.0.6
+21 silly currentTree │     │ └── wrappy@1.0.2
+21 silly currentTree │     ├── inherits@2.0.3
+21 silly currentTree │     ├─┬ minimatch@3.0.3
+21 silly currentTree │     │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │     │   ├── balanced-match@0.4.2
+21 silly currentTree │     │   └── concat-map@0.0.1
+21 silly currentTree │     ├─┬ once@1.4.0
+21 silly currentTree │     │ └── wrappy@1.0.2
+21 silly currentTree │     └── path-is-absolute@1.0.1
+21 silly currentTree ├─┬ express@4.14.0
+21 silly currentTree │ ├─┬ accepts@1.3.3
+21 silly currentTree │ │ ├─┬ mime-types@2.1.12
+21 silly currentTree │ │ │ └── mime-db@1.24.0
+21 silly currentTree │ │ └── negotiator@0.6.1
+21 silly currentTree │ ├── array-flatten@1.1.1
+21 silly currentTree │ ├── content-disposition@0.5.1
+21 silly currentTree │ ├── content-type@1.0.2
+21 silly currentTree │ ├── cookie-signature@1.0.6
+21 silly currentTree │ ├── cookie@0.3.1
+21 silly currentTree │ ├─┬ debug@2.2.0
+21 silly currentTree │ │ └── ms@0.7.1
+21 silly currentTree │ ├── depd@1.1.0
+21 silly currentTree │ ├── encodeurl@1.0.1
+21 silly currentTree │ ├── escape-html@1.0.3
+21 silly currentTree │ ├── etag@1.7.0
+21 silly currentTree │ ├─┬ finalhandler@0.5.0
+21 silly currentTree │ │ ├── statuses@1.3.0
+21 silly currentTree │ │ └── unpipe@1.0.0
+21 silly currentTree │ ├── fresh@0.3.0
+21 silly currentTree │ ├── merge-descriptors@1.0.1
+21 silly currentTree │ ├── methods@1.1.2
+21 silly currentTree │ ├─┬ on-finished@2.3.0
+21 silly currentTree │ │ └── ee-first@1.1.1
+21 silly currentTree │ ├── parseurl@1.3.1
+21 silly currentTree │ ├── path-to-regexp@0.1.7
+21 silly currentTree │ ├─┬ proxy-addr@1.1.2
+21 silly currentTree │ │ ├── forwarded@0.1.0
+21 silly currentTree │ │ └── ipaddr.js@1.1.1
+21 silly currentTree │ ├── qs@6.2.0
+21 silly currentTree │ ├── range-parser@1.2.0
+21 silly currentTree │ ├─┬ send@0.14.1
+21 silly currentTree │ │ ├── destroy@1.0.4
+21 silly currentTree │ │ ├─┬ http-errors@1.5.0
+21 silly currentTree │ │ │ ├── inherits@2.0.1
+21 silly currentTree │ │ │ └── setprototypeof@1.0.1
+21 silly currentTree │ │ ├── mime@1.3.4
+21 silly currentTree │ │ ├── ms@0.7.1
+21 silly currentTree │ │ └── statuses@1.3.0
+21 silly currentTree │ ├── serve-static@1.11.1
+21 silly currentTree │ ├─┬ type-is@1.6.13
+21 silly currentTree │ │ ├── media-typer@0.3.0
+21 silly currentTree │ │ └─┬ mime-types@2.1.12
+21 silly currentTree │ │   └── mime-db@1.24.0
+21 silly currentTree │ ├── utils-merge@1.0.0
+21 silly currentTree │ └── vary@1.1.0
+21 silly currentTree ├─┬ gulp@3.9.1
+21 silly currentTree │ ├── archy@1.0.0
+21 silly currentTree │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ └── supports-color@2.0.0
+21 silly currentTree │ ├── deprecated@0.0.1
+21 silly currentTree │ ├─┬ gulp-util@3.0.7
+21 silly currentTree │ │ ├── array-differ@1.0.0
+21 silly currentTree │ │ ├── array-uniq@1.0.3
+21 silly currentTree │ │ ├── beeper@1.1.0
+21 silly currentTree │ │ ├─┬ dateformat@1.0.12
+21 silly currentTree │ │ │ ├── get-stdin@4.0.1
+21 silly currentTree │ │ │ └─┬ meow@3.7.0
+21 silly currentTree │ │ │   ├─┬ camelcase-keys@2.1.0
+21 silly currentTree │ │ │   │ └── camelcase@2.1.1
+21 silly currentTree │ │ │   ├── decamelize@1.2.0
+21 silly currentTree │ │ │   ├─┬ loud-rejection@1.6.0
+21 silly currentTree │ │ │   │ ├─┬ currently-unhandled@0.4.1
+21 silly currentTree │ │ │   │ │ └── array-find-index@1.0.2
+21 silly currentTree │ │ │   │ └── signal-exit@3.0.1
+21 silly currentTree │ │ │   ├── map-obj@1.0.1
+21 silly currentTree │ │ │   ├─┬ normalize-package-data@2.3.5
+21 silly currentTree │ │ │   │ ├── hosted-git-info@2.1.5
+21 silly currentTree │ │ │   │ ├─┬ is-builtin-module@1.0.0
+21 silly currentTree │ │ │   │ │ └── builtin-modules@1.1.1
+21 silly currentTree │ │ │   │ └─┬ validate-npm-package-license@3.0.1
+21 silly currentTree │ │ │   │   ├─┬ spdx-correct@1.0.2
+21 silly currentTree │ │ │   │   │ └── spdx-license-ids@1.2.2
+21 silly currentTree │ │ │   │   └── spdx-expression-parse@1.0.4
+21 silly currentTree │ │ │   ├── object-assign@4.1.0
+21 silly currentTree │ │ │   ├─┬ read-pkg-up@1.0.1
+21 silly currentTree │ │ │   │ ├─┬ find-up@1.1.2
+21 silly currentTree │ │ │   │ │ ├── path-exists@2.1.0
+21 silly currentTree │ │ │   │ │ └─┬ pinkie-promise@2.0.1
+21 silly currentTree │ │ │   │ │   └── pinkie@2.0.4
+21 silly currentTree │ │ │   │ └─┬ read-pkg@1.1.0
+21 silly currentTree │ │ │   │   ├─┬ load-json-file@1.1.0
+21 silly currentTree │ │ │   │   │ ├── graceful-fs@4.1.10
+21 silly currentTree │ │ │   │   │ ├─┬ parse-json@2.2.0
+21 silly currentTree │ │ │   │   │ │ └─┬ error-ex@1.3.0
+21 silly currentTree │ │ │   │   │ │   └── is-arrayish@0.2.1
+21 silly currentTree │ │ │   │   │ ├── pify@2.3.0
+21 silly currentTree │ │ │   │   │ ├─┬ pinkie-promise@2.0.1
+21 silly currentTree │ │ │   │   │ │ └── pinkie@2.0.4
+21 silly currentTree │ │ │   │   │ └─┬ strip-bom@2.0.0
+21 silly currentTree │ │ │   │   │   └── is-utf8@0.2.1
+21 silly currentTree │ │ │   │   └─┬ path-type@1.1.0
+21 silly currentTree │ │ │   │     ├── graceful-fs@4.1.10
+21 silly currentTree │ │ │   │     ├── pify@2.3.0
+21 silly currentTree │ │ │   │     └─┬ pinkie-promise@2.0.1
+21 silly currentTree │ │ │   │       └── pinkie@2.0.4
+21 silly currentTree │ │ │   ├─┬ redent@1.0.0
+21 silly currentTree │ │ │   │ ├─┬ indent-string@2.1.0
+21 silly currentTree │ │ │   │ │ └─┬ repeating@2.0.1
+21 silly currentTree │ │ │   │ │   └─┬ is-finite@1.0.2
+21 silly currentTree │ │ │   │ │     └── number-is-nan@1.0.1
+21 silly currentTree │ │ │   │ └── strip-indent@1.0.1
+21 silly currentTree │ │ │   └── trim-newlines@1.0.0
+21 silly currentTree │ │ ├─┬ fancy-log@1.2.0
+21 silly currentTree │ │ │ └── time-stamp@1.0.1
+21 silly currentTree │ │ ├─┬ gulplog@1.0.0
+21 silly currentTree │ │ │ └─┬ glogg@1.0.0
+21 silly currentTree │ │ │   └── sparkles@1.0.0
+21 silly currentTree │ │ ├─┬ has-gulplog@0.1.0
+21 silly currentTree │ │ │ └── sparkles@1.0.0
+21 silly currentTree │ │ ├── lodash._reescape@3.0.0
+21 silly currentTree │ │ ├── lodash._reevaluate@3.0.0
+21 silly currentTree │ │ ├── lodash._reinterpolate@3.0.0
+21 silly currentTree │ │ ├─┬ lodash.template@3.6.2
+21 silly currentTree │ │ │ ├── lodash._basecopy@3.0.1
+21 silly currentTree │ │ │ ├── lodash._basetostring@3.0.1
+21 silly currentTree │ │ │ ├── lodash._basevalues@3.0.0
+21 silly currentTree │ │ │ ├── lodash._isiterateecall@3.0.9
+21 silly currentTree │ │ │ ├─┬ lodash.escape@3.2.0
+21 silly currentTree │ │ │ │ └── lodash._root@3.0.1
+21 silly currentTree │ │ │ ├─┬ lodash.keys@3.1.2
+21 silly currentTree │ │ │ │ ├── lodash._getnative@3.9.1
+21 silly currentTree │ │ │ │ ├── lodash.isarguments@3.1.0
+21 silly currentTree │ │ │ │ └── lodash.isarray@3.0.4
+21 silly currentTree │ │ │ ├── lodash.restparam@3.6.1
+21 silly currentTree │ │ │ └── lodash.templatesettings@3.1.1
+21 silly currentTree │ │ ├─┬ multipipe@0.1.2
+21 silly currentTree │ │ │ └─┬ duplexer2@0.0.2
+21 silly currentTree │ │ │   └─┬ readable-stream@1.1.14
+21 silly currentTree │ │ │     ├── core-util-is@1.0.2
+21 silly currentTree │ │ │     ├── inherits@2.0.3
+21 silly currentTree │ │ │     ├── isarray@0.0.1
+21 silly currentTree │ │ │     └── string_decoder@0.10.31
+21 silly currentTree │ │ ├── object-assign@3.0.0
+21 silly currentTree │ │ ├── replace-ext@0.0.1
+21 silly currentTree │ │ ├─┬ through2@2.0.1
+21 silly currentTree │ │ │ ├─┬ readable-stream@2.0.6
+21 silly currentTree │ │ │ │ ├── core-util-is@1.0.2
+21 silly currentTree │ │ │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ │ │ ├── isarray@1.0.0
+21 silly currentTree │ │ │ │ ├── process-nextick-args@1.0.7
+21 silly currentTree │ │ │ │ ├── string_decoder@0.10.31
+21 silly currentTree │ │ │ │ └── util-deprecate@1.0.2
+21 silly currentTree │ │ │ └── xtend@4.0.1
+21 silly currentTree │ │ └─┬ vinyl@0.5.3
+21 silly currentTree │ │   ├── clone-stats@0.0.1
+21 silly currentTree │ │   └── clone@1.0.2
+21 silly currentTree │ ├── interpret@1.0.1
+21 silly currentTree │ ├─┬ liftoff@2.3.0
+21 silly currentTree │ │ ├── extend@3.0.0
+21 silly currentTree │ │ ├─┬ findup-sync@0.4.3
+21 silly currentTree │ │ │ ├─┬ detect-file@0.1.0
+21 silly currentTree │ │ │ │ └── fs-exists-sync@0.1.0
+21 silly currentTree │ │ │ ├─┬ is-glob@2.0.1
+21 silly currentTree │ │ │ │ └── is-extglob@1.0.0
+21 silly currentTree │ │ │ ├─┬ micromatch@2.3.11
+21 silly currentTree │ │ │ │ ├─┬ arr-diff@2.0.0
+21 silly currentTree │ │ │ │ │ └── arr-flatten@1.0.1
+21 silly currentTree │ │ │ │ ├── array-unique@0.2.1
+21 silly currentTree │ │ │ │ ├─┬ braces@1.8.5
+21 silly currentTree │ │ │ │ │ ├─┬ expand-range@1.8.2
+21 silly currentTree │ │ │ │ │ │ └─┬ fill-range@2.2.3
+21 silly currentTree │ │ │ │ │ │   ├── is-number@2.1.0
+21 silly currentTree │ │ │ │ │ │   ├─┬ isobject@2.1.0
+21 silly currentTree │ │ │ │ │ │   │ └── isarray@1.0.0
+21 silly currentTree │ │ │ │ │ │   ├── randomatic@1.1.5
+21 silly currentTree │ │ │ │ │ │   └── repeat-string@1.6.1
+21 silly currentTree │ │ │ │ │ ├── preserve@0.2.0
+21 silly currentTree │ │ │ │ │ └── repeat-element@1.1.2
+21 silly currentTree │ │ │ │ ├─┬ expand-brackets@0.1.5
+21 silly currentTree │ │ │ │ │ └── is-posix-bracket@0.1.1
+21 silly currentTree │ │ │ │ ├── extglob@0.3.2
+21 silly currentTree │ │ │ │ ├── filename-regex@2.0.0
+21 silly currentTree │ │ │ │ ├── is-extglob@1.0.0
+21 silly currentTree │ │ │ │ ├─┬ kind-of@3.0.4
+21 silly currentTree │ │ │ │ │ └── is-buffer@1.1.4
+21 silly currentTree │ │ │ │ ├── normalize-path@2.0.1
+21 silly currentTree │ │ │ │ ├─┬ object.omit@2.0.1
+21 silly currentTree │ │ │ │ │ ├─┬ for-own@0.1.4
+21 silly currentTree │ │ │ │ │ │ └── for-in@0.1.6
+21 silly currentTree │ │ │ │ │ └── is-extendable@0.1.1
+21 silly currentTree │ │ │ │ ├─┬ parse-glob@3.0.4
+21 silly currentTree │ │ │ │ │ ├─┬ glob-base@0.3.0
+21 silly currentTree │ │ │ │ │ │ └── glob-parent@2.0.0
+21 silly currentTree │ │ │ │ │ └── is-dotfile@1.0.2
+21 silly currentTree │ │ │ │ └─┬ regex-cache@0.4.3
+21 silly currentTree │ │ │ │   ├── is-equal-shallow@0.1.3
+21 silly currentTree │ │ │ │   └── is-primitive@2.0.0
+21 silly currentTree │ │ │ └─┬ resolve-dir@0.1.1
+21 silly currentTree │ │ │   ├─┬ expand-tilde@1.2.2
+21 silly currentTree │ │ │   │ └── os-homedir@1.0.2
+21 silly currentTree │ │ │   └─┬ global-modules@0.2.3
+21 silly currentTree │ │ │     ├─┬ global-prefix@0.1.4
+21 silly currentTree │ │ │     │ ├── ini@1.3.4
+21 silly currentTree │ │ │     │ ├─┬ osenv@0.1.3
+21 silly currentTree │ │ │     │ │ ├── os-homedir@1.0.2
+21 silly currentTree │ │ │     │ │ └── os-tmpdir@1.0.2
+21 silly currentTree │ │ │     │ └─┬ which@1.2.11
+21 silly currentTree │ │ │     │   └── isexe@1.1.2
+21 silly currentTree │ │ │     └── is-windows@0.2.0
+21 silly currentTree │ │ ├─┬ fined@1.0.2
+21 silly currentTree │ │ │ ├─┬ expand-tilde@1.2.2
+21 silly currentTree │ │ │ │ └── os-homedir@1.0.2
+21 silly currentTree │ │ │ ├── lodash.assignwith@4.2.0
+21 silly currentTree │ │ │ ├── lodash.isempty@4.4.0
+21 silly currentTree │ │ │ ├── lodash.pick@4.4.0
+21 silly currentTree │ │ │ └─┬ parse-filepath@1.0.1
+21 silly currentTree │ │ │   ├─┬ is-absolute@0.2.6
+21 silly currentTree │ │ │   │ ├─┬ is-relative@0.2.1
+21 silly currentTree │ │ │   │ │ └─┬ is-unc-path@0.1.1
+21 silly currentTree │ │ │   │ │   └── unc-path-regex@0.1.2
+21 silly currentTree │ │ │   │ └── is-windows@0.2.0
+21 silly currentTree │ │ │   ├── map-cache@0.2.2
+21 silly currentTree │ │ │   └─┬ path-root@0.1.1
+21 silly currentTree │ │ │     └── path-root-regex@0.1.2
+21 silly currentTree │ │ ├── flagged-respawn@0.3.2
+21 silly currentTree │ │ ├── lodash.isplainobject@4.0.6
+21 silly currentTree │ │ ├── lodash.isstring@4.0.1
+21 silly currentTree │ │ ├── lodash.mapvalues@4.6.0
+21 silly currentTree │ │ ├── rechoir@0.6.2
+21 silly currentTree │ │ └── resolve@1.1.7
+21 silly currentTree │ ├── minimist@1.2.0
+21 silly currentTree │ ├─┬ orchestrator@0.3.8
+21 silly currentTree │ │ ├─┬ end-of-stream@0.1.5
+21 silly currentTree │ │ │ └─┬ once@1.3.3
+21 silly currentTree │ │ │   └── wrappy@1.0.2
+21 silly currentTree │ │ ├── sequencify@0.0.7
+21 silly currentTree │ │ └── stream-consume@0.1.0
+21 silly currentTree │ ├── pretty-hrtime@1.0.3
+21 silly currentTree │ ├── semver@4.3.6
+21 silly currentTree │ ├─┬ tildify@1.2.0
+21 silly currentTree │ │ └── os-homedir@1.0.2
+21 silly currentTree │ ├─┬ v8flags@2.0.11
+21 silly currentTree │ │ └── user-home@1.1.1
+21 silly currentTree │ └─┬ vinyl-fs@0.3.14
+21 silly currentTree │   ├─┬ defaults@1.0.3
+21 silly currentTree │   │ └── clone@1.0.2
+21 silly currentTree │   ├─┬ glob-stream@3.1.18
+21 silly currentTree │   │ ├─┬ glob@4.5.3
+21 silly currentTree │   │ │ ├─┬ inflight@1.0.6
+21 silly currentTree │   │ │ │ └── wrappy@1.0.2
+21 silly currentTree │   │ │ ├── inherits@2.0.3
+21 silly currentTree │   │ │ └─┬ once@1.4.0
+21 silly currentTree │   │ │   └── wrappy@1.0.2
+21 silly currentTree │   │ ├─┬ glob2base@0.0.12
+21 silly currentTree │   │ │ └── find-index@0.1.1
+21 silly currentTree │   │ ├─┬ minimatch@2.0.10
+21 silly currentTree │   │ │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │   │ │   ├── balanced-match@0.4.2
+21 silly currentTree │   │ │   └── concat-map@0.0.1
+21 silly currentTree │   │ ├── ordered-read-streams@0.1.0
+21 silly currentTree │   │ └── unique-stream@1.0.0
+21 silly currentTree │   ├─┬ glob-watcher@0.0.6
+21 silly currentTree │   │ └─┬ gaze@0.5.2
+21 silly currentTree │   │   └─┬ globule@0.1.0
+21 silly currentTree │   │     ├─┬ glob@3.1.21
+21 silly currentTree │   │     │ ├── graceful-fs@1.2.3
+21 silly currentTree │   │     │ └── inherits@1.0.2
+21 silly currentTree │   │     ├── lodash@1.0.2
+21 silly currentTree │   │     └─┬ minimatch@0.2.14
+21 silly currentTree │   │       ├── lru-cache@2.7.3
+21 silly currentTree │   │       └── sigmund@1.0.1
+21 silly currentTree │   ├─┬ graceful-fs@3.0.11
+21 silly currentTree │   │ └── natives@1.1.0
+21 silly currentTree │   ├─┬ mkdirp@0.5.1
+21 silly currentTree │   │ └── minimist@0.0.8
+21 silly currentTree │   ├─┬ strip-bom@1.0.0
+21 silly currentTree │   │ ├── first-chunk-stream@1.0.0
+21 silly currentTree │   │ └── is-utf8@0.2.1
+21 silly currentTree │   ├─┬ through2@0.6.5
+21 silly currentTree │   │ ├─┬ readable-stream@1.0.34
+21 silly currentTree │   │ │ ├── core-util-is@1.0.2
+21 silly currentTree │   │ │ ├── inherits@2.0.3
+21 silly currentTree │   │ │ ├── isarray@0.0.1
+21 silly currentTree │   │ │ └── string_decoder@0.10.31
+21 silly currentTree │   │ └── xtend@4.0.1
+21 silly currentTree │   └─┬ vinyl@0.4.6
+21 silly currentTree │     ├── clone-stats@0.0.1
+21 silly currentTree │     └── clone@0.2.0
+21 silly currentTree ├── moment@2.15.2
+21 silly currentTree ├── ng-semantic@1.1.11
+21 silly currentTree ├─┬ ng2-charts@1.4.1
+21 silly currentTree │ └─┬ chart.js@2.3.0
+21 silly currentTree │   └─┬ chartjs-color@2.0.0
+21 silly currentTree │     ├─┬ chartjs-color-string@0.4.0
+21 silly currentTree │     │ └── color-name@1.1.1
+21 silly currentTree │     └── color-convert@0.5.3
+21 silly currentTree ├─┬ nodemon@1.11.0
+21 silly currentTree │ ├─┬ chokidar@1.6.1
+21 silly currentTree │ │ ├─┬ anymatch@1.3.0
+21 silly currentTree │ │ │ ├── arrify@1.0.1
+21 silly currentTree │ │ │ └─┬ micromatch@2.3.11
+21 silly currentTree │ │ │   ├─┬ arr-diff@2.0.0
+21 silly currentTree │ │ │   │ └── arr-flatten@1.0.1
+21 silly currentTree │ │ │   ├── array-unique@0.2.1
+21 silly currentTree │ │ │   ├─┬ braces@1.8.5
+21 silly currentTree │ │ │   │ ├─┬ expand-range@1.8.2
+21 silly currentTree │ │ │   │ │ └─┬ fill-range@2.2.3
+21 silly currentTree │ │ │   │ │   ├── is-number@2.1.0
+21 silly currentTree │ │ │   │ │   ├─┬ isobject@2.1.0
+21 silly currentTree │ │ │   │ │   │ └── isarray@1.0.0
+21 silly currentTree │ │ │   │ │   ├── randomatic@1.1.5
+21 silly currentTree │ │ │   │ │   └── repeat-string@1.6.1
+21 silly currentTree │ │ │   │ ├── preserve@0.2.0
+21 silly currentTree │ │ │   │ └── repeat-element@1.1.2
+21 silly currentTree │ │ │   ├─┬ expand-brackets@0.1.5
+21 silly currentTree │ │ │   │ └── is-posix-bracket@0.1.1
+21 silly currentTree │ │ │   ├── extglob@0.3.2
+21 silly currentTree │ │ │   ├── filename-regex@2.0.0
+21 silly currentTree │ │ │   ├── is-extglob@1.0.0
+21 silly currentTree │ │ │   ├─┬ kind-of@3.0.4
+21 silly currentTree │ │ │   │ └── is-buffer@1.1.4
+21 silly currentTree │ │ │   ├── normalize-path@2.0.1
+21 silly currentTree │ │ │   ├─┬ object.omit@2.0.1
+21 silly currentTree │ │ │   │ ├─┬ for-own@0.1.4
+21 silly currentTree │ │ │   │ │ └── for-in@0.1.6
+21 silly currentTree │ │ │   │ └── is-extendable@0.1.1
+21 silly currentTree │ │ │   ├─┬ parse-glob@3.0.4
+21 silly currentTree │ │ │   │ ├── glob-base@0.3.0
+21 silly currentTree │ │ │   │ └── is-dotfile@1.0.2
+21 silly currentTree │ │ │   └─┬ regex-cache@0.4.3
+21 silly currentTree │ │ │     ├── is-equal-shallow@0.1.3
+21 silly currentTree │ │ │     └── is-primitive@2.0.0
+21 silly currentTree │ │ ├── async-each@1.0.1
+21 silly currentTree │ │ ├─┬ fsevents@1.0.15
+21 silly currentTree │ │ │ ├── abbrev@1.0.9
+21 silly currentTree │ │ │ ├── ansi-regex@2.0.0
+21 silly currentTree │ │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │ │ ├── aproba@1.0.4
+21 silly currentTree │ │ │ ├── are-we-there-yet@1.1.2
+21 silly currentTree │ │ │ ├── asn1@0.2.3
+21 silly currentTree │ │ │ ├── assert-plus@0.2.0
+21 silly currentTree │ │ │ ├── async@1.5.2
+21 silly currentTree │ │ │ ├── aws-sign2@0.6.0
+21 silly currentTree │ │ │ ├── aws4@1.4.1
+21 silly currentTree │ │ │ ├── balanced-match@0.4.2
+21 silly currentTree │ │ │ ├─┬ bl@1.1.2
+21 silly currentTree │ │ │ │ └── readable-stream@2.0.6
+21 silly currentTree │ │ │ ├── block-stream@0.0.9
+21 silly currentTree │ │ │ ├── boom@2.10.1
+21 silly currentTree │ │ │ ├── brace-expansion@1.1.5
+21 silly currentTree │ │ │ ├── buffer-shims@1.0.0
+21 silly currentTree │ │ │ ├── caseless@0.11.0
+21 silly currentTree │ │ │ ├── chalk@1.1.3
+21 silly currentTree │ │ │ ├── code-point-at@1.0.0
+21 silly currentTree │ │ │ ├── combined-stream@1.0.5
+21 silly currentTree │ │ │ ├── commander@2.9.0
+21 silly currentTree │ │ │ ├── concat-map@0.0.1
+21 silly currentTree │ │ │ ├── console-control-strings@1.1.0
+21 silly currentTree │ │ │ ├── core-util-is@1.0.2
+21 silly currentTree │ │ │ ├── cryptiles@2.0.5
+21 silly currentTree │ │ │ ├─┬ dashdash@1.14.0
+21 silly currentTree │ │ │ │ └── assert-plus@1.0.0
+21 silly currentTree │ │ │ ├── debug@2.2.0
+21 silly currentTree │ │ │ ├── deep-extend@0.4.1
+21 silly currentTree │ │ │ ├── delayed-stream@1.0.0
+21 silly currentTree │ │ │ ├── delegates@1.0.0
+21 silly currentTree │ │ │ ├── ecc-jsbn@0.1.1
+21 silly currentTree │ │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │ │ ├── extend@3.0.0
+21 silly currentTree │ │ │ ├── extsprintf@1.0.2
+21 silly currentTree │ │ │ ├── forever-agent@0.6.1
+21 silly currentTree │ │ │ ├── form-data@1.0.0-rc4
+21 silly currentTree │ │ │ ├── fs.realpath@1.0.0
+21 silly currentTree │ │ │ ├── fstream-ignore@1.0.5
+21 silly currentTree │ │ │ ├── fstream@1.0.10
+21 silly currentTree │ │ │ ├── gauge@2.6.0
+21 silly currentTree │ │ │ ├── generate-function@2.0.0
+21 silly currentTree │ │ │ ├── generate-object-property@1.2.0
+21 silly currentTree │ │ │ ├─┬ getpass@0.1.6
+21 silly currentTree │ │ │ │ └── assert-plus@1.0.0
+21 silly currentTree │ │ │ ├── glob@7.0.5
+21 silly currentTree │ │ │ ├── graceful-fs@4.1.4
+21 silly currentTree │ │ │ ├── graceful-readlink@1.0.1
+21 silly currentTree │ │ │ ├── har-validator@2.0.6
+21 silly currentTree │ │ │ ├── has-ansi@2.0.0
+21 silly currentTree │ │ │ ├── has-color@0.1.7
+21 silly currentTree │ │ │ ├── has-unicode@2.0.1
+21 silly currentTree │ │ │ ├── hawk@3.1.3
+21 silly currentTree │ │ │ ├── hoek@2.16.3
+21 silly currentTree │ │ │ ├── http-signature@1.1.1
+21 silly currentTree │ │ │ ├── inflight@1.0.5
+21 silly currentTree │ │ │ ├── inherits@2.0.1
+21 silly currentTree │ │ │ ├── ini@1.3.4
+21 silly currentTree │ │ │ ├── is-fullwidth-code-point@1.0.0
+21 silly currentTree │ │ │ ├── is-my-json-valid@2.13.1
+21 silly currentTree │ │ │ ├── is-property@1.0.2
+21 silly currentTree │ │ │ ├── is-typedarray@1.0.0
+21 silly currentTree │ │ │ ├── isarray@1.0.0
+21 silly currentTree │ │ │ ├── isstream@0.1.2
+21 silly currentTree │ │ │ ├── jodid25519@1.0.2
+21 silly currentTree │ │ │ ├── jsbn@0.1.0
+21 silly currentTree │ │ │ ├── json-schema@0.2.2
+21 silly currentTree │ │ │ ├── json-stringify-safe@5.0.1
+21 silly currentTree │ │ │ ├── jsonpointer@2.0.0
+21 silly currentTree │ │ │ ├── jsprim@1.3.0
+21 silly currentTree │ │ │ ├── mime-db@1.23.0
+21 silly currentTree │ │ │ ├── mime-types@2.1.11
+21 silly currentTree │ │ │ ├── minimatch@3.0.2
+21 silly currentTree │ │ │ ├── minimist@0.0.8
+21 silly currentTree │ │ │ ├── mkdirp@0.5.1
+21 silly currentTree │ │ │ ├── ms@0.7.1
+21 silly currentTree │ │ │ ├── nan@2.4.0
+21 silly currentTree │ │ │ ├── node-pre-gyp@0.6.29
+21 silly currentTree │ │ │ ├── node-uuid@1.4.7
+21 silly currentTree │ │ │ ├── nopt@3.0.6
+21 silly currentTree │ │ │ ├── npmlog@3.1.2
+21 silly currentTree │ │ │ ├── number-is-nan@1.0.0
+21 silly currentTree │ │ │ ├── oauth-sign@0.8.2
+21 silly currentTree │ │ │ ├── object-assign@4.1.0
+21 silly currentTree │ │ │ ├── once@1.3.3
+21 silly currentTree │ │ │ ├── path-is-absolute@1.0.0
+21 silly currentTree │ │ │ ├── pinkie-promise@2.0.1
+21 silly currentTree │ │ │ ├── pinkie@2.0.4
+21 silly currentTree │ │ │ ├── process-nextick-args@1.0.7
+21 silly currentTree │ │ │ ├── qs@6.2.0
+21 silly currentTree │ │ │ ├─┬ rc@1.1.6
+21 silly currentTree │ │ │ │ └── minimist@1.2.0
+21 silly currentTree │ │ │ ├── readable-stream@2.1.4
+21 silly currentTree │ │ │ ├── request@2.73.0
+21 silly currentTree │ │ │ ├── rimraf@2.5.3
+21 silly currentTree │ │ │ ├── semver@5.2.0
+21 silly currentTree │ │ │ ├── set-blocking@2.0.0
+21 silly currentTree │ │ │ ├── signal-exit@3.0.0
+21 silly currentTree │ │ │ ├── sntp@1.0.9
+21 silly currentTree │ │ │ ├─┬ sshpk@1.8.3
+21 silly currentTree │ │ │ │ └── assert-plus@1.0.0
+21 silly currentTree │ │ │ ├── string_decoder@0.10.31
+21 silly currentTree │ │ │ ├── string-width@1.0.1
+21 silly currentTree │ │ │ ├── stringstream@0.0.5
+21 silly currentTree │ │ │ ├── strip-ansi@3.0.1
+21 silly currentTree │ │ │ ├── strip-json-comments@1.0.4
+21 silly currentTree │ │ │ ├── supports-color@2.0.0
+21 silly currentTree │ │ │ ├── tar-pack@3.1.4
+21 silly currentTree │ │ │ ├── tar@2.2.1
+21 silly currentTree │ │ │ ├── tough-cookie@2.2.2
+21 silly currentTree │ │ │ ├── tunnel-agent@0.4.3
+21 silly currentTree │ │ │ ├── tweetnacl@0.13.3
+21 silly currentTree │ │ │ ├── uid-number@0.0.6
+21 silly currentTree │ │ │ ├── util-deprecate@1.0.2
+21 silly currentTree │ │ │ ├── verror@1.3.6
+21 silly currentTree │ │ │ ├── wide-align@1.1.0
+21 silly currentTree │ │ │ ├── wrappy@1.0.2
+21 silly currentTree │ │ │ └── xtend@4.0.1
+21 silly currentTree │ │ ├── glob-parent@2.0.0
+21 silly currentTree │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ ├─┬ is-binary-path@1.0.1
+21 silly currentTree │ │ │ └── binary-extensions@1.7.0
+21 silly currentTree │ │ ├─┬ is-glob@2.0.1
+21 silly currentTree │ │ │ └── is-extglob@1.0.0
+21 silly currentTree │ │ ├── path-is-absolute@1.0.1
+21 silly currentTree │ │ └─┬ readdirp@2.1.0
+21 silly currentTree │ │   ├── graceful-fs@4.1.10
+21 silly currentTree │ │   ├─┬ readable-stream@2.1.5
+21 silly currentTree │ │   │ ├── buffer-shims@1.0.0
+21 silly currentTree │ │   │ ├── core-util-is@1.0.2
+21 silly currentTree │ │   │ ├── isarray@1.0.0
+21 silly currentTree │ │   │ ├── process-nextick-args@1.0.7
+21 silly currentTree │ │   │ ├── string_decoder@0.10.31
+21 silly currentTree │ │   │ └── util-deprecate@1.0.2
+21 silly currentTree │ │   └── set-immediate-shim@1.0.1
+21 silly currentTree │ ├── es6-promise@3.3.1
+21 silly currentTree │ ├── ignore-by-default@1.0.1
+21 silly currentTree │ ├─┬ lodash.defaults@3.1.2
+21 silly currentTree │ │ ├─┬ lodash.assign@3.2.0
+21 silly currentTree │ │ │ ├─┬ lodash._baseassign@3.2.0
+21 silly currentTree │ │ │ │ └── lodash._basecopy@3.0.1
+21 silly currentTree │ │ │ ├─┬ lodash._createassigner@3.1.1
+21 silly currentTree │ │ │ │ ├── lodash._bindcallback@3.0.1
+21 silly currentTree │ │ │ │ └── lodash._isiterateecall@3.0.9
+21 silly currentTree │ │ │ └─┬ lodash.keys@3.1.2
+21 silly currentTree │ │ │   ├── lodash._getnative@3.9.1
+21 silly currentTree │ │ │   ├── lodash.isarguments@3.1.0
+21 silly currentTree │ │ │   └── lodash.isarray@3.0.4
+21 silly currentTree │ │ └── lodash.restparam@3.6.1
+21 silly currentTree │ ├─┬ minimatch@3.0.3
+21 silly currentTree │ │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │   ├── balanced-match@0.4.2
+21 silly currentTree │ │   └── concat-map@0.0.1
+21 silly currentTree │ ├─┬ ps-tree@1.1.0
+21 silly currentTree │ │ └─┬ event-stream@3.3.4
+21 silly currentTree │ │   ├── duplexer@0.1.1
+21 silly currentTree │ │   ├── from@0.1.3
+21 silly currentTree │ │   ├── map-stream@0.1.0
+21 silly currentTree │ │   ├── pause-stream@0.0.11
+21 silly currentTree │ │   ├── split@0.3.3
+21 silly currentTree │ │   ├── stream-combiner@0.0.4
+21 silly currentTree │ │   └── through@2.3.8
+21 silly currentTree │ ├─┬ touch@1.0.0
+21 silly currentTree │ │ └─┬ nopt@1.0.10
+21 silly currentTree │ │   └── abbrev@1.0.9
+21 silly currentTree │ ├── undefsafe@0.0.3
+21 silly currentTree │ └─┬ update-notifier@0.5.0
+21 silly currentTree │   ├─┬ chalk@1.1.3
+21 silly currentTree │   │ ├── ansi-styles@2.2.1
+21 silly currentTree │   │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │   │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │   │ │ └── ansi-regex@2.0.0
+21 silly currentTree │   │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │   │ │ └── ansi-regex@2.0.0
+21 silly currentTree │   │ └── supports-color@2.0.0
+21 silly currentTree │   ├─┬ configstore@1.4.0
+21 silly currentTree │   │ ├── graceful-fs@4.1.10
+21 silly currentTree │   │ ├─┬ mkdirp@0.5.1
+21 silly currentTree │   │ │ └── minimist@0.0.8
+21 silly currentTree │   │ ├── object-assign@4.1.0
+21 silly currentTree │   │ ├── os-tmpdir@1.0.2
+21 silly currentTree │   │ ├─┬ osenv@0.1.3
+21 silly currentTree │   │ │ └── os-homedir@1.0.2
+21 silly currentTree │   │ ├── uuid@2.0.3
+21 silly currentTree │   │ ├─┬ write-file-atomic@1.2.0
+21 silly currentTree │   │ │ ├── imurmurhash@0.1.4
+21 silly currentTree │   │ │ └── slide@1.1.6
+21 silly currentTree │   │ └─┬ xdg-basedir@2.0.0
+21 silly currentTree │   │   └── os-homedir@1.0.2
+21 silly currentTree │   ├── is-npm@1.0.0
+21 silly currentTree │   ├─┬ latest-version@1.0.1
+21 silly currentTree │   │ └─┬ package-json@1.2.0
+21 silly currentTree │   │   ├─┬ got@3.3.1
+21 silly currentTree │   │   │ ├─┬ duplexify@3.5.0
+21 silly currentTree │   │   │ │ ├─┬ end-of-stream@1.0.0
+21 silly currentTree │   │   │ │ │ └─┬ once@1.3.3
+21 silly currentTree │   │   │ │ │   └── wrappy@1.0.2
+21 silly currentTree │   │   │ │ ├── inherits@2.0.3
+21 silly currentTree │   │   │ │ ├─┬ readable-stream@2.1.5
+21 silly currentTree │   │   │ │ │ ├── buffer-shims@1.0.0
+21 silly currentTree │   │   │ │ │ ├── core-util-is@1.0.2
+21 silly currentTree │   │   │ │ │ ├── isarray@1.0.0
+21 silly currentTree │   │   │ │ │ ├── process-nextick-args@1.0.7
+21 silly currentTree │   │   │ │ │ ├── string_decoder@0.10.31
+21 silly currentTree │   │   │ │ │ └── util-deprecate@1.0.2
+21 silly currentTree │   │   │ │ └── stream-shift@1.0.0
+21 silly currentTree │   │   │ ├── infinity-agent@2.0.3
+21 silly currentTree │   │   │ ├── is-redirect@1.0.0
+21 silly currentTree │   │   │ ├── is-stream@1.1.0
+21 silly currentTree │   │   │ ├── lowercase-keys@1.0.0
+21 silly currentTree │   │   │ ├─┬ nested-error-stacks@1.0.2
+21 silly currentTree │   │   │ │ └── inherits@2.0.3
+21 silly currentTree │   │   │ ├── object-assign@3.0.0
+21 silly currentTree │   │   │ ├── prepend-http@1.0.4
+21 silly currentTree │   │   │ ├─┬ read-all-stream@3.1.0
+21 silly currentTree │   │   │ │ ├─┬ pinkie-promise@2.0.1
+21 silly currentTree │   │   │ │ │ └── pinkie@2.0.4
+21 silly currentTree │   │   │ │ └─┬ readable-stream@2.1.5
+21 silly currentTree │   │   │ │   ├── buffer-shims@1.0.0
+21 silly currentTree │   │   │ │   ├── core-util-is@1.0.2
+21 silly currentTree │   │   │ │   ├── inherits@2.0.3
+21 silly currentTree │   │   │ │   ├── isarray@1.0.0
+21 silly currentTree │   │   │ │   ├── process-nextick-args@1.0.7
+21 silly currentTree │   │   │ │   ├── string_decoder@0.10.31
+21 silly currentTree │   │   │ │   └── util-deprecate@1.0.2
+21 silly currentTree │   │   │ └── timed-out@2.0.0
+21 silly currentTree │   │   └─┬ registry-url@3.1.0
+21 silly currentTree │   │     └─┬ rc@1.1.6
+21 silly currentTree │   │       ├── deep-extend@0.4.1
+21 silly currentTree │   │       ├── ini@1.3.4
+21 silly currentTree │   │       ├── minimist@1.2.0
+21 silly currentTree │   │       └── strip-json-comments@1.0.4
+21 silly currentTree │   ├─┬ repeating@1.1.3
+21 silly currentTree │   │ └─┬ is-finite@1.0.2
+21 silly currentTree │   │   └── number-is-nan@1.0.1
+21 silly currentTree │   ├─┬ semver-diff@2.1.0
+21 silly currentTree │   │ └── semver@5.3.0
+21 silly currentTree │   └─┬ string-length@1.0.1
+21 silly currentTree │     └─┬ strip-ansi@3.0.1
+21 silly currentTree │       └── ansi-regex@2.0.0
+21 silly currentTree ├── python-shell@0.4.0
+21 silly currentTree ├── reflect-metadata@0.1.8
+21 silly currentTree ├─┬ rxjs@5.0.0-beta.12
+21 silly currentTree │ └── symbol-observable@1.0.4
+21 silly currentTree ├─┬ systemjs-builder@0.15.33
+21 silly currentTree │ ├─┬ babel-core@6.18.2
+21 silly currentTree │ │ ├─┬ babel-code-frame@6.16.0
+21 silly currentTree │ │ │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │ │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │ │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │ │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ │ │ └── supports-color@2.0.0
+21 silly currentTree │ │ │ ├── esutils@2.0.2
+21 silly currentTree │ │ │ └── js-tokens@2.0.0
+21 silly currentTree │ │ ├─┬ babel-generator@6.18.0
+21 silly currentTree │ │ │ ├─┬ detect-indent@4.0.0
+21 silly currentTree │ │ │ │ └─┬ repeating@2.0.1
+21 silly currentTree │ │ │ │   └─┬ is-finite@1.0.2
+21 silly currentTree │ │ │ │     └── number-is-nan@1.0.1
+21 silly currentTree │ │ │ └── jsesc@1.3.0
+21 silly currentTree │ │ ├── babel-helpers@6.16.0
+21 silly currentTree │ │ ├── babel-messages@6.8.0
+21 silly currentTree │ │ ├─┬ babel-register@6.18.0
+21 silly currentTree │ │ │ ├─┬ home-or-tmp@2.0.0
+21 silly currentTree │ │ │ │ ├── os-homedir@1.0.2
+21 silly currentTree │ │ │ │ └── os-tmpdir@1.0.2
+21 silly currentTree │ │ │ └── source-map-support@0.4.6
+21 silly currentTree │ │ ├─┬ babel-runtime@6.18.0
+21 silly currentTree │ │ │ └── regenerator-runtime@0.9.6
+21 silly currentTree │ │ ├── babel-template@6.16.0
+21 silly currentTree │ │ ├─┬ babel-traverse@6.18.0
+21 silly currentTree │ │ │ ├── globals@9.12.0
+21 silly currentTree │ │ │ └─┬ invariant@2.2.1
+21 silly currentTree │ │ │   └─┬ loose-envify@1.3.0
+21 silly currentTree │ │ │     └── js-tokens@2.0.0
+21 silly currentTree │ │ ├─┬ babel-types@6.18.0
+21 silly currentTree │ │ │ ├── esutils@2.0.2
+21 silly currentTree │ │ │ └── to-fast-properties@1.0.2
+21 silly currentTree │ │ ├── babylon@6.13.1
+21 silly currentTree │ │ ├── convert-source-map@1.3.0
+21 silly currentTree │ │ ├── json5@0.5.0
+21 silly currentTree │ │ ├── lodash@4.16.6
+21 silly currentTree │ │ ├─┬ minimatch@3.0.3
+21 silly currentTree │ │ │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │ │   ├── balanced-match@0.4.2
+21 silly currentTree │ │ │   └── concat-map@0.0.1
+21 silly currentTree │ │ ├── path-is-absolute@1.0.1
+21 silly currentTree │ │ ├── private@0.1.6
+21 silly currentTree │ │ └── slash@1.0.0
+21 silly currentTree │ ├─┬ babel-plugin-transform-cjs-system-wrapper@0.2.1
+21 silly currentTree │ │ ├── babel-plugin-transform-cjs-system-require@0.1.1
+21 silly currentTree │ │ └─┬ babel-template@6.16.0
+21 silly currentTree │ │   ├─┬ babel-runtime@6.18.0
+21 silly currentTree │ │   │ └── regenerator-runtime@0.9.6
+21 silly currentTree │ │   ├─┬ babel-traverse@6.18.0
+21 silly currentTree │ │   │ ├─┬ babel-code-frame@6.16.0
+21 silly currentTree │ │   │ │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │   │ │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ └── supports-color@2.0.0
+21 silly currentTree │ │   │ │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ │ └── js-tokens@2.0.0
+21 silly currentTree │ │   │ ├── babel-messages@6.8.0
+21 silly currentTree │ │   │ ├── globals@9.12.0
+21 silly currentTree │ │   │ └─┬ invariant@2.2.1
+21 silly currentTree │ │   │   └─┬ loose-envify@1.3.0
+21 silly currentTree │ │   │     └── js-tokens@2.0.0
+21 silly currentTree │ │   ├─┬ babel-types@6.18.0
+21 silly currentTree │ │   │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ └── to-fast-properties@1.0.2
+21 silly currentTree │ │   ├── babylon@6.13.1
+21 silly currentTree │ │   └── lodash@4.16.6
+21 silly currentTree │ ├─┬ babel-plugin-transform-es2015-modules-systemjs@6.18.0
+21 silly currentTree │ │ ├─┬ babel-helper-hoist-variables@6.18.0
+21 silly currentTree │ │ │ └─┬ babel-types@6.18.0
+21 silly currentTree │ │ │   ├── esutils@2.0.2
+21 silly currentTree │ │ │   ├── lodash@4.16.6
+21 silly currentTree │ │ │   └── to-fast-properties@1.0.2
+21 silly currentTree │ │ ├─┬ babel-runtime@6.18.0
+21 silly currentTree │ │ │ └── regenerator-runtime@0.9.6
+21 silly currentTree │ │ └─┬ babel-template@6.16.0
+21 silly currentTree │ │   ├─┬ babel-traverse@6.18.0
+21 silly currentTree │ │   │ ├─┬ babel-code-frame@6.16.0
+21 silly currentTree │ │   │ │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │   │ │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ └── supports-color@2.0.0
+21 silly currentTree │ │   │ │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ │ └── js-tokens@2.0.0
+21 silly currentTree │ │   │ ├── babel-messages@6.8.0
+21 silly currentTree │ │   │ ├── globals@9.12.0
+21 silly currentTree │ │   │ └─┬ invariant@2.2.1
+21 silly currentTree │ │   │   └─┬ loose-envify@1.3.0
+21 silly currentTree │ │   │     └── js-tokens@2.0.0
+21 silly currentTree │ │   ├─┬ babel-types@6.18.0
+21 silly currentTree │ │   │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ └── to-fast-properties@1.0.2
+21 silly currentTree │ │   ├── babylon@6.13.1
+21 silly currentTree │ │   └── lodash@4.16.6
+21 silly currentTree │ ├─┬ babel-plugin-transform-global-system-wrapper@0.0.1
+21 silly currentTree │ │ └─┬ babel-template@6.16.0
+21 silly currentTree │ │   ├─┬ babel-runtime@6.18.0
+21 silly currentTree │ │   │ └── regenerator-runtime@0.9.6
+21 silly currentTree │ │   ├─┬ babel-traverse@6.18.0
+21 silly currentTree │ │   │ ├─┬ babel-code-frame@6.16.0
+21 silly currentTree │ │   │ │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │   │ │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │   │ │ │ └── supports-color@2.0.0
+21 silly currentTree │ │   │ │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ │ └── js-tokens@2.0.0
+21 silly currentTree │ │   │ ├── babel-messages@6.8.0
+21 silly currentTree │ │   │ ├── globals@9.12.0
+21 silly currentTree │ │   │ └─┬ invariant@2.2.1
+21 silly currentTree │ │   │   └─┬ loose-envify@1.3.0
+21 silly currentTree │ │   │     └── js-tokens@2.0.0
+21 silly currentTree │ │   ├─┬ babel-types@6.18.0
+21 silly currentTree │ │   │ ├── esutils@2.0.2
+21 silly currentTree │ │   │ └── to-fast-properties@1.0.2
+21 silly currentTree │ │   ├── babylon@6.13.1
+21 silly currentTree │ │   └── lodash@4.16.6
+21 silly currentTree │ ├── babel-plugin-transform-system-register@0.0.1
+21 silly currentTree │ ├── bluebird@3.4.6
+21 silly currentTree │ ├── data-uri-to-buffer@0.0.4
+21 silly currentTree │ ├─┬ es6-template-strings@2.0.1
+21 silly currentTree │ │ ├─┬ es5-ext@0.10.12
+21 silly currentTree │ │ │ ├─┬ es6-iterator@2.0.0
+21 silly currentTree │ │ │ │ └── d@0.1.1
+21 silly currentTree │ │ │ └─┬ es6-symbol@3.1.0
+21 silly currentTree │ │ │   └── d@0.1.1
+21 silly currentTree │ │ └─┬ esniff@1.1.0
+21 silly currentTree │ │   └── d@1.0.0
+21 silly currentTree │ ├─┬ glob@7.1.1
+21 silly currentTree │ │ ├── fs.realpath@1.0.0
+21 silly currentTree │ │ ├─┬ inflight@1.0.6
+21 silly currentTree │ │ │ └── wrappy@1.0.2
+21 silly currentTree │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ ├─┬ minimatch@3.0.3
+21 silly currentTree │ │ │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │ │   ├── balanced-match@0.4.2
+21 silly currentTree │ │ │   └── concat-map@0.0.1
+21 silly currentTree │ │ ├─┬ once@1.4.0
+21 silly currentTree │ │ │ └── wrappy@1.0.2
+21 silly currentTree │ │ └── path-is-absolute@1.0.1
+21 silly currentTree │ ├─┬ mkdirp@0.5.1
+21 silly currentTree │ │ └── minimist@0.0.8
+21 silly currentTree │ ├─┬ rollup@0.36.3
+21 silly currentTree │ │ └── source-map-support@0.4.6
+21 silly currentTree │ ├── source-map@0.5.6
+21 silly currentTree │ ├─┬ systemjs@0.19.40
+21 silly currentTree │ │ └── when@3.7.7
+21 silly currentTree │ ├─┬ traceur@0.0.105
+21 silly currentTree │ │ ├─┬ commander@2.9.0
+21 silly currentTree │ │ │ └── graceful-readlink@1.0.1
+21 silly currentTree │ │ ├─┬ glob@5.0.15
+21 silly currentTree │ │ │ ├─┬ inflight@1.0.6
+21 silly currentTree │ │ │ │ └── wrappy@1.0.2
+21 silly currentTree │ │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ │ ├─┬ minimatch@3.0.3
+21 silly currentTree │ │ │ │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │ │ │   ├── balanced-match@0.4.2
+21 silly currentTree │ │ │ │   └── concat-map@0.0.1
+21 silly currentTree │ │ │ ├─┬ once@1.4.0
+21 silly currentTree │ │ │ │ └── wrappy@1.0.2
+21 silly currentTree │ │ │ └── path-is-absolute@1.0.1
+21 silly currentTree │ │ ├── rsvp@3.3.3
+21 silly currentTree │ │ ├── semver@4.3.6
+21 silly currentTree │ │ └─┬ source-map-support@0.2.10
+21 silly currentTree │ │   └─┬ source-map@0.1.32
+21 silly currentTree │ │     └── amdefine@1.0.1
+21 silly currentTree │ └─┬ uglify-js@2.7.4
+21 silly currentTree │   ├── async@0.2.10
+21 silly currentTree │   ├── uglify-to-browserify@1.0.2
+21 silly currentTree │   └─┬ yargs@3.10.0
+21 silly currentTree │     ├── camelcase@1.2.1
+21 silly currentTree │     ├─┬ cliui@2.1.0
+21 silly currentTree │     │ ├─┬ center-align@0.1.3
+21 silly currentTree │     │ │ ├─┬ align-text@0.1.4
+21 silly currentTree │     │ │ │ ├─┬ kind-of@3.0.4
+21 silly currentTree │     │ │ │ │ └── is-buffer@1.1.4
+21 silly currentTree │     │ │ │ ├── longest@1.0.1
+21 silly currentTree │     │ │ │ └── repeat-string@1.6.1
+21 silly currentTree │     │ │ └── lazy-cache@1.0.4
+21 silly currentTree │     │ ├─┬ right-align@0.1.3
+21 silly currentTree │     │ │ └─┬ align-text@0.1.4
+21 silly currentTree │     │ │   ├─┬ kind-of@3.0.4
+21 silly currentTree │     │ │   │ └── is-buffer@1.1.4
+21 silly currentTree │     │ │   ├── longest@1.0.1
+21 silly currentTree │     │ │   └── repeat-string@1.6.1
+21 silly currentTree │     │ └── wordwrap@0.0.2
+21 silly currentTree │     ├── decamelize@1.2.0
+21 silly currentTree │     └── window-size@0.1.0
+21 silly currentTree ├─┬ systemjs@0.19.27
+21 silly currentTree │ └── when@3.7.7
+21 silly currentTree ├── typescript@2.0.8
+21 silly currentTree ├─┬ typings@1.5.0
+21 silly currentTree │ ├── any-promise@1.3.0
+21 silly currentTree │ ├── archy@1.0.0
+21 silly currentTree │ ├── bluebird@3.4.6
+21 silly currentTree │ ├─┬ chalk@1.1.3
+21 silly currentTree │ │ ├── ansi-styles@2.2.1
+21 silly currentTree │ │ ├── escape-string-regexp@1.0.5
+21 silly currentTree │ │ ├─┬ has-ansi@2.0.0
+21 silly currentTree │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ └── supports-color@2.0.0
+21 silly currentTree │ ├─┬ cli-truncate@0.2.1
+21 silly currentTree │ │ ├── slice-ansi@0.0.4
+21 silly currentTree │ │ └─┬ string-width@1.0.2
+21 silly currentTree │ │   ├── code-point-at@1.1.0
+21 silly currentTree │ │   ├─┬ is-fullwidth-code-point@1.0.0
+21 silly currentTree │ │   │ └── number-is-nan@1.0.1
+21 silly currentTree │ │   └─┬ strip-ansi@3.0.1
+21 silly currentTree │ │     └── ansi-regex@2.0.0
+21 silly currentTree │ ├─┬ columnify@1.5.4
+21 silly currentTree │ │ ├─┬ strip-ansi@3.0.1
+21 silly currentTree │ │ │ └── ansi-regex@2.0.0
+21 silly currentTree │ │ └─┬ wcwidth@1.0.1
+21 silly currentTree │ │   └─┬ defaults@1.0.3
+21 silly currentTree │ │     └── clone@1.0.2
+21 silly currentTree │ ├── elegant-spinner@1.0.1
+21 silly currentTree │ ├── has-unicode@2.0.1
+21 silly currentTree │ ├── listify@1.0.0
+21 silly currentTree │ ├─┬ log-update@1.0.2
+21 silly currentTree │ │ ├── ansi-escapes@1.4.0
+21 silly currentTree │ │ └─┬ cli-cursor@1.0.2
+21 silly currentTree │ │   └─┬ restore-cursor@1.0.1
+21 silly currentTree │ │     ├── exit-hook@1.1.1
+21 silly currentTree │ │     └── onetime@1.1.0
+21 silly currentTree │ ├── minimist@1.2.0
+21 silly currentTree │ ├── promise-finally@2.2.1
+21 silly currentTree │ ├─┬ typings-core@1.6.1
+21 silly currentTree │ │ ├── array-uniq@1.0.3
+21 silly currentTree │ │ ├─┬ configstore@2.1.0
+21 silly currentTree │ │ │ ├─┬ dot-prop@3.0.0
+21 silly currentTree │ │ │ │ └── is-obj@1.0.1
+21 silly currentTree │ │ │ ├── object-assign@4.1.0
+21 silly currentTree │ │ │ ├── os-tmpdir@1.0.2
+21 silly currentTree │ │ │ ├─┬ osenv@0.1.3
+21 silly currentTree │ │ │ │ └── os-homedir@1.0.2
+21 silly currentTree │ │ │ ├── uuid@2.0.3
+21 silly currentTree │ │ │ ├─┬ write-file-atomic@1.2.0
+21 silly currentTree │ │ │ │ ├── imurmurhash@0.1.4
+21 silly currentTree │ │ │ │ └── slide@1.1.6
+21 silly currentTree │ │ │ └─┬ xdg-basedir@2.0.0
+21 silly currentTree │ │ │   └── os-homedir@1.0.2
+21 silly currentTree │ │ ├─┬ detect-indent@4.0.0
+21 silly currentTree │ │ │ └─┬ repeating@2.0.1
+21 silly currentTree │ │ │   └─┬ is-finite@1.0.2
+21 silly currentTree │ │ │     └── number-is-nan@1.0.1
+21 silly currentTree │ │ ├── graceful-fs@4.1.10
+21 silly currentTree │ │ ├─┬ has@1.0.1
+21 silly currentTree │ │ │ └── function-bind@1.1.0
+21 silly currentTree │ │ ├─┬ invariant@2.2.1
+21 silly currentTree │ │ │ └─┬ loose-envify@1.3.0
+21 silly currentTree │ │ │   └── js-tokens@2.0.0
+21 silly currentTree │ │ ├─┬ is-absolute@0.2.6
+21 silly currentTree │ │ │ ├─┬ is-relative@0.2.1
+21 silly currentTree │ │ │ │ └─┬ is-unc-path@0.1.1
+21 silly currentTree │ │ │ │   └── unc-path-regex@0.1.2
+21 silly currentTree │ │ │ └── is-windows@0.2.0
+21 silly currentTree │ │ ├── lockfile@1.0.2
+21 silly currentTree │ │ ├─┬ make-error-cause@1.2.2
+21 silly currentTree │ │ │ └── make-error@1.2.1
+21 silly currentTree │ │ ├─┬ mkdirp@0.5.1
+21 silly currentTree │ │ │ └── minimist@0.0.8
+21 silly currentTree │ │ ├─┬ object.pick@1.2.0
+21 silly currentTree │ │ │ └─┬ isobject@2.1.0
+21 silly currentTree │ │ │   └── isarray@1.0.0
+21 silly currentTree │ │ ├─┬ parse-json@2.2.0
+21 silly currentTree │ │ │ └─┬ error-ex@1.3.0
+21 silly currentTree │ │ │   └── is-arrayish@0.2.1
+21 silly currentTree │ │ ├─┬ popsicle-proxy-agent@3.0.0
+21 silly currentTree │ │ │ ├─┬ http-proxy-agent@1.0.0
+21 silly currentTree │ │ │ │ ├─┬ agent-base@2.0.1
+21 silly currentTree │ │ │ │ │ └── semver@5.0.3
+21 silly currentTree │ │ │ │ └── extend@3.0.0
+21 silly currentTree │ │ │ └─┬ https-proxy-agent@1.0.0
+21 silly currentTree │ │ │   ├─┬ agent-base@2.0.1
+21 silly currentTree │ │ │   │ └── semver@5.0.3
+21 silly currentTree │ │ │   └── extend@3.0.0
+21 silly currentTree │ │ ├── popsicle-retry@3.2.1
+21 silly currentTree │ │ ├── popsicle-rewrite@1.0.0
+21 silly currentTree │ │ ├── popsicle-status@2.0.0
+21 silly currentTree │ │ ├─┬ popsicle@8.2.0
+21 silly currentTree │ │ │ ├── arrify@1.0.1
+21 silly currentTree │ │ │ ├─┬ concat-stream@1.5.2
+21 silly currentTree │ │ │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ │ │ ├─┬ readable-stream@2.0.6
+21 silly currentTree │ │ │ │ │ ├── core-util-is@1.0.2
+21 silly currentTree │ │ │ │ │ ├── isarray@1.0.0
+21 silly currentTree │ │ │ │ │ ├── process-nextick-args@1.0.7
+21 silly currentTree │ │ │ │ │ ├── string_decoder@0.10.31
+21 silly currentTree │ │ │ │ │ └── util-deprecate@1.0.2
+21 silly currentTree │ │ │ │ └── typedarray@0.0.6
+21 silly currentTree │ │ │ ├─┬ form-data@2.1.2
+21 silly currentTree │ │ │ │ ├── asynckit@0.4.0
+21 silly currentTree │ │ │ │ ├─┬ combined-stream@1.0.5
+21 silly currentTree │ │ │ │ │ └── delayed-stream@1.0.0
+21 silly currentTree │ │ │ │ └─┬ mime-types@2.1.12
+21 silly currentTree │ │ │ │   └── mime-db@1.24.0
+21 silly currentTree │ │ │ ├── throwback@1.1.1
+21 silly currentTree │ │ │ └─┬ tough-cookie@2.3.2
+21 silly currentTree │ │ │   └── punycode@1.4.1
+21 silly currentTree │ │ ├─┬ rc@1.1.6
+21 silly currentTree │ │ │ ├── deep-extend@0.4.1
+21 silly currentTree │ │ │ ├── ini@1.3.4
+21 silly currentTree │ │ │ └── strip-json-comments@1.0.4
+21 silly currentTree │ │ ├─┬ rimraf@2.5.4
+21 silly currentTree │ │ │ └─┬ glob@7.1.1
+21 silly currentTree │ │ │   ├── fs.realpath@1.0.0
+21 silly currentTree │ │ │   ├─┬ inflight@1.0.6
+21 silly currentTree │ │ │   │ └── wrappy@1.0.2
+21 silly currentTree │ │ │   ├── inherits@2.0.3
+21 silly currentTree │ │ │   ├─┬ minimatch@3.0.3
+21 silly currentTree │ │ │   │ └─┬ brace-expansion@1.1.6
+21 silly currentTree │ │ │   │   ├── balanced-match@0.4.2
+21 silly currentTree │ │ │   │   └── concat-map@0.0.1
+21 silly currentTree │ │ │   ├─┬ once@1.4.0
+21 silly currentTree │ │ │   │ └── wrappy@1.0.2
+21 silly currentTree │ │ │   └── path-is-absolute@1.0.1
+21 silly currentTree │ │ ├─┬ sort-keys@1.1.2
+21 silly currentTree │ │ │ └── is-plain-obj@1.1.0
+21 silly currentTree │ │ ├── string-template@1.0.0
+21 silly currentTree │ │ ├─┬ strip-bom@2.0.0
+21 silly currentTree │ │ │ └── is-utf8@0.2.1
+21 silly currentTree │ │ ├── thenify@3.2.1
+21 silly currentTree │ │ ├── throat@3.0.0
+21 silly currentTree │ │ ├─┬ touch@1.0.0
+21 silly currentTree │ │ │ └─┬ nopt@1.0.10
+21 silly currentTree │ │ │   └── abbrev@1.0.9
+21 silly currentTree │ │ └── zip-object@0.1.0
+21 silly currentTree │ ├─┬ update-notifier@1.0.2
+21 silly currentTree │ │ ├─┬ boxen@0.6.0
+21 silly currentTree │ │ │ ├── ansi-align@1.1.0
+21 silly currentTree │ │ │ ├── camelcase@2.1.1
+21 silly currentTree │ │ │ ├── cli-boxes@1.0.0
+21 silly currentTree │ │ │ ├── filled-array@1.1.0
+21 silly currentTree │ │ │ ├── object-assign@4.1.0
+21 silly currentTree │ │ │ ├─┬ repeating@2.0.1
+21 silly currentTree │ │ │ │ └─┬ is-finite@1.0.2
+21 silly currentTree │ │ │ │   └── number-is-nan@1.0.1
+21 silly currentTree │ │ │ ├─┬ string-width@1.0.2
+21 silly currentTree │ │ │ │ ├── code-point-at@1.1.0
+21 silly currentTree │ │ │ │ ├─┬ is-fullwidth-code-point@1.0.0
+21 silly currentTree │ │ │ │ │ └── number-is-nan@1.0.1
+21 silly currentTree │ │ │ │ └─┬ strip-ansi@3.0.1
+21 silly currentTree │ │ │ │   └── ansi-regex@2.0.0
+21 silly currentTree │ │ │ └── widest-line@1.0.0
+21 silly currentTree │ │ ├─┬ configstore@2.1.0
+21 silly currentTree │ │ │ ├─┬ dot-prop@3.0.0
+21 silly currentTree │ │ │ │ └── is-obj@1.0.1
+21 silly currentTree │ │ │ ├── graceful-fs@4.1.10
+21 silly currentTree │ │ │ ├─┬ mkdirp@0.5.1
+21 silly currentTree │ │ │ │ └── minimist@0.0.8
+21 silly currentTree │ │ │ ├── object-assign@4.1.0
+21 silly currentTree │ │ │ ├── os-tmpdir@1.0.2
+21 silly currentTree │ │ │ ├─┬ osenv@0.1.3
+21 silly currentTree │ │ │ │ └── os-homedir@1.0.2
+21 silly currentTree │ │ │ ├── uuid@2.0.3
+21 silly currentTree │ │ │ └─┬ write-file-atomic@1.2.0
+21 silly currentTree │ │ │   ├── imurmurhash@0.1.4
+21 silly currentTree │ │ │   └── slide@1.1.6
+21 silly currentTree │ │ ├── is-npm@1.0.0
+21 silly currentTree │ │ ├─┬ latest-version@2.0.0
+21 silly currentTree │ │ │ └─┬ package-json@2.4.0
+21 silly currentTree │ │ │   ├─┬ got@5.7.1
+21 silly currentTree │ │ │   │ ├─┬ create-error-class@3.0.2
+21 silly currentTree │ │ │   │ │ └── capture-stack-trace@1.0.0
+21 silly currentTree │ │ │   │ ├── duplexer2@0.1.4
+21 silly currentTree │ │ │   │ ├── is-redirect@1.0.0
+21 silly currentTree │ │ │   │ ├── is-retry-allowed@1.1.0
+21 silly currentTree │ │ │   │ ├── is-stream@1.1.0
+21 silly currentTree │ │ │   │ ├── lowercase-keys@1.0.0
+21 silly currentTree │ │ │   │ ├── node-status-codes@1.0.0
+21 silly currentTree │ │ │   │ ├── object-assign@4.1.0
+21 silly currentTree │ │ │   │ ├─┬ parse-json@2.2.0
+21 silly currentTree │ │ │   │ │ └─┬ error-ex@1.3.0
+21 silly currentTree │ │ │   │ │   └── is-arrayish@0.2.1
+21 silly currentTree │ │ │   │ ├─┬ pinkie-promise@2.0.1
+21 silly currentTree │ │ │   │ │ └── pinkie@2.0.4
+21 silly currentTree │ │ │   │ ├── read-all-stream@3.1.0
+21 silly currentTree │ │ │   │ ├─┬ readable-stream@2.1.5
+21 silly currentTree │ │ │   │ │ ├── buffer-shims@1.0.0
+21 silly currentTree │ │ │   │ │ ├── core-util-is@1.0.2
+21 silly currentTree │ │ │   │ │ ├── inherits@2.0.3
+21 silly currentTree │ │ │   │ │ ├── isarray@1.0.0
+21 silly currentTree │ │ │   │ │ ├── process-nextick-args@1.0.7
+21 silly currentTree │ │ │   │ │ ├── string_decoder@0.10.31
+21 silly currentTree │ │ │   │ │ └── util-deprecate@1.0.2
+21 silly currentTree │ │ │   │ ├── timed-out@3.0.0
+21 silly currentTree │ │ │   │ ├── unzip-response@1.0.2
+21 silly currentTree │ │ │   │ └─┬ url-parse-lax@1.0.0
+21 silly currentTree │ │ │   │   └── prepend-http@1.0.4
+21 silly currentTree │ │ │   ├─┬ registry-auth-token@3.1.0
+21 silly currentTree │ │ │   │ └─┬ rc@1.1.6
+21 silly currentTree │ │ │   │   ├── deep-extend@0.4.1
+21 silly currentTree │ │ │   │   ├── ini@1.3.4
+21 silly currentTree │ │ │   │   └── strip-json-comments@1.0.4
+21 silly currentTree │ │ │   ├─┬ registry-url@3.1.0
+21 silly currentTree │ │ │   │ └─┬ rc@1.1.6
+21 silly currentTree │ │ │   │   ├── deep-extend@0.4.1
+21 silly currentTree │ │ │   │   ├── ini@1.3.4
+21 silly currentTree │ │ │   │   └── strip-json-comments@1.0.4
+21 silly currentTree │ │ │   └── semver@5.3.0
+21 silly currentTree │ │ ├── lazy-req@1.1.0
+21 silly currentTree │ │ ├─┬ semver-diff@2.1.0
+21 silly currentTree │ │ │ └── semver@5.3.0
+21 silly currentTree │ │ └─┬ xdg-basedir@2.0.0
+21 silly currentTree │ │   └── os-homedir@1.0.2
+21 silly currentTree │ ├── wordwrap@1.0.0
+21 silly currentTree │ └── xtend@4.0.1
+21 silly currentTree └── zone.js@0.6.26
+22 silly idealTree ChineseChessAi@1.0.0
+22 silly idealTree ├── @angular/common@2.0.1
+22 silly idealTree ├── @angular/compiler@2.0.1
+22 silly idealTree ├── @angular/core@2.0.1
+22 silly idealTree ├── @angular/forms@2.0.1
+22 silly idealTree ├── @angular/http@2.0.1
+22 silly idealTree ├── @angular/platform-browser-dynamic@2.0.1
+22 silly idealTree ├── @angular/platform-browser@2.0.1
+22 silly idealTree ├── @angular/router@3.0.0
+22 silly idealTree ├── @angular/upgrade@2.0.1
+22 silly idealTree ├── angular2-in-memory-web-api@0.0.20
+22 silly idealTree ├─┬ body-parser@1.13.3
+22 silly idealTree │ ├── bytes@2.1.0
+22 silly idealTree │ ├── content-type@1.0.2
+22 silly idealTree │ ├─┬ debug@2.2.0
+22 silly idealTree │ │ └── ms@0.7.1
+22 silly idealTree │ ├── depd@1.0.1
+22 silly idealTree │ ├─┬ http-errors@1.3.1
+22 silly idealTree │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ └── statuses@1.3.0
+22 silly idealTree │ ├── iconv-lite@0.4.11
+22 silly idealTree │ ├─┬ on-finished@2.3.0
+22 silly idealTree │ │ └── ee-first@1.1.1
+22 silly idealTree │ ├── qs@4.0.0
+22 silly idealTree │ ├─┬ raw-body@2.1.7
+22 silly idealTree │ │ ├── bytes@2.4.0
+22 silly idealTree │ │ ├── iconv-lite@0.4.13
+22 silly idealTree │ │ └── unpipe@1.0.0
+22 silly idealTree │ └─┬ type-is@1.6.13
+22 silly idealTree │   ├── media-typer@0.3.0
+22 silly idealTree │   └─┬ mime-types@2.1.12
+22 silly idealTree │     └── mime-db@1.24.0
+22 silly idealTree ├─┬ chart.js@2.4.0
+22 silly idealTree │ └─┬ chartjs-color@2.0.0
+22 silly idealTree │   ├─┬ chartjs-color-string@0.4.0
+22 silly idealTree │   │ └── color-name@1.1.1
+22 silly idealTree │   └── color-convert@0.5.3
+22 silly idealTree ├─┬ concurrently@2.2.0
+22 silly idealTree │ ├── bluebird@2.9.6
+22 silly idealTree │ ├─┬ chalk@0.5.1
+22 silly idealTree │ │ ├── ansi-styles@1.1.0
+22 silly idealTree │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │ ├─┬ has-ansi@0.1.0
+22 silly idealTree │ │ │ └── ansi-regex@0.2.1
+22 silly idealTree │ │ ├─┬ strip-ansi@0.3.0
+22 silly idealTree │ │ │ └── ansi-regex@0.2.1
+22 silly idealTree │ │ └── supports-color@0.2.0
+22 silly idealTree │ ├── commander@2.6.0
+22 silly idealTree │ ├─┬ cross-spawn@0.2.9
+22 silly idealTree │ │ └── lru-cache@2.7.3
+22 silly idealTree │ ├── lodash@4.16.6
+22 silly idealTree │ └── rx@2.3.24
+22 silly idealTree ├── core-js@2.4.1
+22 silly idealTree ├─┬ debug@2.3.2
+22 silly idealTree │ └── ms@0.7.2
+22 silly idealTree ├─┬ del@2.2.2
+22 silly idealTree │ ├─┬ globby@5.0.0
+22 silly idealTree │ │ ├─┬ array-union@1.0.2
+22 silly idealTree │ │ │ └── array-uniq@1.0.3
+22 silly idealTree │ │ ├── arrify@1.0.1
+22 silly idealTree │ │ └─┬ glob@7.1.1
+22 silly idealTree │ │   ├── fs.realpath@1.0.0
+22 silly idealTree │ │   ├─┬ inflight@1.0.6
+22 silly idealTree │ │   │ └── wrappy@1.0.2
+22 silly idealTree │ │   ├── inherits@2.0.3
+22 silly idealTree │ │   ├─┬ minimatch@3.0.3
+22 silly idealTree │ │   │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │   │   ├── balanced-match@0.4.2
+22 silly idealTree │ │   │   └── concat-map@0.0.1
+22 silly idealTree │ │   ├─┬ once@1.4.0
+22 silly idealTree │ │   │ └── wrappy@1.0.2
+22 silly idealTree │ │   └── path-is-absolute@1.0.1
+22 silly idealTree │ ├── is-path-cwd@1.0.0
+22 silly idealTree │ ├─┬ is-path-in-cwd@1.0.0
+22 silly idealTree │ │ └─┬ is-path-inside@1.0.0
+22 silly idealTree │ │   └── path-is-inside@1.0.2
+22 silly idealTree │ ├── object-assign@4.1.0
+22 silly idealTree │ ├── pify@2.3.0
+22 silly idealTree │ ├─┬ pinkie-promise@2.0.1
+22 silly idealTree │ │ └── pinkie@2.0.4
+22 silly idealTree │ └─┬ rimraf@2.5.4
+22 silly idealTree │   └─┬ glob@7.1.1
+22 silly idealTree │     ├── fs.realpath@1.0.0
+22 silly idealTree │     ├─┬ inflight@1.0.6
+22 silly idealTree │     │ └── wrappy@1.0.2
+22 silly idealTree │     ├── inherits@2.0.3
+22 silly idealTree │     ├─┬ minimatch@3.0.3
+22 silly idealTree │     │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │     │   ├── balanced-match@0.4.2
+22 silly idealTree │     │   └── concat-map@0.0.1
+22 silly idealTree │     ├─┬ once@1.4.0
+22 silly idealTree │     │ └── wrappy@1.0.2
+22 silly idealTree │     └── path-is-absolute@1.0.1
+22 silly idealTree ├─┬ express@4.14.0
+22 silly idealTree │ ├─┬ accepts@1.3.3
+22 silly idealTree │ │ ├─┬ mime-types@2.1.12
+22 silly idealTree │ │ │ └── mime-db@1.24.0
+22 silly idealTree │ │ └── negotiator@0.6.1
+22 silly idealTree │ ├── array-flatten@1.1.1
+22 silly idealTree │ ├── content-disposition@0.5.1
+22 silly idealTree │ ├── content-type@1.0.2
+22 silly idealTree │ ├── cookie-signature@1.0.6
+22 silly idealTree │ ├── cookie@0.3.1
+22 silly idealTree │ ├─┬ debug@2.2.0
+22 silly idealTree │ │ └── ms@0.7.1
+22 silly idealTree │ ├── depd@1.1.0
+22 silly idealTree │ ├── encodeurl@1.0.1
+22 silly idealTree │ ├── escape-html@1.0.3
+22 silly idealTree │ ├── etag@1.7.0
+22 silly idealTree │ ├─┬ finalhandler@0.5.0
+22 silly idealTree │ │ ├── statuses@1.3.0
+22 silly idealTree │ │ └── unpipe@1.0.0
+22 silly idealTree │ ├── fresh@0.3.0
+22 silly idealTree │ ├── merge-descriptors@1.0.1
+22 silly idealTree │ ├── methods@1.1.2
+22 silly idealTree │ ├─┬ on-finished@2.3.0
+22 silly idealTree │ │ └── ee-first@1.1.1
+22 silly idealTree │ ├── parseurl@1.3.1
+22 silly idealTree │ ├── path-to-regexp@0.1.7
+22 silly idealTree │ ├─┬ proxy-addr@1.1.2
+22 silly idealTree │ │ ├── forwarded@0.1.0
+22 silly idealTree │ │ └── ipaddr.js@1.1.1
+22 silly idealTree │ ├── qs@6.2.0
+22 silly idealTree │ ├── range-parser@1.2.0
+22 silly idealTree │ ├─┬ send@0.14.1
+22 silly idealTree │ │ ├── destroy@1.0.4
+22 silly idealTree │ │ ├─┬ http-errors@1.5.0
+22 silly idealTree │ │ │ ├── inherits@2.0.1
+22 silly idealTree │ │ │ └── setprototypeof@1.0.1
+22 silly idealTree │ │ ├── mime@1.3.4
+22 silly idealTree │ │ ├── ms@0.7.1
+22 silly idealTree │ │ └── statuses@1.3.0
+22 silly idealTree │ ├── serve-static@1.11.1
+22 silly idealTree │ ├─┬ type-is@1.6.13
+22 silly idealTree │ │ ├── media-typer@0.3.0
+22 silly idealTree │ │ └─┬ mime-types@2.1.12
+22 silly idealTree │ │   └── mime-db@1.24.0
+22 silly idealTree │ ├── utils-merge@1.0.0
+22 silly idealTree │ └── vary@1.1.0
+22 silly idealTree ├─┬ gulp@3.9.1
+22 silly idealTree │ ├── archy@1.0.0
+22 silly idealTree │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ └── supports-color@2.0.0
+22 silly idealTree │ ├── deprecated@0.0.1
+22 silly idealTree │ ├─┬ gulp-util@3.0.7
+22 silly idealTree │ │ ├── array-differ@1.0.0
+22 silly idealTree │ │ ├── array-uniq@1.0.3
+22 silly idealTree │ │ ├── beeper@1.1.0
+22 silly idealTree │ │ ├─┬ dateformat@1.0.12
+22 silly idealTree │ │ │ ├── get-stdin@4.0.1
+22 silly idealTree │ │ │ └─┬ meow@3.7.0
+22 silly idealTree │ │ │   ├─┬ camelcase-keys@2.1.0
+22 silly idealTree │ │ │   │ └── camelcase@2.1.1
+22 silly idealTree │ │ │   ├── decamelize@1.2.0
+22 silly idealTree │ │ │   ├─┬ loud-rejection@1.6.0
+22 silly idealTree │ │ │   │ ├─┬ currently-unhandled@0.4.1
+22 silly idealTree │ │ │   │ │ └── array-find-index@1.0.2
+22 silly idealTree │ │ │   │ └── signal-exit@3.0.1
+22 silly idealTree │ │ │   ├── map-obj@1.0.1
+22 silly idealTree │ │ │   ├─┬ normalize-package-data@2.3.5
+22 silly idealTree │ │ │   │ ├── hosted-git-info@2.1.5
+22 silly idealTree │ │ │   │ ├─┬ is-builtin-module@1.0.0
+22 silly idealTree │ │ │   │ │ └── builtin-modules@1.1.1
+22 silly idealTree │ │ │   │ └─┬ validate-npm-package-license@3.0.1
+22 silly idealTree │ │ │   │   ├─┬ spdx-correct@1.0.2
+22 silly idealTree │ │ │   │   │ └── spdx-license-ids@1.2.2
+22 silly idealTree │ │ │   │   └── spdx-expression-parse@1.0.4
+22 silly idealTree │ │ │   ├── object-assign@4.1.0
+22 silly idealTree │ │ │   ├─┬ read-pkg-up@1.0.1
+22 silly idealTree │ │ │   │ ├─┬ find-up@1.1.2
+22 silly idealTree │ │ │   │ │ ├── path-exists@2.1.0
+22 silly idealTree │ │ │   │ │ └─┬ pinkie-promise@2.0.1
+22 silly idealTree │ │ │   │ │   └── pinkie@2.0.4
+22 silly idealTree │ │ │   │ └─┬ read-pkg@1.1.0
+22 silly idealTree │ │ │   │   ├─┬ load-json-file@1.1.0
+22 silly idealTree │ │ │   │   │ ├── graceful-fs@4.1.10
+22 silly idealTree │ │ │   │   │ ├─┬ parse-json@2.2.0
+22 silly idealTree │ │ │   │   │ │ └─┬ error-ex@1.3.0
+22 silly idealTree │ │ │   │   │ │   └── is-arrayish@0.2.1
+22 silly idealTree │ │ │   │   │ ├── pify@2.3.0
+22 silly idealTree │ │ │   │   │ ├─┬ pinkie-promise@2.0.1
+22 silly idealTree │ │ │   │   │ │ └── pinkie@2.0.4
+22 silly idealTree │ │ │   │   │ └─┬ strip-bom@2.0.0
+22 silly idealTree │ │ │   │   │   └── is-utf8@0.2.1
+22 silly idealTree │ │ │   │   └─┬ path-type@1.1.0
+22 silly idealTree │ │ │   │     ├── graceful-fs@4.1.10
+22 silly idealTree │ │ │   │     ├── pify@2.3.0
+22 silly idealTree │ │ │   │     └─┬ pinkie-promise@2.0.1
+22 silly idealTree │ │ │   │       └── pinkie@2.0.4
+22 silly idealTree │ │ │   ├─┬ redent@1.0.0
+22 silly idealTree │ │ │   │ ├─┬ indent-string@2.1.0
+22 silly idealTree │ │ │   │ │ └─┬ repeating@2.0.1
+22 silly idealTree │ │ │   │ │   └─┬ is-finite@1.0.2
+22 silly idealTree │ │ │   │ │     └── number-is-nan@1.0.1
+22 silly idealTree │ │ │   │ └── strip-indent@1.0.1
+22 silly idealTree │ │ │   └── trim-newlines@1.0.0
+22 silly idealTree │ │ ├─┬ fancy-log@1.2.0
+22 silly idealTree │ │ │ └── time-stamp@1.0.1
+22 silly idealTree │ │ ├─┬ gulplog@1.0.0
+22 silly idealTree │ │ │ └─┬ glogg@1.0.0
+22 silly idealTree │ │ │   └── sparkles@1.0.0
+22 silly idealTree │ │ ├─┬ has-gulplog@0.1.0
+22 silly idealTree │ │ │ └── sparkles@1.0.0
+22 silly idealTree │ │ ├── lodash._reescape@3.0.0
+22 silly idealTree │ │ ├── lodash._reevaluate@3.0.0
+22 silly idealTree │ │ ├── lodash._reinterpolate@3.0.0
+22 silly idealTree │ │ ├─┬ lodash.template@3.6.2
+22 silly idealTree │ │ │ ├── lodash._basecopy@3.0.1
+22 silly idealTree │ │ │ ├── lodash._basetostring@3.0.1
+22 silly idealTree │ │ │ ├── lodash._basevalues@3.0.0
+22 silly idealTree │ │ │ ├── lodash._isiterateecall@3.0.9
+22 silly idealTree │ │ │ ├─┬ lodash.escape@3.2.0
+22 silly idealTree │ │ │ │ └── lodash._root@3.0.1
+22 silly idealTree │ │ │ ├─┬ lodash.keys@3.1.2
+22 silly idealTree │ │ │ │ ├── lodash._getnative@3.9.1
+22 silly idealTree │ │ │ │ ├── lodash.isarguments@3.1.0
+22 silly idealTree │ │ │ │ └── lodash.isarray@3.0.4
+22 silly idealTree │ │ │ ├── lodash.restparam@3.6.1
+22 silly idealTree │ │ │ └── lodash.templatesettings@3.1.1
+22 silly idealTree │ │ ├─┬ multipipe@0.1.2
+22 silly idealTree │ │ │ └─┬ duplexer2@0.0.2
+22 silly idealTree │ │ │   └─┬ readable-stream@1.1.14
+22 silly idealTree │ │ │     ├── core-util-is@1.0.2
+22 silly idealTree │ │ │     ├── inherits@2.0.3
+22 silly idealTree │ │ │     ├── isarray@0.0.1
+22 silly idealTree │ │ │     └── string_decoder@0.10.31
+22 silly idealTree │ │ ├── object-assign@3.0.0
+22 silly idealTree │ │ ├── replace-ext@0.0.1
+22 silly idealTree │ │ ├─┬ through2@2.0.1
+22 silly idealTree │ │ │ ├─┬ readable-stream@2.0.6
+22 silly idealTree │ │ │ │ ├── core-util-is@1.0.2
+22 silly idealTree │ │ │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ │ │ ├── isarray@1.0.0
+22 silly idealTree │ │ │ │ ├── process-nextick-args@1.0.7
+22 silly idealTree │ │ │ │ ├── string_decoder@0.10.31
+22 silly idealTree │ │ │ │ └── util-deprecate@1.0.2
+22 silly idealTree │ │ │ └── xtend@4.0.1
+22 silly idealTree │ │ └─┬ vinyl@0.5.3
+22 silly idealTree │ │   ├── clone-stats@0.0.1
+22 silly idealTree │ │   └── clone@1.0.2
+22 silly idealTree │ ├── interpret@1.0.1
+22 silly idealTree │ ├─┬ liftoff@2.3.0
+22 silly idealTree │ │ ├── extend@3.0.0
+22 silly idealTree │ │ ├─┬ findup-sync@0.4.3
+22 silly idealTree │ │ │ ├─┬ detect-file@0.1.0
+22 silly idealTree │ │ │ │ └── fs-exists-sync@0.1.0
+22 silly idealTree │ │ │ ├─┬ is-glob@2.0.1
+22 silly idealTree │ │ │ │ └── is-extglob@1.0.0
+22 silly idealTree │ │ │ ├─┬ micromatch@2.3.11
+22 silly idealTree │ │ │ │ ├─┬ arr-diff@2.0.0
+22 silly idealTree │ │ │ │ │ └── arr-flatten@1.0.1
+22 silly idealTree │ │ │ │ ├── array-unique@0.2.1
+22 silly idealTree │ │ │ │ ├─┬ braces@1.8.5
+22 silly idealTree │ │ │ │ │ ├─┬ expand-range@1.8.2
+22 silly idealTree │ │ │ │ │ │ └─┬ fill-range@2.2.3
+22 silly idealTree │ │ │ │ │ │   ├── is-number@2.1.0
+22 silly idealTree │ │ │ │ │ │   ├─┬ isobject@2.1.0
+22 silly idealTree │ │ │ │ │ │   │ └── isarray@1.0.0
+22 silly idealTree │ │ │ │ │ │   ├── randomatic@1.1.5
+22 silly idealTree │ │ │ │ │ │   └── repeat-string@1.6.1
+22 silly idealTree │ │ │ │ │ ├── preserve@0.2.0
+22 silly idealTree │ │ │ │ │ └── repeat-element@1.1.2
+22 silly idealTree │ │ │ │ ├─┬ expand-brackets@0.1.5
+22 silly idealTree │ │ │ │ │ └── is-posix-bracket@0.1.1
+22 silly idealTree │ │ │ │ ├── extglob@0.3.2
+22 silly idealTree │ │ │ │ ├── filename-regex@2.0.0
+22 silly idealTree │ │ │ │ ├── is-extglob@1.0.0
+22 silly idealTree │ │ │ │ ├─┬ kind-of@3.0.4
+22 silly idealTree │ │ │ │ │ └── is-buffer@1.1.4
+22 silly idealTree │ │ │ │ ├── normalize-path@2.0.1
+22 silly idealTree │ │ │ │ ├─┬ object.omit@2.0.1
+22 silly idealTree │ │ │ │ │ ├─┬ for-own@0.1.4
+22 silly idealTree │ │ │ │ │ │ └── for-in@0.1.6
+22 silly idealTree │ │ │ │ │ └── is-extendable@0.1.1
+22 silly idealTree │ │ │ │ ├─┬ parse-glob@3.0.4
+22 silly idealTree │ │ │ │ │ ├─┬ glob-base@0.3.0
+22 silly idealTree │ │ │ │ │ │ └── glob-parent@2.0.0
+22 silly idealTree │ │ │ │ │ └── is-dotfile@1.0.2
+22 silly idealTree │ │ │ │ └─┬ regex-cache@0.4.3
+22 silly idealTree │ │ │ │   ├── is-equal-shallow@0.1.3
+22 silly idealTree │ │ │ │   └── is-primitive@2.0.0
+22 silly idealTree │ │ │ └─┬ resolve-dir@0.1.1
+22 silly idealTree │ │ │   ├─┬ expand-tilde@1.2.2
+22 silly idealTree │ │ │   │ └── os-homedir@1.0.2
+22 silly idealTree │ │ │   └─┬ global-modules@0.2.3
+22 silly idealTree │ │ │     ├─┬ global-prefix@0.1.4
+22 silly idealTree │ │ │     │ ├── ini@1.3.4
+22 silly idealTree │ │ │     │ ├─┬ osenv@0.1.3
+22 silly idealTree │ │ │     │ │ ├── os-homedir@1.0.2
+22 silly idealTree │ │ │     │ │ └── os-tmpdir@1.0.2
+22 silly idealTree │ │ │     │ └─┬ which@1.2.11
+22 silly idealTree │ │ │     │   └── isexe@1.1.2
+22 silly idealTree │ │ │     └── is-windows@0.2.0
+22 silly idealTree │ │ ├─┬ fined@1.0.2
+22 silly idealTree │ │ │ ├─┬ expand-tilde@1.2.2
+22 silly idealTree │ │ │ │ └── os-homedir@1.0.2
+22 silly idealTree │ │ │ ├── lodash.assignwith@4.2.0
+22 silly idealTree │ │ │ ├── lodash.isempty@4.4.0
+22 silly idealTree │ │ │ ├── lodash.pick@4.4.0
+22 silly idealTree │ │ │ └─┬ parse-filepath@1.0.1
+22 silly idealTree │ │ │   ├─┬ is-absolute@0.2.6
+22 silly idealTree │ │ │   │ ├─┬ is-relative@0.2.1
+22 silly idealTree │ │ │   │ │ └─┬ is-unc-path@0.1.1
+22 silly idealTree │ │ │   │ │   └── unc-path-regex@0.1.2
+22 silly idealTree │ │ │   │ └── is-windows@0.2.0
+22 silly idealTree │ │ │   ├── map-cache@0.2.2
+22 silly idealTree │ │ │   └─┬ path-root@0.1.1
+22 silly idealTree │ │ │     └── path-root-regex@0.1.2
+22 silly idealTree │ │ ├── flagged-respawn@0.3.2
+22 silly idealTree │ │ ├── lodash.isplainobject@4.0.6
+22 silly idealTree │ │ ├── lodash.isstring@4.0.1
+22 silly idealTree │ │ ├── lodash.mapvalues@4.6.0
+22 silly idealTree │ │ ├── rechoir@0.6.2
+22 silly idealTree │ │ └── resolve@1.1.7
+22 silly idealTree │ ├── minimist@1.2.0
+22 silly idealTree │ ├─┬ orchestrator@0.3.8
+22 silly idealTree │ │ ├─┬ end-of-stream@0.1.5
+22 silly idealTree │ │ │ └─┬ once@1.3.3
+22 silly idealTree │ │ │   └── wrappy@1.0.2
+22 silly idealTree │ │ ├── sequencify@0.0.7
+22 silly idealTree │ │ └── stream-consume@0.1.0
+22 silly idealTree │ ├── pretty-hrtime@1.0.3
+22 silly idealTree │ ├── semver@4.3.6
+22 silly idealTree │ ├─┬ tildify@1.2.0
+22 silly idealTree │ │ └── os-homedir@1.0.2
+22 silly idealTree │ ├─┬ v8flags@2.0.11
+22 silly idealTree │ │ └── user-home@1.1.1
+22 silly idealTree │ └─┬ vinyl-fs@0.3.14
+22 silly idealTree │   ├─┬ defaults@1.0.3
+22 silly idealTree │   │ └── clone@1.0.2
+22 silly idealTree │   ├─┬ glob-stream@3.1.18
+22 silly idealTree │   │ ├─┬ glob@4.5.3
+22 silly idealTree │   │ │ ├─┬ inflight@1.0.6
+22 silly idealTree │   │ │ │ └── wrappy@1.0.2
+22 silly idealTree │   │ │ ├── inherits@2.0.3
+22 silly idealTree │   │ │ └─┬ once@1.4.0
+22 silly idealTree │   │ │   └── wrappy@1.0.2
+22 silly idealTree │   │ ├─┬ glob2base@0.0.12
+22 silly idealTree │   │ │ └── find-index@0.1.1
+22 silly idealTree │   │ ├─┬ minimatch@2.0.10
+22 silly idealTree │   │ │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │   │ │   ├── balanced-match@0.4.2
+22 silly idealTree │   │ │   └── concat-map@0.0.1
+22 silly idealTree │   │ ├── ordered-read-streams@0.1.0
+22 silly idealTree │   │ └── unique-stream@1.0.0
+22 silly idealTree │   ├─┬ glob-watcher@0.0.6
+22 silly idealTree │   │ └─┬ gaze@0.5.2
+22 silly idealTree │   │   └─┬ globule@0.1.0
+22 silly idealTree │   │     ├─┬ glob@3.1.21
+22 silly idealTree │   │     │ ├── graceful-fs@1.2.3
+22 silly idealTree │   │     │ └── inherits@1.0.2
+22 silly idealTree │   │     ├── lodash@1.0.2
+22 silly idealTree │   │     └─┬ minimatch@0.2.14
+22 silly idealTree │   │       ├── lru-cache@2.7.3
+22 silly idealTree │   │       └── sigmund@1.0.1
+22 silly idealTree │   ├─┬ graceful-fs@3.0.11
+22 silly idealTree │   │ └── natives@1.1.0
+22 silly idealTree │   ├─┬ mkdirp@0.5.1
+22 silly idealTree │   │ └── minimist@0.0.8
+22 silly idealTree │   ├─┬ strip-bom@1.0.0
+22 silly idealTree │   │ ├── first-chunk-stream@1.0.0
+22 silly idealTree │   │ └── is-utf8@0.2.1
+22 silly idealTree │   ├─┬ through2@0.6.5
+22 silly idealTree │   │ ├─┬ readable-stream@1.0.34
+22 silly idealTree │   │ │ ├── core-util-is@1.0.2
+22 silly idealTree │   │ │ ├── inherits@2.0.3
+22 silly idealTree │   │ │ ├── isarray@0.0.1
+22 silly idealTree │   │ │ └── string_decoder@0.10.31
+22 silly idealTree │   │ └── xtend@4.0.1
+22 silly idealTree │   └─┬ vinyl@0.4.6
+22 silly idealTree │     ├── clone-stats@0.0.1
+22 silly idealTree │     └── clone@0.2.0
+22 silly idealTree ├── moment@2.15.2
+22 silly idealTree ├── ng-semantic@1.1.11
+22 silly idealTree ├─┬ ng2-charts@1.4.1
+22 silly idealTree │ └─┬ chart.js@2.3.0
+22 silly idealTree │   └─┬ chartjs-color@2.0.0
+22 silly idealTree │     ├─┬ chartjs-color-string@0.4.0
+22 silly idealTree │     │ └── color-name@1.1.1
+22 silly idealTree │     └── color-convert@0.5.3
+22 silly idealTree ├─┬ nodemon@1.11.0
+22 silly idealTree │ ├─┬ chokidar@1.6.1
+22 silly idealTree │ │ ├─┬ anymatch@1.3.0
+22 silly idealTree │ │ │ ├── arrify@1.0.1
+22 silly idealTree │ │ │ └─┬ micromatch@2.3.11
+22 silly idealTree │ │ │   ├─┬ arr-diff@2.0.0
+22 silly idealTree │ │ │   │ └── arr-flatten@1.0.1
+22 silly idealTree │ │ │   ├── array-unique@0.2.1
+22 silly idealTree │ │ │   ├─┬ braces@1.8.5
+22 silly idealTree │ │ │   │ ├─┬ expand-range@1.8.2
+22 silly idealTree │ │ │   │ │ └─┬ fill-range@2.2.3
+22 silly idealTree │ │ │   │ │   ├── is-number@2.1.0
+22 silly idealTree │ │ │   │ │   ├─┬ isobject@2.1.0
+22 silly idealTree │ │ │   │ │   │ └── isarray@1.0.0
+22 silly idealTree │ │ │   │ │   ├── randomatic@1.1.5
+22 silly idealTree │ │ │   │ │   └── repeat-string@1.6.1
+22 silly idealTree │ │ │   │ ├── preserve@0.2.0
+22 silly idealTree │ │ │   │ └── repeat-element@1.1.2
+22 silly idealTree │ │ │   ├─┬ expand-brackets@0.1.5
+22 silly idealTree │ │ │   │ └── is-posix-bracket@0.1.1
+22 silly idealTree │ │ │   ├── extglob@0.3.2
+22 silly idealTree │ │ │   ├── filename-regex@2.0.0
+22 silly idealTree │ │ │   ├── is-extglob@1.0.0
+22 silly idealTree │ │ │   ├─┬ kind-of@3.0.4
+22 silly idealTree │ │ │   │ └── is-buffer@1.1.4
+22 silly idealTree │ │ │   ├── normalize-path@2.0.1
+22 silly idealTree │ │ │   ├─┬ object.omit@2.0.1
+22 silly idealTree │ │ │   │ ├─┬ for-own@0.1.4
+22 silly idealTree │ │ │   │ │ └── for-in@0.1.6
+22 silly idealTree │ │ │   │ └── is-extendable@0.1.1
+22 silly idealTree │ │ │   ├─┬ parse-glob@3.0.4
+22 silly idealTree │ │ │   │ ├── glob-base@0.3.0
+22 silly idealTree │ │ │   │ └── is-dotfile@1.0.2
+22 silly idealTree │ │ │   └─┬ regex-cache@0.4.3
+22 silly idealTree │ │ │     ├── is-equal-shallow@0.1.3
+22 silly idealTree │ │ │     └── is-primitive@2.0.0
+22 silly idealTree │ │ ├── async-each@1.0.1
+22 silly idealTree │ │ ├─┬ fsevents@1.0.15
+22 silly idealTree │ │ │ ├── abbrev@1.0.9
+22 silly idealTree │ │ │ ├── ansi-regex@2.0.0
+22 silly idealTree │ │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │ │ ├── aproba@1.0.4
+22 silly idealTree │ │ │ ├── are-we-there-yet@1.1.2
+22 silly idealTree │ │ │ ├── asn1@0.2.3
+22 silly idealTree │ │ │ ├── assert-plus@0.2.0
+22 silly idealTree │ │ │ ├── async@1.5.2
+22 silly idealTree │ │ │ ├── aws-sign2@0.6.0
+22 silly idealTree │ │ │ ├── aws4@1.4.1
+22 silly idealTree │ │ │ ├── balanced-match@0.4.2
+22 silly idealTree │ │ │ ├─┬ bl@1.1.2
+22 silly idealTree │ │ │ │ └── readable-stream@2.0.6
+22 silly idealTree │ │ │ ├── block-stream@0.0.9
+22 silly idealTree │ │ │ ├── boom@2.10.1
+22 silly idealTree │ │ │ ├── brace-expansion@1.1.5
+22 silly idealTree │ │ │ ├── buffer-shims@1.0.0
+22 silly idealTree │ │ │ ├── caseless@0.11.0
+22 silly idealTree │ │ │ ├── chalk@1.1.3
+22 silly idealTree │ │ │ ├── code-point-at@1.0.0
+22 silly idealTree │ │ │ ├── combined-stream@1.0.5
+22 silly idealTree │ │ │ ├── commander@2.9.0
+22 silly idealTree │ │ │ ├── concat-map@0.0.1
+22 silly idealTree │ │ │ ├── console-control-strings@1.1.0
+22 silly idealTree │ │ │ ├── core-util-is@1.0.2
+22 silly idealTree │ │ │ ├── cryptiles@2.0.5
+22 silly idealTree │ │ │ ├─┬ dashdash@1.14.0
+22 silly idealTree │ │ │ │ └── assert-plus@1.0.0
+22 silly idealTree │ │ │ ├── debug@2.2.0
+22 silly idealTree │ │ │ ├── deep-extend@0.4.1
+22 silly idealTree │ │ │ ├── delayed-stream@1.0.0
+22 silly idealTree │ │ │ ├── delegates@1.0.0
+22 silly idealTree │ │ │ ├── ecc-jsbn@0.1.1
+22 silly idealTree │ │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │ │ ├── extend@3.0.0
+22 silly idealTree │ │ │ ├── extsprintf@1.0.2
+22 silly idealTree │ │ │ ├── forever-agent@0.6.1
+22 silly idealTree │ │ │ ├── form-data@1.0.0-rc4
+22 silly idealTree │ │ │ ├── fs.realpath@1.0.0
+22 silly idealTree │ │ │ ├── fstream-ignore@1.0.5
+22 silly idealTree │ │ │ ├── fstream@1.0.10
+22 silly idealTree │ │ │ ├── gauge@2.6.0
+22 silly idealTree │ │ │ ├── generate-function@2.0.0
+22 silly idealTree │ │ │ ├── generate-object-property@1.2.0
+22 silly idealTree │ │ │ ├─┬ getpass@0.1.6
+22 silly idealTree │ │ │ │ └── assert-plus@1.0.0
+22 silly idealTree │ │ │ ├── glob@7.0.5
+22 silly idealTree │ │ │ ├── graceful-fs@4.1.4
+22 silly idealTree │ │ │ ├── graceful-readlink@1.0.1
+22 silly idealTree │ │ │ ├── har-validator@2.0.6
+22 silly idealTree │ │ │ ├── has-ansi@2.0.0
+22 silly idealTree │ │ │ ├── has-color@0.1.7
+22 silly idealTree │ │ │ ├── has-unicode@2.0.1
+22 silly idealTree │ │ │ ├── hawk@3.1.3
+22 silly idealTree │ │ │ ├── hoek@2.16.3
+22 silly idealTree │ │ │ ├── http-signature@1.1.1
+22 silly idealTree │ │ │ ├── inflight@1.0.5
+22 silly idealTree │ │ │ ├── inherits@2.0.1
+22 silly idealTree │ │ │ ├── ini@1.3.4
+22 silly idealTree │ │ │ ├── is-fullwidth-code-point@1.0.0
+22 silly idealTree │ │ │ ├── is-my-json-valid@2.13.1
+22 silly idealTree │ │ │ ├── is-property@1.0.2
+22 silly idealTree │ │ │ ├── is-typedarray@1.0.0
+22 silly idealTree │ │ │ ├── isarray@1.0.0
+22 silly idealTree │ │ │ ├── isstream@0.1.2
+22 silly idealTree │ │ │ ├── jodid25519@1.0.2
+22 silly idealTree │ │ │ ├── jsbn@0.1.0
+22 silly idealTree │ │ │ ├── json-schema@0.2.2
+22 silly idealTree │ │ │ ├── json-stringify-safe@5.0.1
+22 silly idealTree │ │ │ ├── jsonpointer@2.0.0
+22 silly idealTree │ │ │ ├── jsprim@1.3.0
+22 silly idealTree │ │ │ ├── mime-db@1.23.0
+22 silly idealTree │ │ │ ├── mime-types@2.1.11
+22 silly idealTree │ │ │ ├── minimatch@3.0.2
+22 silly idealTree │ │ │ ├── minimist@0.0.8
+22 silly idealTree │ │ │ ├── mkdirp@0.5.1
+22 silly idealTree │ │ │ ├── ms@0.7.1
+22 silly idealTree │ │ │ ├── nan@2.4.0
+22 silly idealTree │ │ │ ├── node-pre-gyp@0.6.29
+22 silly idealTree │ │ │ ├── node-uuid@1.4.7
+22 silly idealTree │ │ │ ├── nopt@3.0.6
+22 silly idealTree │ │ │ ├── npmlog@3.1.2
+22 silly idealTree │ │ │ ├── number-is-nan@1.0.0
+22 silly idealTree │ │ │ ├── oauth-sign@0.8.2
+22 silly idealTree │ │ │ ├── object-assign@4.1.0
+22 silly idealTree │ │ │ ├── once@1.3.3
+22 silly idealTree │ │ │ ├── path-is-absolute@1.0.0
+22 silly idealTree │ │ │ ├── pinkie-promise@2.0.1
+22 silly idealTree │ │ │ ├── pinkie@2.0.4
+22 silly idealTree │ │ │ ├── process-nextick-args@1.0.7
+22 silly idealTree │ │ │ ├── qs@6.2.0
+22 silly idealTree │ │ │ ├─┬ rc@1.1.6
+22 silly idealTree │ │ │ │ └── minimist@1.2.0
+22 silly idealTree │ │ │ ├── readable-stream@2.1.4
+22 silly idealTree │ │ │ ├── request@2.73.0
+22 silly idealTree │ │ │ ├── rimraf@2.5.3
+22 silly idealTree │ │ │ ├── semver@5.2.0
+22 silly idealTree │ │ │ ├── set-blocking@2.0.0
+22 silly idealTree │ │ │ ├── signal-exit@3.0.0
+22 silly idealTree │ │ │ ├── sntp@1.0.9
+22 silly idealTree │ │ │ ├─┬ sshpk@1.8.3
+22 silly idealTree │ │ │ │ └── assert-plus@1.0.0
+22 silly idealTree │ │ │ ├── string_decoder@0.10.31
+22 silly idealTree │ │ │ ├── string-width@1.0.1
+22 silly idealTree │ │ │ ├── stringstream@0.0.5
+22 silly idealTree │ │ │ ├── strip-ansi@3.0.1
+22 silly idealTree │ │ │ ├── strip-json-comments@1.0.4
+22 silly idealTree │ │ │ ├── supports-color@2.0.0
+22 silly idealTree │ │ │ ├── tar-pack@3.1.4
+22 silly idealTree │ │ │ ├── tar@2.2.1
+22 silly idealTree │ │ │ ├── tough-cookie@2.2.2
+22 silly idealTree │ │ │ ├── tunnel-agent@0.4.3
+22 silly idealTree │ │ │ ├── tweetnacl@0.13.3
+22 silly idealTree │ │ │ ├── uid-number@0.0.6
+22 silly idealTree │ │ │ ├── util-deprecate@1.0.2
+22 silly idealTree │ │ │ ├── verror@1.3.6
+22 silly idealTree │ │ │ ├── wide-align@1.1.0
+22 silly idealTree │ │ │ ├── wrappy@1.0.2
+22 silly idealTree │ │ │ └── xtend@4.0.1
+22 silly idealTree │ │ ├── glob-parent@2.0.0
+22 silly idealTree │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ ├─┬ is-binary-path@1.0.1
+22 silly idealTree │ │ │ └── binary-extensions@1.7.0
+22 silly idealTree │ │ ├─┬ is-glob@2.0.1
+22 silly idealTree │ │ │ └── is-extglob@1.0.0
+22 silly idealTree │ │ ├── path-is-absolute@1.0.1
+22 silly idealTree │ │ └─┬ readdirp@2.1.0
+22 silly idealTree │ │   ├── graceful-fs@4.1.10
+22 silly idealTree │ │   ├─┬ readable-stream@2.1.5
+22 silly idealTree │ │   │ ├── buffer-shims@1.0.0
+22 silly idealTree │ │   │ ├── core-util-is@1.0.2
+22 silly idealTree │ │   │ ├── isarray@1.0.0
+22 silly idealTree │ │   │ ├── process-nextick-args@1.0.7
+22 silly idealTree │ │   │ ├── string_decoder@0.10.31
+22 silly idealTree │ │   │ └── util-deprecate@1.0.2
+22 silly idealTree │ │   └── set-immediate-shim@1.0.1
+22 silly idealTree │ ├── es6-promise@3.3.1
+22 silly idealTree │ ├── ignore-by-default@1.0.1
+22 silly idealTree │ ├─┬ lodash.defaults@3.1.2
+22 silly idealTree │ │ ├─┬ lodash.assign@3.2.0
+22 silly idealTree │ │ │ ├─┬ lodash._baseassign@3.2.0
+22 silly idealTree │ │ │ │ └── lodash._basecopy@3.0.1
+22 silly idealTree │ │ │ ├─┬ lodash._createassigner@3.1.1
+22 silly idealTree │ │ │ │ ├── lodash._bindcallback@3.0.1
+22 silly idealTree │ │ │ │ └── lodash._isiterateecall@3.0.9
+22 silly idealTree │ │ │ └─┬ lodash.keys@3.1.2
+22 silly idealTree │ │ │   ├── lodash._getnative@3.9.1
+22 silly idealTree │ │ │   ├── lodash.isarguments@3.1.0
+22 silly idealTree │ │ │   └── lodash.isarray@3.0.4
+22 silly idealTree │ │ └── lodash.restparam@3.6.1
+22 silly idealTree │ ├─┬ minimatch@3.0.3
+22 silly idealTree │ │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │   ├── balanced-match@0.4.2
+22 silly idealTree │ │   └── concat-map@0.0.1
+22 silly idealTree │ ├─┬ ps-tree@1.1.0
+22 silly idealTree │ │ └─┬ event-stream@3.3.4
+22 silly idealTree │ │   ├── duplexer@0.1.1
+22 silly idealTree │ │   ├── from@0.1.3
+22 silly idealTree │ │   ├── map-stream@0.1.0
+22 silly idealTree │ │   ├── pause-stream@0.0.11
+22 silly idealTree │ │   ├── split@0.3.3
+22 silly idealTree │ │   ├── stream-combiner@0.0.4
+22 silly idealTree │ │   └── through@2.3.8
+22 silly idealTree │ ├─┬ touch@1.0.0
+22 silly idealTree │ │ └─┬ nopt@1.0.10
+22 silly idealTree │ │   └── abbrev@1.0.9
+22 silly idealTree │ ├── undefsafe@0.0.3
+22 silly idealTree │ └─┬ update-notifier@0.5.0
+22 silly idealTree │   ├─┬ chalk@1.1.3
+22 silly idealTree │   │ ├── ansi-styles@2.2.1
+22 silly idealTree │   │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │   │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │   │ │ └── ansi-regex@2.0.0
+22 silly idealTree │   │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │   │ │ └── ansi-regex@2.0.0
+22 silly idealTree │   │ └── supports-color@2.0.0
+22 silly idealTree │   ├─┬ configstore@1.4.0
+22 silly idealTree │   │ ├── graceful-fs@4.1.10
+22 silly idealTree │   │ ├─┬ mkdirp@0.5.1
+22 silly idealTree │   │ │ └── minimist@0.0.8
+22 silly idealTree │   │ ├── object-assign@4.1.0
+22 silly idealTree │   │ ├── os-tmpdir@1.0.2
+22 silly idealTree │   │ ├─┬ osenv@0.1.3
+22 silly idealTree │   │ │ └── os-homedir@1.0.2
+22 silly idealTree │   │ ├── uuid@2.0.3
+22 silly idealTree │   │ ├─┬ write-file-atomic@1.2.0
+22 silly idealTree │   │ │ ├── imurmurhash@0.1.4
+22 silly idealTree │   │ │ └── slide@1.1.6
+22 silly idealTree │   │ └─┬ xdg-basedir@2.0.0
+22 silly idealTree │   │   └── os-homedir@1.0.2
+22 silly idealTree │   ├── is-npm@1.0.0
+22 silly idealTree │   ├─┬ latest-version@1.0.1
+22 silly idealTree │   │ └─┬ package-json@1.2.0
+22 silly idealTree │   │   ├─┬ got@3.3.1
+22 silly idealTree │   │   │ ├─┬ duplexify@3.5.0
+22 silly idealTree │   │   │ │ ├─┬ end-of-stream@1.0.0
+22 silly idealTree │   │   │ │ │ └─┬ once@1.3.3
+22 silly idealTree │   │   │ │ │   └── wrappy@1.0.2
+22 silly idealTree │   │   │ │ ├── inherits@2.0.3
+22 silly idealTree │   │   │ │ ├─┬ readable-stream@2.1.5
+22 silly idealTree │   │   │ │ │ ├── buffer-shims@1.0.0
+22 silly idealTree │   │   │ │ │ ├── core-util-is@1.0.2
+22 silly idealTree │   │   │ │ │ ├── isarray@1.0.0
+22 silly idealTree │   │   │ │ │ ├── process-nextick-args@1.0.7
+22 silly idealTree │   │   │ │ │ ├── string_decoder@0.10.31
+22 silly idealTree │   │   │ │ │ └── util-deprecate@1.0.2
+22 silly idealTree │   │   │ │ └── stream-shift@1.0.0
+22 silly idealTree │   │   │ ├── infinity-agent@2.0.3
+22 silly idealTree │   │   │ ├── is-redirect@1.0.0
+22 silly idealTree │   │   │ ├── is-stream@1.1.0
+22 silly idealTree │   │   │ ├── lowercase-keys@1.0.0
+22 silly idealTree │   │   │ ├─┬ nested-error-stacks@1.0.2
+22 silly idealTree │   │   │ │ └── inherits@2.0.3
+22 silly idealTree │   │   │ ├── object-assign@3.0.0
+22 silly idealTree │   │   │ ├── prepend-http@1.0.4
+22 silly idealTree │   │   │ ├─┬ read-all-stream@3.1.0
+22 silly idealTree │   │   │ │ ├─┬ pinkie-promise@2.0.1
+22 silly idealTree │   │   │ │ │ └── pinkie@2.0.4
+22 silly idealTree │   │   │ │ └─┬ readable-stream@2.1.5
+22 silly idealTree │   │   │ │   ├── buffer-shims@1.0.0
+22 silly idealTree │   │   │ │   ├── core-util-is@1.0.2
+22 silly idealTree │   │   │ │   ├── inherits@2.0.3
+22 silly idealTree │   │   │ │   ├── isarray@1.0.0
+22 silly idealTree │   │   │ │   ├── process-nextick-args@1.0.7
+22 silly idealTree │   │   │ │   ├── string_decoder@0.10.31
+22 silly idealTree │   │   │ │   └── util-deprecate@1.0.2
+22 silly idealTree │   │   │ └── timed-out@2.0.0
+22 silly idealTree │   │   └─┬ registry-url@3.1.0
+22 silly idealTree │   │     └─┬ rc@1.1.6
+22 silly idealTree │   │       ├── deep-extend@0.4.1
+22 silly idealTree │   │       ├── ini@1.3.4
+22 silly idealTree │   │       ├── minimist@1.2.0
+22 silly idealTree │   │       └── strip-json-comments@1.0.4
+22 silly idealTree │   ├─┬ repeating@1.1.3
+22 silly idealTree │   │ └─┬ is-finite@1.0.2
+22 silly idealTree │   │   └── number-is-nan@1.0.1
+22 silly idealTree │   ├─┬ semver-diff@2.1.0
+22 silly idealTree │   │ └── semver@5.3.0
+22 silly idealTree │   └─┬ string-length@1.0.1
+22 silly idealTree │     └─┬ strip-ansi@3.0.1
+22 silly idealTree │       └── ansi-regex@2.0.0
+22 silly idealTree ├── python-shell@0.4.0
+22 silly idealTree ├── reflect-metadata@0.1.8
+22 silly idealTree ├─┬ rxjs@5.0.0-beta.12
+22 silly idealTree │ └── symbol-observable@1.0.4
+22 silly idealTree ├─┬ systemjs-builder@0.15.33
+22 silly idealTree │ ├─┬ babel-core@6.18.2
+22 silly idealTree │ │ ├─┬ babel-code-frame@6.16.0
+22 silly idealTree │ │ │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │ │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │ │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │ │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ │ │ └── supports-color@2.0.0
+22 silly idealTree │ │ │ ├── esutils@2.0.2
+22 silly idealTree │ │ │ └── js-tokens@2.0.0
+22 silly idealTree │ │ ├─┬ babel-generator@6.18.0
+22 silly idealTree │ │ │ ├─┬ detect-indent@4.0.0
+22 silly idealTree │ │ │ │ └─┬ repeating@2.0.1
+22 silly idealTree │ │ │ │   └─┬ is-finite@1.0.2
+22 silly idealTree │ │ │ │     └── number-is-nan@1.0.1
+22 silly idealTree │ │ │ └── jsesc@1.3.0
+22 silly idealTree │ │ ├── babel-helpers@6.16.0
+22 silly idealTree │ │ ├── babel-messages@6.8.0
+22 silly idealTree │ │ ├─┬ babel-register@6.18.0
+22 silly idealTree │ │ │ ├─┬ home-or-tmp@2.0.0
+22 silly idealTree │ │ │ │ ├── os-homedir@1.0.2
+22 silly idealTree │ │ │ │ └── os-tmpdir@1.0.2
+22 silly idealTree │ │ │ └── source-map-support@0.4.6
+22 silly idealTree │ │ ├─┬ babel-runtime@6.18.0
+22 silly idealTree │ │ │ └── regenerator-runtime@0.9.6
+22 silly idealTree │ │ ├── babel-template@6.16.0
+22 silly idealTree │ │ ├─┬ babel-traverse@6.18.0
+22 silly idealTree │ │ │ ├── globals@9.12.0
+22 silly idealTree │ │ │ └─┬ invariant@2.2.1
+22 silly idealTree │ │ │   └─┬ loose-envify@1.3.0
+22 silly idealTree │ │ │     └── js-tokens@2.0.0
+22 silly idealTree │ │ ├─┬ babel-types@6.18.0
+22 silly idealTree │ │ │ ├── esutils@2.0.2
+22 silly idealTree │ │ │ └── to-fast-properties@1.0.2
+22 silly idealTree │ │ ├── babylon@6.13.1
+22 silly idealTree │ │ ├── convert-source-map@1.3.0
+22 silly idealTree │ │ ├── json5@0.5.0
+22 silly idealTree │ │ ├── lodash@4.16.6
+22 silly idealTree │ │ ├─┬ minimatch@3.0.3
+22 silly idealTree │ │ │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │ │   ├── balanced-match@0.4.2
+22 silly idealTree │ │ │   └── concat-map@0.0.1
+22 silly idealTree │ │ ├── path-is-absolute@1.0.1
+22 silly idealTree │ │ ├── private@0.1.6
+22 silly idealTree │ │ └── slash@1.0.0
+22 silly idealTree │ ├─┬ babel-plugin-transform-cjs-system-wrapper@0.2.1
+22 silly idealTree │ │ ├── babel-plugin-transform-cjs-system-require@0.1.1
+22 silly idealTree │ │ └─┬ babel-template@6.16.0
+22 silly idealTree │ │   ├─┬ babel-runtime@6.18.0
+22 silly idealTree │ │   │ └── regenerator-runtime@0.9.6
+22 silly idealTree │ │   ├─┬ babel-traverse@6.18.0
+22 silly idealTree │ │   │ ├─┬ babel-code-frame@6.16.0
+22 silly idealTree │ │   │ │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │   │ │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ └── supports-color@2.0.0
+22 silly idealTree │ │   │ │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ │ └── js-tokens@2.0.0
+22 silly idealTree │ │   │ ├── babel-messages@6.8.0
+22 silly idealTree │ │   │ ├── globals@9.12.0
+22 silly idealTree │ │   │ └─┬ invariant@2.2.1
+22 silly idealTree │ │   │   └─┬ loose-envify@1.3.0
+22 silly idealTree │ │   │     └── js-tokens@2.0.0
+22 silly idealTree │ │   ├─┬ babel-types@6.18.0
+22 silly idealTree │ │   │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ └── to-fast-properties@1.0.2
+22 silly idealTree │ │   ├── babylon@6.13.1
+22 silly idealTree │ │   └── lodash@4.16.6
+22 silly idealTree │ ├─┬ babel-plugin-transform-es2015-modules-systemjs@6.18.0
+22 silly idealTree │ │ ├─┬ babel-helper-hoist-variables@6.18.0
+22 silly idealTree │ │ │ └─┬ babel-types@6.18.0
+22 silly idealTree │ │ │   ├── esutils@2.0.2
+22 silly idealTree │ │ │   ├── lodash@4.16.6
+22 silly idealTree │ │ │   └── to-fast-properties@1.0.2
+22 silly idealTree │ │ ├─┬ babel-runtime@6.18.0
+22 silly idealTree │ │ │ └── regenerator-runtime@0.9.6
+22 silly idealTree │ │ └─┬ babel-template@6.16.0
+22 silly idealTree │ │   ├─┬ babel-traverse@6.18.0
+22 silly idealTree │ │   │ ├─┬ babel-code-frame@6.16.0
+22 silly idealTree │ │   │ │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │   │ │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ └── supports-color@2.0.0
+22 silly idealTree │ │   │ │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ │ └── js-tokens@2.0.0
+22 silly idealTree │ │   │ ├── babel-messages@6.8.0
+22 silly idealTree │ │   │ ├── globals@9.12.0
+22 silly idealTree │ │   │ └─┬ invariant@2.2.1
+22 silly idealTree │ │   │   └─┬ loose-envify@1.3.0
+22 silly idealTree │ │   │     └── js-tokens@2.0.0
+22 silly idealTree │ │   ├─┬ babel-types@6.18.0
+22 silly idealTree │ │   │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ └── to-fast-properties@1.0.2
+22 silly idealTree │ │   ├── babylon@6.13.1
+22 silly idealTree │ │   └── lodash@4.16.6
+22 silly idealTree │ ├─┬ babel-plugin-transform-global-system-wrapper@0.0.1
+22 silly idealTree │ │ └─┬ babel-template@6.16.0
+22 silly idealTree │ │   ├─┬ babel-runtime@6.18.0
+22 silly idealTree │ │   │ └── regenerator-runtime@0.9.6
+22 silly idealTree │ │   ├─┬ babel-traverse@6.18.0
+22 silly idealTree │ │   │ ├─┬ babel-code-frame@6.16.0
+22 silly idealTree │ │   │ │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │   │ │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │   │ │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │   │ │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │   │ │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │   │ │ │ └── supports-color@2.0.0
+22 silly idealTree │ │   │ │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ │ └── js-tokens@2.0.0
+22 silly idealTree │ │   │ ├── babel-messages@6.8.0
+22 silly idealTree │ │   │ ├── globals@9.12.0
+22 silly idealTree │ │   │ └─┬ invariant@2.2.1
+22 silly idealTree │ │   │   └─┬ loose-envify@1.3.0
+22 silly idealTree │ │   │     └── js-tokens@2.0.0
+22 silly idealTree │ │   ├─┬ babel-types@6.18.0
+22 silly idealTree │ │   │ ├── esutils@2.0.2
+22 silly idealTree │ │   │ └── to-fast-properties@1.0.2
+22 silly idealTree │ │   ├── babylon@6.13.1
+22 silly idealTree │ │   └── lodash@4.16.6
+22 silly idealTree │ ├── babel-plugin-transform-system-register@0.0.1
+22 silly idealTree │ ├── bluebird@3.4.6
+22 silly idealTree │ ├── data-uri-to-buffer@0.0.4
+22 silly idealTree │ ├─┬ es6-template-strings@2.0.1
+22 silly idealTree │ │ ├─┬ es5-ext@0.10.12
+22 silly idealTree │ │ │ ├─┬ es6-iterator@2.0.0
+22 silly idealTree │ │ │ │ └── d@0.1.1
+22 silly idealTree │ │ │ └─┬ es6-symbol@3.1.0
+22 silly idealTree │ │ │   └── d@0.1.1
+22 silly idealTree │ │ └─┬ esniff@1.1.0
+22 silly idealTree │ │   └── d@1.0.0
+22 silly idealTree │ ├─┬ glob@7.1.1
+22 silly idealTree │ │ ├── fs.realpath@1.0.0
+22 silly idealTree │ │ ├─┬ inflight@1.0.6
+22 silly idealTree │ │ │ └── wrappy@1.0.2
+22 silly idealTree │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ ├─┬ minimatch@3.0.3
+22 silly idealTree │ │ │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │ │   ├── balanced-match@0.4.2
+22 silly idealTree │ │ │   └── concat-map@0.0.1
+22 silly idealTree │ │ ├─┬ once@1.4.0
+22 silly idealTree │ │ │ └── wrappy@1.0.2
+22 silly idealTree │ │ └── path-is-absolute@1.0.1
+22 silly idealTree │ ├─┬ mkdirp@0.5.1
+22 silly idealTree │ │ └── minimist@0.0.8
+22 silly idealTree │ ├─┬ rollup@0.36.3
+22 silly idealTree │ │ └── source-map-support@0.4.6
+22 silly idealTree │ ├── source-map@0.5.6
+22 silly idealTree │ ├─┬ systemjs@0.19.40
+22 silly idealTree │ │ └── when@3.7.7
+22 silly idealTree │ ├─┬ traceur@0.0.105
+22 silly idealTree │ │ ├─┬ commander@2.9.0
+22 silly idealTree │ │ │ └── graceful-readlink@1.0.1
+22 silly idealTree │ │ ├─┬ glob@5.0.15
+22 silly idealTree │ │ │ ├─┬ inflight@1.0.6
+22 silly idealTree │ │ │ │ └── wrappy@1.0.2
+22 silly idealTree │ │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ │ ├─┬ minimatch@3.0.3
+22 silly idealTree │ │ │ │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │ │ │   ├── balanced-match@0.4.2
+22 silly idealTree │ │ │ │   └── concat-map@0.0.1
+22 silly idealTree │ │ │ ├─┬ once@1.4.0
+22 silly idealTree │ │ │ │ └── wrappy@1.0.2
+22 silly idealTree │ │ │ └── path-is-absolute@1.0.1
+22 silly idealTree │ │ ├── rsvp@3.3.3
+22 silly idealTree │ │ ├── semver@4.3.6
+22 silly idealTree │ │ └─┬ source-map-support@0.2.10
+22 silly idealTree │ │   └─┬ source-map@0.1.32
+22 silly idealTree │ │     └── amdefine@1.0.1
+22 silly idealTree │ └─┬ uglify-js@2.7.4
+22 silly idealTree │   ├── async@0.2.10
+22 silly idealTree │   ├── uglify-to-browserify@1.0.2
+22 silly idealTree │   └─┬ yargs@3.10.0
+22 silly idealTree │     ├── camelcase@1.2.1
+22 silly idealTree │     ├─┬ cliui@2.1.0
+22 silly idealTree │     │ ├─┬ center-align@0.1.3
+22 silly idealTree │     │ │ ├─┬ align-text@0.1.4
+22 silly idealTree │     │ │ │ ├─┬ kind-of@3.0.4
+22 silly idealTree │     │ │ │ │ └── is-buffer@1.1.4
+22 silly idealTree │     │ │ │ ├── longest@1.0.1
+22 silly idealTree │     │ │ │ └── repeat-string@1.6.1
+22 silly idealTree │     │ │ └── lazy-cache@1.0.4
+22 silly idealTree │     │ ├─┬ right-align@0.1.3
+22 silly idealTree │     │ │ └─┬ align-text@0.1.4
+22 silly idealTree │     │ │   ├─┬ kind-of@3.0.4
+22 silly idealTree │     │ │   │ └── is-buffer@1.1.4
+22 silly idealTree │     │ │   ├── longest@1.0.1
+22 silly idealTree │     │ │   └── repeat-string@1.6.1
+22 silly idealTree │     │ └── wordwrap@0.0.2
+22 silly idealTree │     ├── decamelize@1.2.0
+22 silly idealTree │     └── window-size@0.1.0
+22 silly idealTree ├─┬ systemjs@0.19.27
+22 silly idealTree │ └── when@3.7.7
+22 silly idealTree ├── typescript@2.0.8
+22 silly idealTree ├─┬ typings@1.5.0
+22 silly idealTree │ ├── any-promise@1.3.0
+22 silly idealTree │ ├── archy@1.0.0
+22 silly idealTree │ ├── bluebird@3.4.6
+22 silly idealTree │ ├─┬ chalk@1.1.3
+22 silly idealTree │ │ ├── ansi-styles@2.2.1
+22 silly idealTree │ │ ├── escape-string-regexp@1.0.5
+22 silly idealTree │ │ ├─┬ has-ansi@2.0.0
+22 silly idealTree │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ └── supports-color@2.0.0
+22 silly idealTree │ ├─┬ cli-truncate@0.2.1
+22 silly idealTree │ │ ├── slice-ansi@0.0.4
+22 silly idealTree │ │ └─┬ string-width@1.0.2
+22 silly idealTree │ │   ├── code-point-at@1.1.0
+22 silly idealTree │ │   ├─┬ is-fullwidth-code-point@1.0.0
+22 silly idealTree │ │   │ └── number-is-nan@1.0.1
+22 silly idealTree │ │   └─┬ strip-ansi@3.0.1
+22 silly idealTree │ │     └── ansi-regex@2.0.0
+22 silly idealTree │ ├─┬ columnify@1.5.4
+22 silly idealTree │ │ ├─┬ strip-ansi@3.0.1
+22 silly idealTree │ │ │ └── ansi-regex@2.0.0
+22 silly idealTree │ │ └─┬ wcwidth@1.0.1
+22 silly idealTree │ │   └─┬ defaults@1.0.3
+22 silly idealTree │ │     └── clone@1.0.2
+22 silly idealTree │ ├── elegant-spinner@1.0.1
+22 silly idealTree │ ├── has-unicode@2.0.1
+22 silly idealTree │ ├── listify@1.0.0
+22 silly idealTree │ ├─┬ log-update@1.0.2
+22 silly idealTree │ │ ├── ansi-escapes@1.4.0
+22 silly idealTree │ │ └─┬ cli-cursor@1.0.2
+22 silly idealTree │ │   └─┬ restore-cursor@1.0.1
+22 silly idealTree │ │     ├── exit-hook@1.1.1
+22 silly idealTree │ │     └── onetime@1.1.0
+22 silly idealTree │ ├── minimist@1.2.0
+22 silly idealTree │ ├── promise-finally@2.2.1
+22 silly idealTree │ ├─┬ typings-core@1.6.1
+22 silly idealTree │ │ ├── array-uniq@1.0.3
+22 silly idealTree │ │ ├─┬ configstore@2.1.0
+22 silly idealTree │ │ │ ├─┬ dot-prop@3.0.0
+22 silly idealTree │ │ │ │ └── is-obj@1.0.1
+22 silly idealTree │ │ │ ├── object-assign@4.1.0
+22 silly idealTree │ │ │ ├── os-tmpdir@1.0.2
+22 silly idealTree │ │ │ ├─┬ osenv@0.1.3
+22 silly idealTree │ │ │ │ └── os-homedir@1.0.2
+22 silly idealTree │ │ │ ├── uuid@2.0.3
+22 silly idealTree │ │ │ ├─┬ write-file-atomic@1.2.0
+22 silly idealTree │ │ │ │ ├── imurmurhash@0.1.4
+22 silly idealTree │ │ │ │ └── slide@1.1.6
+22 silly idealTree │ │ │ └─┬ xdg-basedir@2.0.0
+22 silly idealTree │ │ │   └── os-homedir@1.0.2
+22 silly idealTree │ │ ├─┬ detect-indent@4.0.0
+22 silly idealTree │ │ │ └─┬ repeating@2.0.1
+22 silly idealTree │ │ │   └─┬ is-finite@1.0.2
+22 silly idealTree │ │ │     └── number-is-nan@1.0.1
+22 silly idealTree │ │ ├── graceful-fs@4.1.10
+22 silly idealTree │ │ ├─┬ has@1.0.1
+22 silly idealTree │ │ │ └── function-bind@1.1.0
+22 silly idealTree │ │ ├─┬ invariant@2.2.1
+22 silly idealTree │ │ │ └─┬ loose-envify@1.3.0
+22 silly idealTree │ │ │   └── js-tokens@2.0.0
+22 silly idealTree │ │ ├─┬ is-absolute@0.2.6
+22 silly idealTree │ │ │ ├─┬ is-relative@0.2.1
+22 silly idealTree │ │ │ │ └─┬ is-unc-path@0.1.1
+22 silly idealTree │ │ │ │   └── unc-path-regex@0.1.2
+22 silly idealTree │ │ │ └── is-windows@0.2.0
+22 silly idealTree │ │ ├── lockfile@1.0.2
+22 silly idealTree │ │ ├─┬ make-error-cause@1.2.2
+22 silly idealTree │ │ │ └── make-error@1.2.1
+22 silly idealTree │ │ ├─┬ mkdirp@0.5.1
+22 silly idealTree │ │ │ └── minimist@0.0.8
+22 silly idealTree │ │ ├─┬ object.pick@1.2.0
+22 silly idealTree │ │ │ └─┬ isobject@2.1.0
+22 silly idealTree │ │ │   └── isarray@1.0.0
+22 silly idealTree │ │ ├─┬ parse-json@2.2.0
+22 silly idealTree │ │ │ └─┬ error-ex@1.3.0
+22 silly idealTree │ │ │   └── is-arrayish@0.2.1
+22 silly idealTree │ │ ├─┬ popsicle-proxy-agent@3.0.0
+22 silly idealTree │ │ │ ├─┬ http-proxy-agent@1.0.0
+22 silly idealTree │ │ │ │ ├─┬ agent-base@2.0.1
+22 silly idealTree │ │ │ │ │ └── semver@5.0.3
+22 silly idealTree │ │ │ │ └── extend@3.0.0
+22 silly idealTree │ │ │ └─┬ https-proxy-agent@1.0.0
+22 silly idealTree │ │ │   ├─┬ agent-base@2.0.1
+22 silly idealTree │ │ │   │ └── semver@5.0.3
+22 silly idealTree │ │ │   └── extend@3.0.0
+22 silly idealTree │ │ ├── popsicle-retry@3.2.1
+22 silly idealTree │ │ ├── popsicle-rewrite@1.0.0
+22 silly idealTree │ │ ├── popsicle-status@2.0.0
+22 silly idealTree │ │ ├─┬ popsicle@8.2.0
+22 silly idealTree │ │ │ ├── arrify@1.0.1
+22 silly idealTree │ │ │ ├─┬ concat-stream@1.5.2
+22 silly idealTree │ │ │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ │ │ ├─┬ readable-stream@2.0.6
+22 silly idealTree │ │ │ │ │ ├── core-util-is@1.0.2
+22 silly idealTree │ │ │ │ │ ├── isarray@1.0.0
+22 silly idealTree │ │ │ │ │ ├── process-nextick-args@1.0.7
+22 silly idealTree │ │ │ │ │ ├── string_decoder@0.10.31
+22 silly idealTree │ │ │ │ │ └── util-deprecate@1.0.2
+22 silly idealTree │ │ │ │ └── typedarray@0.0.6
+22 silly idealTree │ │ │ ├─┬ form-data@2.1.2
+22 silly idealTree │ │ │ │ ├── asynckit@0.4.0
+22 silly idealTree │ │ │ │ ├─┬ combined-stream@1.0.5
+22 silly idealTree │ │ │ │ │ └── delayed-stream@1.0.0
+22 silly idealTree │ │ │ │ └─┬ mime-types@2.1.12
+22 silly idealTree │ │ │ │   └── mime-db@1.24.0
+22 silly idealTree │ │ │ ├── throwback@1.1.1
+22 silly idealTree │ │ │ └─┬ tough-cookie@2.3.2
+22 silly idealTree │ │ │   └── punycode@1.4.1
+22 silly idealTree │ │ ├─┬ rc@1.1.6
+22 silly idealTree │ │ │ ├── deep-extend@0.4.1
+22 silly idealTree │ │ │ ├── ini@1.3.4
+22 silly idealTree │ │ │ └── strip-json-comments@1.0.4
+22 silly idealTree │ │ ├─┬ rimraf@2.5.4
+22 silly idealTree │ │ │ └─┬ glob@7.1.1
+22 silly idealTree │ │ │   ├── fs.realpath@1.0.0
+22 silly idealTree │ │ │   ├─┬ inflight@1.0.6
+22 silly idealTree │ │ │   │ └── wrappy@1.0.2
+22 silly idealTree │ │ │   ├── inherits@2.0.3
+22 silly idealTree │ │ │   ├─┬ minimatch@3.0.3
+22 silly idealTree │ │ │   │ └─┬ brace-expansion@1.1.6
+22 silly idealTree │ │ │   │   ├── balanced-match@0.4.2
+22 silly idealTree │ │ │   │   └── concat-map@0.0.1
+22 silly idealTree │ │ │   ├─┬ once@1.4.0
+22 silly idealTree │ │ │   │ └── wrappy@1.0.2
+22 silly idealTree │ │ │   └── path-is-absolute@1.0.1
+22 silly idealTree │ │ ├─┬ sort-keys@1.1.2
+22 silly idealTree │ │ │ └── is-plain-obj@1.1.0
+22 silly idealTree │ │ ├── string-template@1.0.0
+22 silly idealTree │ │ ├─┬ strip-bom@2.0.0
+22 silly idealTree │ │ │ └── is-utf8@0.2.1
+22 silly idealTree │ │ ├── thenify@3.2.1
+22 silly idealTree │ │ ├── throat@3.0.0
+22 silly idealTree │ │ ├─┬ touch@1.0.0
+22 silly idealTree │ │ │ └─┬ nopt@1.0.10
+22 silly idealTree │ │ │   └── abbrev@1.0.9
+22 silly idealTree │ │ └── zip-object@0.1.0
+22 silly idealTree │ ├─┬ update-notifier@1.0.2
+22 silly idealTree │ │ ├─┬ boxen@0.6.0
+22 silly idealTree │ │ │ ├── ansi-align@1.1.0
+22 silly idealTree │ │ │ ├── camelcase@2.1.1
+22 silly idealTree │ │ │ ├── cli-boxes@1.0.0
+22 silly idealTree │ │ │ ├── filled-array@1.1.0
+22 silly idealTree │ │ │ ├── object-assign@4.1.0
+22 silly idealTree │ │ │ ├─┬ repeating@2.0.1
+22 silly idealTree │ │ │ │ └─┬ is-finite@1.0.2
+22 silly idealTree │ │ │ │   └── number-is-nan@1.0.1
+22 silly idealTree │ │ │ ├─┬ string-width@1.0.2
+22 silly idealTree │ │ │ │ ├── code-point-at@1.1.0
+22 silly idealTree │ │ │ │ ├─┬ is-fullwidth-code-point@1.0.0
+22 silly idealTree │ │ │ │ │ └── number-is-nan@1.0.1
+22 silly idealTree │ │ │ │ └─┬ strip-ansi@3.0.1
+22 silly idealTree │ │ │ │   └── ansi-regex@2.0.0
+22 silly idealTree │ │ │ └── widest-line@1.0.0
+22 silly idealTree │ │ ├─┬ configstore@2.1.0
+22 silly idealTree │ │ │ ├─┬ dot-prop@3.0.0
+22 silly idealTree │ │ │ │ └── is-obj@1.0.1
+22 silly idealTree │ │ │ ├── graceful-fs@4.1.10
+22 silly idealTree │ │ │ ├─┬ mkdirp@0.5.1
+22 silly idealTree │ │ │ │ └── minimist@0.0.8
+22 silly idealTree │ │ │ ├── object-assign@4.1.0
+22 silly idealTree │ │ │ ├── os-tmpdir@1.0.2
+22 silly idealTree │ │ │ ├─┬ osenv@0.1.3
+22 silly idealTree │ │ │ │ └── os-homedir@1.0.2
+22 silly idealTree │ │ │ ├── uuid@2.0.3
+22 silly idealTree │ │ │ └─┬ write-file-atomic@1.2.0
+22 silly idealTree │ │ │   ├── imurmurhash@0.1.4
+22 silly idealTree │ │ │   └── slide@1.1.6
+22 silly idealTree │ │ ├── is-npm@1.0.0
+22 silly idealTree │ │ ├─┬ latest-version@2.0.0
+22 silly idealTree │ │ │ └─┬ package-json@2.4.0
+22 silly idealTree │ │ │   ├─┬ got@5.7.1
+22 silly idealTree │ │ │   │ ├─┬ create-error-class@3.0.2
+22 silly idealTree │ │ │   │ │ └── capture-stack-trace@1.0.0
+22 silly idealTree │ │ │   │ ├── duplexer2@0.1.4
+22 silly idealTree │ │ │   │ ├── is-redirect@1.0.0
+22 silly idealTree │ │ │   │ ├── is-retry-allowed@1.1.0
+22 silly idealTree │ │ │   │ ├── is-stream@1.1.0
+22 silly idealTree │ │ │   │ ├── lowercase-keys@1.0.0
+22 silly idealTree │ │ │   │ ├── node-status-codes@1.0.0
+22 silly idealTree │ │ │   │ ├── object-assign@4.1.0
+22 silly idealTree │ │ │   │ ├─┬ parse-json@2.2.0
+22 silly idealTree │ │ │   │ │ └─┬ error-ex@1.3.0
+22 silly idealTree │ │ │   │ │   └── is-arrayish@0.2.1
+22 silly idealTree │ │ │   │ ├─┬ pinkie-promise@2.0.1
+22 silly idealTree │ │ │   │ │ └── pinkie@2.0.4
+22 silly idealTree │ │ │   │ ├── read-all-stream@3.1.0
+22 silly idealTree │ │ │   │ ├─┬ readable-stream@2.1.5
+22 silly idealTree │ │ │   │ │ ├── buffer-shims@1.0.0
+22 silly idealTree │ │ │   │ │ ├── core-util-is@1.0.2
+22 silly idealTree │ │ │   │ │ ├── inherits@2.0.3
+22 silly idealTree │ │ │   │ │ ├── isarray@1.0.0
+22 silly idealTree │ │ │   │ │ ├── process-nextick-args@1.0.7
+22 silly idealTree │ │ │   │ │ ├── string_decoder@0.10.31
+22 silly idealTree │ │ │   │ │ └── util-deprecate@1.0.2
+22 silly idealTree │ │ │   │ ├── timed-out@3.0.0
+22 silly idealTree │ │ │   │ ├── unzip-response@1.0.2
+22 silly idealTree │ │ │   │ └─┬ url-parse-lax@1.0.0
+22 silly idealTree │ │ │   │   └── prepend-http@1.0.4
+22 silly idealTree │ │ │   ├─┬ registry-auth-token@3.1.0
+22 silly idealTree │ │ │   │ └─┬ rc@1.1.6
+22 silly idealTree │ │ │   │   ├── deep-extend@0.4.1
+22 silly idealTree │ │ │   │   ├── ini@1.3.4
+22 silly idealTree │ │ │   │   └── strip-json-comments@1.0.4
+22 silly idealTree │ │ │   ├─┬ registry-url@3.1.0
+22 silly idealTree │ │ │   │ └─┬ rc@1.1.6
+22 silly idealTree │ │ │   │   ├── deep-extend@0.4.1
+22 silly idealTree │ │ │   │   ├── ini@1.3.4
+22 silly idealTree │ │ │   │   └── strip-json-comments@1.0.4
+22 silly idealTree │ │ │   └── semver@5.3.0
+22 silly idealTree │ │ ├── lazy-req@1.1.0
+22 silly idealTree │ │ ├─┬ semver-diff@2.1.0
+22 silly idealTree │ │ │ └── semver@5.3.0
+22 silly idealTree │ │ └─┬ xdg-basedir@2.0.0
+22 silly idealTree │ │   └── os-homedir@1.0.2
+22 silly idealTree │ ├── wordwrap@1.0.0
+22 silly idealTree │ └── xtend@4.0.1
+22 silly idealTree └── zone.js@0.6.26
+23 silly generateActionsToTake Starting
+24 silly install generateActionsToTake
+25 silly generateActionsToTake Finishing
+26 silly diffTrees action count 0
+27 silly decomposeActions action count 0
+28 silly runTopLevelLifecycles Starting
+29 silly install runPreinstallTopLevelLifecycles
+30 silly preinstall ChineseChessAi@1.0.0 /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/ChineseChessAi-f659f243
+31 info lifecycle ChineseChessAi@1.0.0~preinstall: ChineseChessAi@1.0.0
+32 silly lifecycle ChineseChessAi@1.0.0~preinstall: no script for preinstall, continuing
+33 silly executeActions Starting
+34 silly install executeActions
+35 silly doSerial global-install 0
+36 silly doParallel fetch 0
+37 verbose correctMkdir /home/dengl11/.npm/_locks correctMkdir not in flight; initializing
+38 verbose lock using /home/dengl11/.npm/_locks/staging-81ef3d9dd1a30d79.lock for /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/node_modules/.staging
+39 silly doParallel extract 0
+40 silly doParallel preinstall 0
+41 silly doReverseSerial remove 0
+42 silly doSerial move 0
+43 silly doSerial finalize 0
+44 silly doSerial build 0
+45 silly doSerial global-link 0
+46 silly doParallel update-linked 0
+47 silly doSerial install 0
+48 silly doSerial postinstall 0
+49 verbose unlock done using /home/dengl11/.npm/_locks/staging-81ef3d9dd1a30d79.lock for /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/node_modules/.staging
+50 silly executeActions Finishing
+51 silly rollbackFailedOptional Starting
+52 silly rollbackFailedOptional Finishing
+53 silly install runPostinstallTopLevelLifecycles
+54 silly build ChineseChessAi@1.0.0
+55 info linkStuff ChineseChessAi@1.0.0
+56 silly linkStuff ChineseChessAi@1.0.0 has /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects as its parent node_modules
+57 verbose linkBins ChineseChessAi@1.0.0
+58 verbose linkMans ChineseChessAi@1.0.0
+59 silly install ChineseChessAi@1.0.0 /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/ChineseChessAi-f659f243
+60 info lifecycle ChineseChessAi@1.0.0~install: ChineseChessAi@1.0.0
+61 silly lifecycle ChineseChessAi@1.0.0~install: no script for install, continuing
+62 silly postinstall ChineseChessAi@1.0.0 /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/ChineseChessAi-f659f243
+63 info lifecycle ChineseChessAi@1.0.0~postinstall: ChineseChessAi@1.0.0
+64 verbose lifecycle ChineseChessAi@1.0.0~postinstall: unsafe-perm in lifecycle true
+65 verbose lifecycle ChineseChessAi@1.0.0~postinstall: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core/node_modules/.bin:/usr/local/cuda-8.0/bin:/home/dengl11/bin:/home/dengl11/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/julia/bin:/usr/lib/julia/bin:/usr/local/MATLAB/R2016b/bin/:/usr/local/cuda/bin
+66 verbose lifecycle ChineseChessAi@1.0.0~postinstall: CWD: /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core
+67 silly lifecycle ChineseChessAi@1.0.0~postinstall: Args: [ '-c', 'typings install && tsc -p ./server' ]
+68 silly lifecycle ChineseChessAi@1.0.0~postinstall: Returned: code: 1  signal: null
+69 info lifecycle ChineseChessAi@1.0.0~postinstall: Failed to exec postinstall script
+70 verbose stack Error: ChineseChessAi@1.0.0 postinstall: `typings install && tsc -p ./server`
+70 verbose stack Exit status 1
+70 verbose stack     at EventEmitter.<anonymous> (/usr/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+70 verbose stack     at emitTwo (events.js:106:13)
+70 verbose stack     at EventEmitter.emit (events.js:191:7)
+70 verbose stack     at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+70 verbose stack     at emitTwo (events.js:106:13)
+70 verbose stack     at ChildProcess.emit (events.js:191:7)
+70 verbose stack     at maybeClose (internal/child_process.js:885:16)
+70 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+71 verbose pkgid ChineseChessAi@1.0.0
+72 verbose cwd /home/dengl11/Dropbox/1.2016_Autumn/CS_221/6_Projects/1_Core
+73 error Linux 4.4.0-53-generic
+74 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install"
+75 error node v7.1.0
+76 error npm  v3.10.9
+77 error code ELIFECYCLE
+78 error ChineseChessAi@1.0.0 postinstall: `typings install && tsc -p ./server`
+78 error Exit status 1
+79 error Failed at the ChineseChessAi@1.0.0 postinstall script 'typings install && tsc -p ./server'.
+79 error Make sure you have the latest version of node.js and npm installed.
+79 error If you do, this is most likely a problem with the ChineseChessAi package,
+79 error not with npm itself.
+79 error Tell the author that this fails on your system:
+79 error     typings install && tsc -p ./server
+79 error You can get information on how to open an issue for this project with:
+79 error     npm bugs ChineseChessAi
+79 error Or if that isn't available, you can get their info via:
+79 error     npm owner ls ChineseChessAi
+79 error There is likely additional logging output above.
+80 verbose exit [ 1, true ]

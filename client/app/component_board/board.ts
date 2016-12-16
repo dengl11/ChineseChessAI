@@ -87,10 +87,6 @@ export class BoardComponent implements OnInit {
         this.humanMode = !this.humanMode;
         this.simulation_state = -1;
         this.onClear.emit();
-        // this.redAgentType = this.DEFAULT_TYPE;
-        // this.blackAgentType = this.DEFAULT_TYPE;
-        // this.redAgentDepth = this.DEFAULT_DEPTH;
-        // this.blackAgentDepth = this.DEFAULT_DEPTH;
         this.clear_results();
         this.initGame();
     }
@@ -165,8 +161,6 @@ export class BoardComponent implements OnInit {
         this.lastState = null;
         // init agents
         var redAgent;
-        // console.log("red:", this.redAgentType)
-        // console.log("black:", this.blackAgentType)
 
         switch (this.redAgentType) {
             case 0: { redAgent = new GreedyAgent(this.redTeam); break; }
@@ -193,8 +187,6 @@ export class BoardComponent implements OnInit {
             case 6: { blackAgent = new MoveReorderPruner(this.blackTeam, this.blackAgentDepth); break; }
             default: blackAgent = new GreedyAgent(this.blackTeam); break;
         }
-        // console.log(redAgent);
-        // console.log(blackAgent);
         this.state = new State(redAgent, blackAgent);
     }
 
@@ -243,9 +235,7 @@ export class BoardComponent implements OnInit {
 
     // end_state: -1: lose | 0: draw | 1: win
     end_game(end_state) {
-        // console.log("end_state=", end_state)
         var red_win = end_state * this.state.playingTeam;
-        // console.log("before leanr:", this.state.blackAgent.feature_matrix)
         // update state for end state
         this.state.endFlag = red_win;
         this.results.push(red_win);
@@ -309,9 +299,6 @@ export class BoardComponent implements OnInit {
                 var state_feature = result['state_feature'];
                 if (time) this.report_runtime(agent.strategy, (agent instanceof MCTS ? agent.N_SIMULATION : agent.DEPTH), time)
                 if (state_feature) agent.save_state(state_feature);
-                // console.log("move", move)
-                // console.log("time", time)
-                // console.log("state_feature", state_feature)
                 if (!move) { // FAIL
                     this.end_game(-1);
                     return;

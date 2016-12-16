@@ -12,8 +12,6 @@ export class Agent {
     oppoAgent: Agent;
     // myPiecesDic: {}; // {name -> pos}
     boardState: {}; // {posStr->[name, isMyPiece]}
-    // moved: EventEmitter<number> = new EventEmitter();
-    //
 
     DEPTH = 0;
 
