@@ -1,0 +1,119 @@
+#t {
+		font-size: 150px;
+}
+
+.left,
+.right {
+		width: 15%;
+		float: top;
+		height: 100%;
+		display: inline-block;
+}
+
+.left {
+		float: left;
+}
+
+.right {
+		float: right;
+}
+
+.header h1 {
+		color: white;
+		margin: auto;
+
+}
+
+.title {
+		width: 100%;
+}
+
+.separator {
+		color: #f8f6ea;
+		margin-left: 1em;
+}
+
+.board {
+		width: 70%;
+		display: inline-block;
+}
+
+.body_content {
+		padding-top: 3%;
+}
+
+.card {
+		width: 80%;
+		margin: auto;
+}
+
+.image {
+		width: 100px;
+		height: 100px;
+		margin: 5px;
+}
+
+.segment {
+		width: 100%;
+		background-color: white;
+}
+
+.title {
+		margin-bottom: 1em;
+		width: 100%;
+		text-align: center;
+}
+
+.sep {
+		height: 4em;
+}
+
+body {
+	background: #f4f4f4;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.body_content{
+	width: 94%;
+	margin: auto;
+	padding: 1em 0em;
+}
+.subtitle{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-top: 0.6em;
+	color: #f4f4f4;
+}
+
+.header h1{
+	display: block;
+	text-align: center;
+	padding-bottom: 0.4em;
+}
+
+
+.logo{
+	width: 5em;
+}
+
+.logopanel{
+	margin: auto;
+	text-align: center;
+}
+
+h3 a{
+	color: white;
+}
+
+.desc{
+	font-size: 15;
+}
+.body{
+	padding-top: 2em;
+}
+.divider{
+	width: 40%;
+}
