@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="./resource/styles.css">
 
         <!-- 1. Load libraries -->
-        <script src="./resource/jquery-3.1.1.min.js"></script>
+        <script src="./resource/js/jquery-3.1.1.min.js"></script>
         <script src="./resource/semantic.min.js"></script>
         <base href=".">
         <style>
@@ -58,41 +58,80 @@
 
                     <h4>Simulator</h4>
                     <div class="ui teal segment">
+                        <div class="desc">
+                            Web is used as the game interface for its flexibility and user-friendliness. Two games modes can be selected by the user:
+                            <p class="italic bold_text">Human Mode</p> and
+                            <p class="italic bold_text">Simulation Mode</p>. In
+                            <p class="italic bold_text">Human Mode</p> , human player plays against the computer with selected strategy and search depth. Clicking on a piece, the legal moves for that piece are highlighted. In
+                            <p class="italic bold_text">Simulation Mode</p>, two policies play against each other for multiple games by the computer, with selected policy and search depth for each team. Live winning rate for each team for all the games played so far is plotted below
+                            for comparison and analysis.
+                        </div>
+                        <div class="center_text">
+                            <img class="mid_img" src="resource/img/platform.png" alt="">
 
+                        </div>
+                    </div>
+                    <div class="gif center_text">
+                        <img src="resource/img/game.gif" alt="">
+                    </div>
+
+
+
+                    <h4>Effenciency</h4>
+                    <div class="ui blue segment">
+                        <div id="effiTable" class="center_text">
+                            <img src="resource/img/effenciency.png" alt="">
+                        </div>
 
                     </div>
-                    <div class="gif">
-                        <img src="resource/img/game.gif" alt="">
+                    <h4>Analysis</h4>
+                    <div class="ui purple segment">
+                        <div class="center_text">
+                            <img class="mid_img" src="resource/img/greedyvsgreedy.png" alt="">
+                            <img class="mid_img" src="resource/img/Reorder3-2.png" alt="">
+                        </div>
+
                     </div>
 
 
                     <h4>Installation</h4>
                     <div class="ui green segment">
-                        <div class="desc comment"># NodeJs is required as the server</div>
-                        <div class="desc comment"># Install Dependencies</div>
+                        <div class="desc comment italic"># NodeJs is required as the server</div>
+                        <div class="desc comment italic"># Install Dependencies</div>
                         <div class="desc code">npm install</div>
                         <div class="sep"></div>
-                        <div class="desc comment"># Start the server</div>
+                        <div class="desc comment italic"># Start the server</div>
                         <div class="desc code">npm start</div>
                         <div class="sep"></div>
-                        <div class="desc comment"># Open Browser and visit http://localhost:3000/</div>
-
-
+                        <div class="desc comment italic"># Open Browser and visit http://localhost:3000/</div>
                     </div>
-                    <h4>Effenciency</h4>
-                    <div class="ui blue segment">
-
-                    </div>
-                    <h4>Analysis</h4>
-                    <div class="ui purple segment">
-
-                    </div>
+                    <div class="sep"></div>
                     <h4>Thanks</h4>
-                    <div class="ui yellow segment">
-                        This project is advisized by Kaidi Yan.
-
+                    <div class="ui yellow segment ">
+                        <div class="desc">This project is advisized by TA
+                            <p class="italic">Kaidi Yan</p>.</div>
                     </div>
+                    <div class="mid_margin_top tail">
+                        <div class="ui divider horizontal center">
+                            2016 Stanford CS221
+                        </div>
+                    </div>
+
+
+
+
                 </div>
+
+
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+
             </div>
 
 
@@ -102,11 +141,5 @@
 
 
     </body>
-
-</html>
-</div>
-</app>
-
-</body>
 
 </html>

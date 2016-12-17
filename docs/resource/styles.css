@@ -73,6 +73,7 @@ body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
+	padding-bottom: 180em;
 }
 
 .body_content{
@@ -109,7 +110,10 @@ h3 a{
 }
 
 .desc{
-	font-size: 15;
+	font-size: 16;
+	display: inline-block;
+	text-align: justify;
+	 clear:both;
 }
 .body{
 	padding-top: 2em;
@@ -117,26 +121,58 @@ h3 a{
 
 }
 .divider{
-	width: 40%;
+	/*width: 40%;*/
 }
 
 .gif{
-
-	text-align: center;
 	margin: auto;
 }
 
+
+.center_text{
+	text-align: center;
+}
+/*img{
+	width: 60%;
+	padding: 2em;
+}*/
 .gif img{
 	width: 70%;
 }
 
 .comment{
 	color: gray;
+}
+.italic{
 	font-style: italic;
+	display: inline;
 }
 
+#effiTable img{
+	width: 90%;
+}
 
+.bold_text{
+	font-weight: bold;
+}
 .code{
 	font-weight: bold;
 	padding:0.3em;
+	display: block;
 }
+
+.mid_img{
+	width: 49%;
+}
+
+.mid_margin_top{
+	margin-top: 5em;
+}
+/*.tail img{
+	width: 100em;
+	height: 100em;
+}*/
+/*.tail a{
+	width: 100em;
+	height: 100em;
+}*/
