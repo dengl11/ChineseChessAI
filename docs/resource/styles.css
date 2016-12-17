@@ -65,7 +65,7 @@
 }
 
 .sep {
-		height: 4em;
+		height: 1em;
 }
 
 body {
@@ -128,4 +128,15 @@ h3 a{
 
 .gif img{
 	width: 70%;
+}
+
+.comment{
+	color: gray;
+	font-style: italic;
+}
+
+
+.code{
+	font-weight: bold;
+	padding:0.3em;
 }
