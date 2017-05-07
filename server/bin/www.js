@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 "use strict";
-var State_1 = require('../Strategy/State/State');
-var TDLearner_1 = require('../Strategy/TDLearner/TDLearner');
-var MCTS_1 = require('../Strategy/MCTS/MCTS');
-var TDLearnerTrained_1 = require('../Strategy/TDLearner/TDLearnerTrained');
+Object.defineProperty(exports, "__esModule", { value: true });
+var State_1 = require("../Strategy/State/State");
+var TDLearner_1 = require("../Strategy/TDLearner/TDLearner");
+var MCTS_1 = require("../Strategy/MCTS/MCTS");
+var TDLearnerTrained_1 = require("../Strategy/TDLearner/TDLearnerTrained");
 // import { Agent } from '../Strategy/Agent/Agent'
 // import { GreedyAgent } from '../Strategy/Greedy/GreedyAgent'
 // import { EvalFnAgent } from '../Strategy/EvalFn/EvaluationFn'
