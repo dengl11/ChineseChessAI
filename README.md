@@ -22,7 +22,9 @@ npm install
 
 # start server
 npm start
+
 ```
+Open your browser, go to `http://localhost:3000/` and you should be good to go 
 
 --------------
 
