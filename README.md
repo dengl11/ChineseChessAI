@@ -40,6 +40,7 @@ npm start
 <div style="text-align: center">
 <img src="https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/docs/resource/img/game.gif"  style="width: 600px;"/>
 </div>
+
 --------------
 
 
@@ -50,7 +51,6 @@ npm start
     - `MCTS` and `TDLearning` implementations are not solid
     - reinforcement learning part seldom works
 
-<br>
 - Effienciency need to be imporved
     - Current computation engine is in javascript, which is not fast enough (I did not know how to call other executables from nodeJS then..., but now I do, please see below)
     - You may implement a more powerful engine in C/C++ by calling a subprocess in server, [NodeJS Child Process](https://nodejs.org/api/child_process.html) should help
