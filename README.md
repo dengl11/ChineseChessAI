@@ -13,13 +13,13 @@ npm install
 npm start
 ```
 
-![alt tag](https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/overview.png)
 --------------
 
+<img src="https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/overview.png"  style="width: 20px;"/>
 
 
 ## Display of Legal Moves
-![alt tag](https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/board-with-moves.png)
+![alt tag](https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/board-with-moves.png){ width: 40px; } 
 
 ## Live Performance Analysis
 ![alt tag](https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/docs/resource/img/learn.png)
