@@ -28,12 +28,6 @@ npm start
 
 
 
-<b><br>
-## Display of Legal Moves
-<div style="text-align: center">
-<img src="https://raw.githubusercontent.com/dengl11/ChineseChessAI/master/public/resource/img/board-with-moves.png"  style="width: 280px;"/>
-</div>
-
 <br><br>
 ## Live Performance Analysis
 <div style="text-align: center">
