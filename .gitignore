@@ -7,3 +7,4 @@ server/**/*.js
 *.js.map
 typings/*
 *.gz
+*-lock*
