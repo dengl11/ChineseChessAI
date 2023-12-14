@@ -1,7 +1,4 @@
-
 import { Agent } from '../Agent/Agent'
-import { State } from '../State/State'
-import { StateFeatureExtractor } from '../State/StateFeatureExtractor'
 import { MCTS_State } from './MCTS_State'
 
 export class MCTS extends Agent {
