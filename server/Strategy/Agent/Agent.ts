@@ -1,8 +1,6 @@
 import { Piece } from '../../Objects/Piece';
 import { Rule } from '../../ChineseChess/Rule/Rule'
 import { InitGame } from '../../ChineseChess/InitGame/init';
-import { GreedyAgent } from '../Greedy/GreedyAgent'
-import { ABPruning } from '../ABPruning/ABPruning'
 import { Evaluation } from '../_Param/Evaluation'
 import { State } from '../State/State'
 

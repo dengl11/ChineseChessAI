@@ -1,5 +1,5 @@
 {
-  "name": "ChineseChessAi",
+  "name": "chinese_chess_ai",
   "version": "1.0.0",
   "description": "AI Agent for Chinese Chess - Stanford CS 221 Projects",
   "main": "gulpfile.js",
@@ -42,15 +42,15 @@
     "typings": "1.3.2"
   },
   "devDependencies": {
-    "del": "2.2.1",
     "angular2-in-memory-web-api": "0.0.20",
-    "systemjs": "0.19.27",
+    "concurrently": "^2.2.0",
     "core-js": "2.4.1",
+    "del": "2.2.1",
+    "nodemon": "^1.19.4",
     "reflect-metadata": "0.1.3",
-    "rxjs": " 5.4.2",
-    "zone.js": "0.6.23",
-    "concurrently": "2.0.0",
-    "nodemon": "1.9.1",
-    "systemjs-builder": "0.15.17"
+    "rxjs": "5.4.2",
+    "systemjs": "0.19.27",
+    "systemjs-builder": "^0.0.7",
+    "zone.js": "0.6.23"
   }
 }

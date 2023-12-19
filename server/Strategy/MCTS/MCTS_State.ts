@@ -1,5 +1,3 @@
-
-import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
 
 export class MCTS_State {

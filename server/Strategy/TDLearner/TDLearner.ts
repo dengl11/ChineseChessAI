@@ -1,8 +1,6 @@
-
 import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
 import { StateFeatureExtractor } from '../State/StateFeatureExtractor'
-import { Evaluation } from '../_Param/Evaluation'
 import { Reorder } from '../Reorder/Reorder'
 
 export class TDLearner extends Reorder {

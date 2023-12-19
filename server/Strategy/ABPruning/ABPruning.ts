@@ -1,7 +1,5 @@
-
 import { Agent } from '../Agent/Agent'
 import { State } from '../State/State'
-import { Evaluation } from '../_Param/Evaluation'
 
 export class ABPruning extends Agent {
 

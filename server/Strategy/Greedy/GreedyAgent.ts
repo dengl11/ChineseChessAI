@@ -1,7 +1,4 @@
-
 import { Agent } from '../Agent/Agent'
-import { Piece } from '../../Objects/Piece'
-import { Evaluation } from '../_Param/Evaluation'
 
 export class GreedyAgent extends Agent {
 
